@@ -3,7 +3,7 @@ import discord
 import logging
 import asyncio
 import random
-from datetime import  datetime, date, time
+from datetime import datetime, date, time
 
 logger = logging.getLogger('discord')
 logger.setLevel(logging.DEBUG)
@@ -111,11 +111,11 @@ async def random_quote():
 		if quotesSaid < 2:
 			quotes = getQuotes()
 			try:
-				print("Sending quote.")
+				print('Sending quote.')
 				# general = client.get_channel(channels['aux1'])
 				await general.send(quotes[random.randint(0, len(quotes)-1)])
 			except:
-				print("EER: Failed sending quote.")
+				print('EER: Failed sending quote.')
 			quotesSaid += 1
 			await asyncio.sleep(random.randint(3*60*60, 12*60*60))
 		else:
@@ -125,18 +125,64 @@ async def random_quote():
 			quotesSaid = 0
 
 
+def send_reminders(channel, today, date, testNum):
+	dateDelta = date - today
+	if dateDelta.days == 14:
+		channel.send('REMINDER: TEST ' + testNum + ' is 2 weeks away!')
+	elif dateDelta == 7:
+		channel.send('REMINDER: TEST ' + testNum + ' is a week away! If you are still having trouble with some concepts, remember to ask questions or utilize tutoring.')
+	elif dateDelta == 3:
+		channel.send('REMINDER: TEST ' + testNum + ' is 3 days away! Utilize tutoring in you need it!!!')
+	elif dateDelta == 1:
+		channel.send("RED ALERT: TEST " + testNum + " is TOMORROW!!! If you haven't started studying yet, don't bother starting! Rethink what you are doing and start thinking of alternative majors.")
+
+
 async def important_reminders():
 	iDates = getDates()
 	Circuits1 = iDates[:4]
 	Circuits2 = iDates[4:]
 	while True:
 		today = datetime.today()
+		today = today.replace(hour=8, minute=0, microsecond=0)
+		C1_Channel = client.get_channel(channels['aux2'])
+		C2_Channel = client.get_channel(channels['aux3'])
 		# Circuits 1
 		if today < Circuits1[0]:
-			dateDelta = Circuits1[0] - today
+			send_reminders(C1_Channel, today, Circuits1[0], 1)
+		elif today < Circuits1[1]:
+			send_reminders(C1_Channel, today, Circuits1[1], 2)
+		elif today < Circuits1[2]:
+			send_reminders(C1_Channel, today, Circuits1[2], 3)
+		elif today < Circuits1[3][0]:
+			dateDelta = Circuits1[3][0] - today
 			if dateDelta.days == 14:
-				C2_Channel = client.get_channel(channels['aux2'])
-
-
+				C1_Channel.send('REMINDER: The FINAL is 2 weeks away!')
+			elif dateDelta == 7:
+				C1_Channel.send('REMINDER: The FINAL is a week away! If you are still having trouble with some concepts, remember to ask questions or utilize tutoring.')
+			elif dateDelta == 3:
+				C1_Channel.send('REMINDER: The FINAL is 3 days away! Utilize tutoring in you need it!!!')
+			elif dateDelta == 1:
+				C1_Channel.send("RED ALERT: FINAL is TOMORROW at " + str(Circuits1[3][1]) + " to " + str(Circuits1[3][2]) + "!!! If you haven't started studying yet, don't bother starting! Start getting prepared for taking this class again next semester.")
+		# Circuits 2
+		if today < Circuits2[0]:
+			send_reminders(C2_Channel, today, Circuits2[0], 1)
+		elif today < Circuits2[1]:
+			send_reminders(C1_Channel, today, Circuits2[1], 2)
+		elif today < Circuits1[2]:
+			send_reminders(C1_Channel, today, Circuits2[2], 3)
+		elif today < Circuits1[3][0]:
+			dateDelta = Circuits1[3][0] - today
+			if dateDelta.days == 14:
+				C1_Channel.send('REMINDER: The FINAL is 2 weeks away!')
+			elif dateDelta == 7:
+				C1_Channel.send(
+					'REMINDER: The FINAL is a week away! If you are still having trouble with some concepts, remember to ask questions or utilize tutoring.')
+			elif dateDelta == 3:
+				C1_Channel.send('REMINDER: The FINAL is 3 days away! Utilize tutoring in you need it!!!')
+			elif dateDelta == 1:
+				C1_Channel.send("RED ALERT: FINAL is TOMORROW at " + str(Circuits1[3][1]) + " to " + str(
+					Circuits1[3][
+						2]) + "!!! If you haven't started studying yet, don't bother starting! Start getting prepared for taking this class again next semester.")
+		await asyncio.sleep(24*60*60)
 
 # client.run('NjY5MjYwOTU2NzY5MDU4ODY4.XitObg.CHG4AioEpx9sYHESfMsYaT_2bMM')
