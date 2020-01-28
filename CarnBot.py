@@ -11,12 +11,15 @@ handler = logging.FileHandler(filename='discord.log', encoding='utf-8', mode='w'
 handler.setFormatter(logging.Formatter('%(asctime)s:%(levelname)s:%(name)s: %(message)s'))
 logger.addHandler(handler)
 
+cmdSym = '$'
 channels = {
-		'general': 627271589062508566,
-		'aux1': 602663309170311173,
-		'aux2': 670503655308263434,
+		'general': 602663309170311173,
+		'C1-Q': 671814810278559774,
+		'C2-Q': 670503709989404732,
 }
 newUsrMsg = '''Welcome to the Easy Engineering server! Please say which course you are currently taking so a admin can update your role. If you have any questions regarding the server feel free to ask. Please read <#670503655308263434>. Remember we are all here to learn and help each so be respectful to your fellow students. \nDISCLAIMER: This bot is in no way affiliated with Dr. Carnal or TNTECH in anyway.'''
+now = datetime.today()
+resetTime = now.replace(day=now.day+1, hour=8, minute=0)
 general = None
 
 
@@ -88,11 +91,18 @@ async def on_message(message):
 		return
 
 	if message.content.startswith('/hello'):
-		await message.general.send('Hello!')
+		await message.channel.send('Hello!')
+
+	if message.content.startswith(cmdSym + 'final'):
+		dates = getDates()
+		if message.channel == client.get_channel(channels['C1-Q']):
+			await message.channel.send(message.author.mention + 'The final is on ' + str(dates[3][0]) + ' at ' + str(dates[3][1]) + ' to ' + str(dates[3][2]))
+		if message.channel == client.get_channel(channels['C2-Q']):
+			await message.channel.send(message.author.mention + 'The final is on ' + str(dates[7][0]) + ' at ' + str(dates[7][1]) + ' to ' + str(dates[7][2]))
 
 	if message.content.startswith(':thumbsup:'):
 
-		await message.general.send('Send me that 👍 reaction, mate')
+		await message.channel.send('Send me that 👍 reaction, mate')
 
 		def check(reaction, user):
 			return user == message.author and str(reaction.emoji) == '👍'
@@ -100,9 +110,9 @@ async def on_message(message):
 		try:
 			reaction, user = await client.wait_for('reaction_add', timeout=60.0, check=check)
 		except asyncio.TimeoutError:
-			await general.send('👎')
+			await message.channel.send('👎')
 		else:
-			await general.send('👍')
+			await message.channel.send('👍')
 
 
 async def random_quote():
@@ -119,8 +129,6 @@ async def random_quote():
 			quotesSaid += 1
 			await asyncio.sleep(random.randint(3*60*60, 12*60*60))
 		else:
-			now = datetime.today()
-			resetTime = now.replace(day=now.day+1, hour=8, minute=0)
 			await discord.utils.sleep_until(resetTime)
 			quotesSaid = 0
 
@@ -144,45 +152,45 @@ async def important_reminders():
 	while True:
 		today = datetime.today()
 		today = today.replace(hour=8, minute=0, microsecond=0)
-		C1_Channel = client.get_channel(channels['aux2'])
-		C2_Channel = client.get_channel(channels['aux3'])
-		# Circuits 1
-		if today < Circuits1[0]:
-			send_reminders(C1_Channel, today, Circuits1[0], 1)
-		elif today < Circuits1[1]:
-			send_reminders(C1_Channel, today, Circuits1[1], 2)
-		elif today < Circuits1[2]:
-			send_reminders(C1_Channel, today, Circuits1[2], 3)
-		elif today < Circuits1[3][0]:
-			dateDelta = Circuits1[3][0] - today
-			if dateDelta.days == 14:
-				C1_Channel.send('REMINDER: The FINAL is 2 weeks away!')
-			elif dateDelta == 7:
-				C1_Channel.send('REMINDER: The FINAL is a week away! If you are still having trouble with some concepts, remember to ask questions or utilize tutoring.')
-			elif dateDelta == 3:
-				C1_Channel.send('REMINDER: The FINAL is 3 days away! Utilize tutoring in you need it!!!')
-			elif dateDelta == 1:
-				C1_Channel.send("RED ALERT: FINAL is TOMORROW at " + str(Circuits1[3][1]) + " to " + str(Circuits1[3][2]) + "!!! If you haven't started studying yet, don't bother starting! Start getting prepared for taking this class again next semester.")
-		# Circuits 2
-		if today < Circuits2[0]:
-			send_reminders(C2_Channel, today, Circuits2[0], 1)
-		elif today < Circuits2[1]:
-			send_reminders(C1_Channel, today, Circuits2[1], 2)
-		elif today < Circuits1[2]:
-			send_reminders(C1_Channel, today, Circuits2[2], 3)
-		elif today < Circuits1[3][0]:
-			dateDelta = Circuits1[3][0] - today
-			if dateDelta.days == 14:
-				C1_Channel.send('REMINDER: The FINAL is 2 weeks away!')
-			elif dateDelta == 7:
-				C1_Channel.send(
-					'REMINDER: The FINAL is a week away! If you are still having trouble with some concepts, remember to ask questions or utilize tutoring.')
-			elif dateDelta == 3:
-				C1_Channel.send('REMINDER: The FINAL is 3 days away! Utilize tutoring in you need it!!!')
-			elif dateDelta == 1:
-				C1_Channel.send("RED ALERT: FINAL is TOMORROW at " + str(Circuits1[3][1]) + " to " + str(
-					Circuits1[3][
-						2]) + "!!! If you haven't started studying yet, don't bother starting! Start getting prepared for taking this class again next semester.")
-		await asyncio.sleep(24*60*60)
+		C1_Channel = client.get_channel(channels['C1-Q'])
+		C2_Channel = client.get_channel(channels['C2-Q'])
+		try:
+			# Circuits 1
+			if today < Circuits1[0]:
+				send_reminders(C1_Channel, today, Circuits1[0], 1)
+			elif today < Circuits1[1]:
+				send_reminders(C1_Channel, today, Circuits1[1], 2)
+			elif today < Circuits1[2]:
+				send_reminders(C1_Channel, today, Circuits1[2], 3)
+			elif today < Circuits1[3][0]:
+				dateDelta = Circuits1[3][0] - today
+				if dateDelta.days == 14:
+					C1_Channel.send('REMINDER: The FINAL is 2 weeks away!')
+				elif dateDelta == 7:
+					C1_Channel.send('REMINDER: The FINAL is a week away! If you are still having trouble with some concepts, remember to ask questions or utilize tutoring.')
+				elif dateDelta == 3:
+					C1_Channel.send('REMINDER: The FINAL is 3 days away! Utilize tutoring in you need it!!!')
+				elif dateDelta == 1:
+					C1_Channel.send("RED ALERT: FINAL is TOMORROW at " + str(Circuits1[3][1]) + " to " + str(Circuits1[3][2]) + "!!! If you haven't started studying yet, don't bother starting! Start getting prepared for taking this class again next semester.")
+			# Circuits 2
+			if today < Circuits2[0]:
+				send_reminders(C2_Channel, today, Circuits2[0], 1)
+			elif today < Circuits2[1]:
+				send_reminders(C1_Channel, today, Circuits2[1], 2)
+			elif today < Circuits1[2]:
+				send_reminders(C1_Channel, today, Circuits2[2], 3)
+			elif today < Circuits1[3][0]:
+				dateDelta = Circuits1[3][0] - today
+				if dateDelta.days == 14:
+					C1_Channel.send('REMINDER: The FINAL is 2 weeks away!')
+				elif dateDelta == 7:
+					C1_Channel.send('REMINDER: The FINAL is a week away! If you are still having trouble with some concepts, remember to ask questions or utilize tutoring.')
+				elif dateDelta == 3:
+					C1_Channel.send('REMINDER: The FINAL is 3 days away! Utilize tutoring in you need it!!!')
+				elif dateDelta == 1:
+					C1_Channel.send("RED ALERT: FINAL is TOMORROW at " + str(Circuits1[3][1]) + " to " + str(Circuits1[3][2]) + "!!! If you haven't started studying yet, don't bother starting! Start getting prepared for taking this class again next semester.")
+		except:
+			print("ERR: Couldn't check and send test reminders.")
+		await discord.utils.sleep_until(resetTime)
 
-# client.run('NjY5MjYwOTU2NzY5MDU4ODY4.XitObg.CHG4AioEpx9sYHESfMsYaT_2bMM')
+client.run('NjY5MjYwOTU2NzY5MDU4ODY4.XitObg.CHG4AioEpx9sYHESfMsYaT_2bMM')
