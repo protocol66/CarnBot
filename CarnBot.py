@@ -71,7 +71,7 @@ async def get(ctx, arg):
 	elif (arg == 'email'):
 		await ctx.send('CharlesLC@tntech.edu')
 	elif(arg == 'website'):
-		await ctx.send('https://clcee.net/clc_ece/')
+		await ctx.send('https://clcee.net/clc_ece/'
 	else:
 		await ctx.send('I don\'t know what you are asking, read the syllabus')
 
