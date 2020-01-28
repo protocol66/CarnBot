@@ -2,6 +2,10 @@ import os
 import discord
 from discord.ext import commands
 import logging
+import random
+import time
+import asyncio
+
 
 logger = logging.getLogger('discord')
 logger.setLevel(logging.DEBUG)
@@ -10,6 +14,7 @@ handler.setFormatter(logging.Formatter('%(asctime)s:%(levelname)s:%(name)s: %(me
 logger.addHandler(handler)
 
 client = commands.Bot(command_prefix='$', help_command=None)
+# client = discord.Client
 TOKEN = 'NjY5MjYwOTU2NzY5MDU4ODY4.XitObg.CHG4AioEpx9sYHESfMsYaT_2bMM'
 
 channels = {
@@ -20,18 +25,18 @@ channels = {
 
 newUsrMsg = '''Welcome to the Easy Engineering server! Please say which course you are currently taking so a admin can update your role. If you have any questions regarding the server feel free to ask. Please read #rules. Remember we are all here to learn and help each so be respectful to your fellow students. \nDISCLAIMER: This bot is in no way affiliated with Dr. Carnal or TNTECH in anyway.'''
 
+RANDOM_MESSAGES_DAY = 2
+messageTimes = []
+quotesSaid = 0
 
 #basic function for checking if a messages author is the bot itself
 def is_me(m):
 	return m.author == client.user
 
-async def sendMsg(channelToSend, message):
-	channel = client.get_channel(channels['aux1'])
-	await channel.send(message)
-
 @client.event
 async def on_ready():
 	print('We have logged in as {0.user}'.format(client))
+	client.loop.create_task(schedular())
 
 # @client.event
 # async def on_member_join(member):
@@ -60,6 +65,75 @@ async def on_ready():
 # 			newMsg = message.content.replace('$echo', '')
 # 			await message.channel.send(newMsg)
 
+def getTimeHours():
+	hour = int(time.strftime('%H'))
+	minute = int(time.strftime('%M'))
+	minutes = hour + (minute / 60)
+	return minutes
+
+def genRandomTime():
+	global quotesSaid
+	global messageTimes
+	quotesSaid = 0
+	for i in range(RANDOM_MESSAGES_DAY):
+		randTime = random.uniform(8, 20)
+		messageTimes.append(randTime)
+	messageTimes.sort()
+	
+async def random_quote():
+	global quotesSaid
+	global messageTimes
+	if(getTimeHours() >= messageTimes[quotesSaid]):
+		if quotesSaid <= RANDOM_MESSAGES_DAY:
+			# quotes = getQuotes()
+			try:
+				print('Sending quote.')
+				general = client.get_channel(channels['aux1'])
+				# await general.send(quotes[random.randint(0, len(quotes)-1)])
+				await general.send(f"Testing MessageTimes = {messageTimes}")
+			except:
+				print('EER: Failed sending quote.')
+			quotesSaid += 1
+
+
+def one_minute_loop():
+	pass
+async def five_minute_loop():
+	await random_quote()
+def thirty_minute_loop():
+	pass
+def one_hourly_loop():
+	pass
+def six_hour_loop():
+	pass
+def daily_loop():
+	genRandomTime()
+
+async def schedular():
+	minute = 0
+	while True:
+		
+		if (not(minute % 24 * 60) or not(minute)):
+			daily_loop()
+		if (not(minute % 6 * 60) or not(minute)):
+			six_hour_loop()
+		if (not(minute % 60) or not(minute)):
+			one_hourly_loop()
+		if (not(minute % 30) or not(minute)):
+			thirty_minute_loop()
+		if (not(minute % 5) or not(minute)):
+			await five_minute_loop()
+
+		one_minute_loop()
+
+		await asyncio.sleep(60)
+
+		minute += 1
+		if (minute >= 24 * 60):
+			minute = 0
+		
+
+
 @client.command()
 async def echo(ctx, *, arg):
     await ctx.send(arg)
@@ -70,8 +144,8 @@ async def get(ctx, arg):
 		await ctx.send('Arguments: email, website')
 	elif (arg == 'email'):
 		await ctx.send('CharlesLC@tntech.edu')
-	elif(arg == 'website'):
-		await ctx.send('https://clcee.net/clc_ece/'
+	elif (arg == 'website'):
+		await ctx.send('https://clcee.net/clc_ece/')
 	else:
 		await ctx.send('I don\'t know what you are asking, read the syllabus')
 
