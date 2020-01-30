@@ -129,7 +129,7 @@ async def schedular():
 		await asyncio.sleep(60)
 
 		minute += 1
-		if (minute >= 24 * 60):
+		if (minute >= 24 * 60 * 7):
 			minute = 0
 		
 
