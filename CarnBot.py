@@ -20,7 +20,6 @@ channels = {
 }
 newUsrMsg = '''Welcome to the Easy Engineering server! Please say which course you are currently taking so a admin can update your role. If you have any questions regarding the server feel free to ask. Please read <#670503655308263434>. Remember we are all here to learn and help each so be respectful to your fellow students. \nDISCLAIMER: This bot is in no way affiliated with Dr. Carnal or TNTECH in anyway.'''
 now = datetime.today()
-resetTime = now.replace(day=now.day+1, hour=8, minute=0)
 general = None
 
 RANDOM_MESSAGES_DAY = 2
@@ -58,7 +57,7 @@ def getDates():
 		return dates
 
 
-client = discord.Client()
+client = commands.Bot(command_prefix='$', help_command=None)
 
 
 def getTimeHours():
@@ -92,17 +91,17 @@ async def random_quote():
 			quotesSaid += 1
 
 
-def one_minute_loop():
+async def one_minute_loop():
 	pass
 async def five_minute_loop():
 	await random_quote()
-def thirty_minute_loop():
+async def thirty_minute_loop():
 	pass
-def one_hourly_loop():
+async def one_hour_loop():
 	pass
-def six_hour_loop():
-	pass
-def daily_loop():
+async def six_hour_loop():
+	await important_reminders()
+async def daily_loop():
 	genRandomTime()
 
 async def schedular():
@@ -110,13 +109,13 @@ async def schedular():
 	while True:
 		
 		if (not(minute % 24 * 60) or not(minute)):
-			daily_loop()
+			await daily_loop()
 		if (not(minute % 6 * 60) or not(minute)):
-			six_hour_loop()
+			await six_hour_loop()
 		if (not(minute % 60) or not(minute)):
-			one_hourly_loop()
+			await one_hour_loop()
 		if (not(minute % 30) or not(minute)):
-			thirty_minute_loop()
+			await thirty_minute_loop()
 		if (not(minute % 5) or not(minute)):
 			await five_minute_loop()
 
@@ -206,7 +205,7 @@ async def important_reminders():
 	Circuits2 = iDates[4:]
 	while True:
 		today = datetime.today()
-		today = today.replace(hour=8, minute=0, microsecond=0)
+		# today = today.replace(hour=8, minute=0, microsecond=0)
 		C1_Channel = client.get_channel(channels['C1-Q'])
 		C2_Channel = client.get_channel(channels['C2-Q'])
 		try:
@@ -246,7 +245,6 @@ async def important_reminders():
 					C1_Channel.send("RED ALERT: FINAL is TOMORROW at " + str(Circuits1[3][1]) + " to " + str(Circuits1[3][2]) + "!!! If you haven't started studying yet, don't bother starting! Start getting prepared for taking this class again next semester.")
 		except:
 			print("ERR: Couldn't check and send test reminders.")
-		await discord.utils.sleep_until(resetTime)
 
 
 
