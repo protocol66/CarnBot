@@ -157,21 +157,22 @@ async def on_member_join(member):
 	except:
 		print('ERR: Could not send welcome msg.')
 
+#for sum reason on_message prevents commands from running
 
-@client.event
-async def on_message(message):
-	if is_me(message):
-		return
+# @client.event
+# async def on_message(message):
+# 	if is_me(message):
+# 		return
 
-	if message.content.startswith('/hello'):
-		await message.channel.send('Hello!')
+# 	if message.content.startswith('/hello'):
+# 		await message.channel.send('Hello!')
 
-	if message.content.startswith(cmdSym + 'final'):
-		dates = getDates()
-		if message.channel == client.get_channel(channels['C1-Q']):
-			await message.channel.send(message.author.mention + 'The final is on ' + str(dates[3][0]) + ' at ' + str(dates[3][1]) + ' to ' + str(dates[3][2]))
-		if message.channel == client.get_channel(channels['C2-Q']):
-			await message.channel.send(message.author.mention + 'The final is on ' + str(dates[7][0]) + ' at ' + str(dates[7][1]) + ' to ' + str(dates[7][2]))
+# 	if message.content.startswith(cmdSym + 'final'):
+# 		dates = getDates()
+# 		if message.channel == client.get_channel(channels['C1-Q']):
+# 			await message.channel.send(message.author.mention + 'The final is on ' + str(dates[3][0]) + ' at ' + str(dates[3][1]) + ' to ' + str(dates[3][2]))
+# 		if message.channel == client.get_channel(channels['C2-Q']):
+# 			await message.channel.send(message.author.mention + 'The final is on ' + str(dates[7][0]) + ' at ' + str(dates[7][1]) + ' to ' + str(dates[7][2]))
 
 	# if message.content.startswith(':thumbsup:'):
 
