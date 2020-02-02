@@ -5,6 +5,7 @@ import logging
 import asyncio
 import random
 from datetime import datetime, date, time
+import time
 
 logger = logging.getLogger('discord')
 logger.setLevel(logging.DEBUG)
@@ -78,7 +79,8 @@ def genRandomTime():
 async def random_quote():
 	global quotesSaid
 	global messageTimes
-	if(getTimeHours() >= messageTimes[quotesSaid]):
+	# if(getTimeHours() >= messageTimes[quotesSaid]):
+	if(True):
 		if quotesSaid <= RANDOM_MESSAGES_DAY:
 			# quotes = getQuotes()
 			try:
@@ -100,6 +102,7 @@ async def one_hour_loop():
 	pass
 async def six_hour_loop():
 	# await important_reminders()
+	pass
 async def daily_loop():
 	genRandomTime()
 	print(f"MessageTimes = {messageTimes}")
@@ -118,8 +121,7 @@ async def schedular():
 			await thirty_minute_loop()
 		if (not(minute % 5) or not(minute)):
 			await five_minute_loop()
-
-		one_minute_loop()
+		await one_minute_loop()
 
 		await asyncio.sleep(60)
 

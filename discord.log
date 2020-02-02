@@ -1,238 +1,83 @@
-2020-02-01 23:05:58,685:WARNING:discord.client: PyNaCl is not installed, voice will NOT be supported
-2020-02-01 23:05:58,687:DEBUG:discord.client: on_ready has successfully been registered as an event
-2020-02-01 23:05:58,687:DEBUG:discord.client: on_member_join has successfully been registered as an event
-2020-02-01 23:05:58,688:DEBUG:discord.client: on_message has successfully been registered as an event
-2020-02-01 23:05:58,696:INFO:discord.client: logging in using static token
-2020-02-01 23:05:59,152:DEBUG:discord.http: GET https://discordapp.com/api/v7/users/@me with None has returned 200
-2020-02-01 23:05:59,153:DEBUG:discord.http: GET https://discordapp.com/api/v7/users/@me has received {'id': '669260956769058868', 'username': 'CarnBot', 'avatar': '3519ef9046ddebaa4b1fa546cf5050c2', 'discriminator': '2131', 'bot': True, 'email': None, 'verified': True, 'locale': 'en-US', 'mfa_enabled': True, 'flags': 0}
-2020-02-01 23:05:59,203:DEBUG:discord.http: GET https://discordapp.com/api/v7/gateway with None has returned 200
-2020-02-01 23:05:59,204:DEBUG:discord.http: GET https://discordapp.com/api/v7/gateway has received {'url': 'wss://gateway.discord.gg'}
-2020-02-01 23:05:59,550:INFO:discord.gateway: Created websocket connected to wss://gateway.discord.gg?encoding=json&v=6&compress=zlib-stream
-2020-02-01 23:05:59,551:DEBUG:discord.client: Dispatching event socket_raw_receive
-2020-02-01 23:05:59,552:DEBUG:discord.gateway: For Shard ID None: WebSocket Event: {'t': None, 's': None, 'op': 10, 'd': {'heartbeat_interval': 41250, '_trace': ['["gateway-prd-main-tp76",{"micros":0.0}]']}}
-2020-02-01 23:05:59,552:DEBUG:discord.client: Dispatching event socket_response
-2020-02-01 23:05:59,553:DEBUG:discord.client: Dispatching event socket_raw_send
-2020-02-01 23:05:59,555:DEBUG:discord.client: Dispatching event socket_raw_send
-2020-02-01 23:05:59,556:INFO:discord.gateway: Shard ID None has sent the IDENTIFY payload.
-2020-02-01 23:05:59,599:DEBUG:discord.client: Dispatching event socket_raw_receive
-2020-02-01 23:05:59,600:DEBUG:discord.gateway: For Shard ID None: WebSocket Event: {'t': None, 's': None, 'op': 11, 'd': None}
-2020-02-01 23:05:59,600:DEBUG:discord.client: Dispatching event socket_response
-2020-02-01 23:05:59,639:DEBUG:discord.client: Dispatching event socket_raw_receive
-2020-02-01 23:05:59,640:DEBUG:discord.gateway: For Shard ID None: WebSocket Event: {'t': 'READY', 's': 1, 'op': 0, 'd': {'v': 6, 'user_settings': {}, 'user': {'verified': True, 'username': 'CarnBot', 'mfa_enabled': True, 'id': '669260956769058868', 'email': None, 'discriminator': '2131', 'bot': True, 'avatar': '3519ef9046ddebaa4b1fa546cf5050c2'}, 'session_id': '49bbd9f6817d1bfa4c93f26ec6c194ed', 'relationships': [], 'private_channels': [], 'presences': [], 'guilds': [{'unavailable': True, 'id': '602663309170311170'}], 'application': {'id': '669260956769058868', 'flags': 0}, '_trace': ['["gateway-prd-main-tp76",{"micros":35838,"calls":["discord-sessions-prd-1-15",{"micros":34413,"calls":["start_session",{"micros":33529,"calls":["api-prd-main-pw2v",{"micros":30542,"calls":["get_user",{"micros":2995},"add_authorized_ip",{"micros":1511},"get_guilds",{"micros":1793},"coros_wait",{"micros":2}]}]},"guilds_connect",{"micros":1,"calls":[]},"presence_connect",{"micros":101,"calls":[]}]}]}]']}}
-2020-02-01 23:05:59,641:DEBUG:discord.client: Dispatching event socket_response
-2020-02-01 23:05:59,641:INFO:discord.gateway: Shard ID None has connected to Gateway: ["gateway-prd-main-tp76",{"micros":35838,"calls":["discord-sessions-prd-1-15",{"micros":34413,"calls":["start_session",{"micros":33529,"calls":["api-prd-main-pw2v",{"micros":30542,"calls":["get_user",{"micros":2995},"add_authorized_ip",{"micros":1511},"get_guilds",{"micros":1793},"coros_wait",{"micros":2}]}]},"guilds_connect",{"micros":1,"calls":[]},"presence_connect",{"micros":101,"calls":[]}]}]}] (Session ID: 49bbd9f6817d1bfa4c93f26ec6c194ed).
-2020-02-01 23:05:59,690:DEBUG:discord.client: Dispatching event connect
-2020-02-01 23:05:59,691:DEBUG:discord.client: Dispatching event socket_raw_receive
-2020-02-01 23:05:59,693:DEBUG:discord.gateway: For Shard ID None: WebSocket Event: {'t': 'GUILD_CREATE', 's': 2, 'op': 0, 'd': {'application_id': None, 'large': False, 'features': [], 'rules_channel_id': None, 'joined_at': '2020-01-23T17:40:14.677535+00:00', 'member_count': 5, 'afk_channel_id': None, 'region': 'us-central', 'vanity_url_code': None, 'presences': [{'user': {'id': '116326927370944519'}, 'status': 'online', 'game': {'type': 0, 'timestamps': {'start': 1580617481985}, 'name': 'Rocket League', 'id': 'c6f1fa289e6fec20', 'created_at': 1580617482165, 'application_id': '356877880938070016'}, 'client_status': {'desktop': 'online'}, 'activities': [{'type': 0, 'timestamps': {'start': 1580617481985}, 'name': 'Rocket League', 'id': 'c6f1fa289e6fec20', 'created_at': 1580617482165, 'application_id': '356877880938070016'}]}, {'user': {'id': '235088799074484224'}, 'status': 'online', 'game': None, 'client_status': {'web': 'online'}, 'activities': []}, {'user': {'id': '486906350375272449'}, 'status': 'online', 'game': None, 'client_status': {'desktop': 'online'}, 'activities': []}, {'user': {'id': '669260956769058868'}, 'status': 'online', 'game': None, 'client_status': {'web': 'online'}, 'activities': []}], 'channels': [{'user_limit': 0, 'type': 4, 'position': 2, 'permission_overwrites': [], 'parent_id': None, 'nsfw': False, 'name': 'Text Channels', 'id': '602663309170311172', 'bitrate': 64000}, {'type': 0, 'topic': None, 'rate_limit_per_user': 0, 'position': 4, 'permission_overwrites': [], 'parent_id': '602663309170311172', 'nsfw': False, 'name': 'general', 'last_message_id': '673389344119193614', 'id': '602663309170311173'}, {'user_limit': 0, 'type': 4, 'position': 3, 'permission_overwrites': [], 'parent_id': None, 'nsfw': False, 'name': 'Voice Channels', 'id': '602663309170311174', 'bitrate': 64000}, {'user_limit': 0, 'type': 2, 'position': 0, 'permission_overwrites': [], 'parent_id': '602663309170311174', 'name': 'General', 'id': '602663309170311175', 'bitrate': 64000}, {'type': 0, 'topic': None, 'rate_limit_per_user': 0, 'position': 5, 'permission_overwrites': [], 'parent_id': '602663309170311172', 'nsfw': False, 'name': 'mcserverstatus', 'last_message_id': '653019269226954773', 'id': '609611791017705503'}, {'type': 4, 'position': 0, 'permission_overwrites': [], 'parent_id': None, 'nsfw': False, 'name': 'test', 'id': '670503547153940500'}, {'type': 0, 'topic': None, 'rate_limit_per_user': 0, 'position': 0, 'permission_overwrites': [], 'parent_id': '670503547153940500', 'nsfw': False, 'name': 'test-txt', 'last_message_id': None, 'id': '670503591441596440'}, {'type': 4, 'position': 1, 'permission_overwrites': [], 'parent_id': None, 'nsfw': False, 'name': 'test2', 'id': '670503621762220044'}, {'type': 0, 'topic': '', 'rate_limit_per_user': 0, 'position': 6, 'permission_overwrites': [], 'parent_id': '602663309170311172', 'nsfw': False, 'name': 'rules', 'last_message_id': '671813864039514145', 'id': '670503655308263434'}, {'type': 0, 'topic': None, 'rate_limit_per_user': 0, 'position': 1, 'permission_overwrites': [], 'parent_id': '670503547153940500', 'nsfw': False, 'name': 'just-another-txt-chat', 'last_message_id': '671816076408913956', 'id': '670503709989404732'}, {'type': 0, 'topic': '', 'rate_limit_per_user': 0, 'position': 3, 'permission_overwrites': [], 'parent_id': '670503621762220044', 'nsfw': False, 'name': 'q1', 'last_message_id': '671816054141616128', 'id': '671814810278559774'}, {'type': 0, 'topic': None, 'rate_limit_per_user': 0, 'position': 2, 'permission_overwrites': [], 'parent_id': '670503621762220044', 'nsfw': False, 'name': 'pw', 'last_message_id': None, 'id': '671814850296545341'}], 'system_channel_id': '602663309170311173', 'roles': [{'position': 0, 'permissions': 104324673, 'name': '@everyone', 'mentionable': False, 'managed': False, 'id': '602663309170311170', 'hoist': False, 'color': 0}, {'position': 1, 'permissions': 8, 'name': 'Rythm', 'mentionable': False, 'managed': True, 'id': '602663989130035230', 'hoist': False, 'color': 0}, {'position': 1, 'permissions': 256000, 'name': 'CarnBot', 'mentionable': False, 'managed': True, 'id': '669959594541449217', 'hoist': False, 'color': 0}], 'icon': None, 'afk_timeout': 300, 'name': 'Test Server', 'lazy': True, 'members': [{'user': {'username': 'protocol66', 'id': '116326927370944519', 'discriminator': '8365', 'avatar': '878b62b071da5179a2ab62866f334210'}, 'roles': [], 'mute': False, 'joined_at': '2019-07-22T00:48:49.850000+00:00', 'hoisted_role': None, 'deaf': False}, {'user': {'username': 'Rythm', 'id': '235088799074484224', 'discriminator': '3722', 'bot': True, 'avatar': '16c197c4c3f0eb808f9bceb6e1075e71'}, 'roles': ['602663989130035230'], 'mute': False, 'joined_at': '2019-07-22T00:51:31.858000+00:00', 'hoisted_role': None, 'deaf': False}, {'user': {'username': 'Jonathan', 'id': '486906350375272449', 'discriminator': '3108', 'avatar': '422db19fd43f2394eedc7591d9d60584'}, 'roles': [], 'premium_since': None, 'nick': None, 'mute': False, 'joined_at': '2020-01-23T17:41:22.691011+00:00', 'hoisted_role': None, 'deaf': False}, {'user': {'username': 'MCServerBot', 'id': '609600776582463538', 'discriminator': '8524', 'bot': True, 'avatar': None}, 'roles': [], 'mute': False, 'joined_at': '2019-08-10T04:24:52.167000+00:00', 'hoisted_role': None, 'deaf': False}, {'user': {'username': 'CarnBot', 'id': '669260956769058868', 'discriminator': '2131', 'bot': True, 'avatar': '3519ef9046ddebaa4b1fa546cf5050c2'}, 'roles': ['669959594541449217'], 'premium_since': None, 'nick': None, 'mute': False, 'joined_at': '2020-01-23T17:40:14.677535+00:00', 'hoisted_role': None, 'deaf': False}], 'premium_tier': 0, 'preferred_locale': 'en-US', 'splash': None, 'voice_states': [], 'mfa_level': 0, 'premium_subscription_count': 0, 'default_message_notifications': 1, 'owner_id': '116326927370944519', 'unavailable': False, 'description': None, 'banner': None, 'discovery_splash': None, 'emojis': [], 'public_updates_channel_id': None, 'verification_level': 0, 'id': '602663309170311170', 'system_channel_flags': 0, 'explicit_content_filter': 0}}
-2020-02-01 23:05:59,694:DEBUG:discord.client: Dispatching event socket_response
-2020-02-01 23:05:59,697:DEBUG:discord.client: Dispatching event guild_available
-2020-02-01 23:06:01,702:DEBUG:discord.client: Dispatching event ready
-2020-02-01 23:06:40,805:DEBUG:discord.gateway: Keeping websocket alive with sequence 2.
-2020-02-01 23:06:45,808:WARNING:discord.gateway: Heartbeat blocked for more than 5 seconds.
-2020-02-01 23:06:50,809:WARNING:discord.gateway: Heartbeat blocked for more than 10 seconds.
-2020-02-01 23:06:55,810:WARNING:discord.gateway: Heartbeat blocked for more than 15 seconds.
-2020-02-01 23:07:00,810:WARNING:discord.gateway: Heartbeat blocked for more than 20 seconds.
-2020-02-01 23:07:05,812:WARNING:discord.gateway: Heartbeat blocked for more than 25 seconds.
-2020-02-01 23:07:10,813:WARNING:discord.gateway: Heartbeat blocked for more than 30 seconds.
-2020-02-01 23:07:15,814:WARNING:discord.gateway: Heartbeat blocked for more than 35 seconds.
-2020-02-01 23:07:20,814:WARNING:discord.gateway: Heartbeat blocked for more than 40 seconds.
-2020-02-01 23:07:25,815:WARNING:discord.gateway: Heartbeat blocked for more than 45 seconds.
-2020-02-01 23:07:30,816:WARNING:discord.gateway: Heartbeat blocked for more than 50 seconds.
-2020-02-01 23:07:35,817:WARNING:discord.gateway: Heartbeat blocked for more than 55 seconds.
-2020-02-01 23:07:40,818:WARNING:discord.gateway: Heartbeat blocked for more than 60 seconds.
-2020-02-01 23:07:45,819:WARNING:discord.gateway: Heartbeat blocked for more than 65 seconds.
-2020-02-01 23:07:50,820:WARNING:discord.gateway: Heartbeat blocked for more than 70 seconds.
-2020-02-01 23:07:55,821:WARNING:discord.gateway: Heartbeat blocked for more than 75 seconds.
-2020-02-01 23:08:00,822:WARNING:discord.gateway: Heartbeat blocked for more than 80 seconds.
-2020-02-01 23:08:05,822:WARNING:discord.gateway: Heartbeat blocked for more than 85 seconds.
-2020-02-01 23:08:10,823:WARNING:discord.gateway: Heartbeat blocked for more than 90 seconds.
-2020-02-01 23:08:15,824:WARNING:discord.gateway: Heartbeat blocked for more than 95 seconds.
-2020-02-01 23:08:20,825:WARNING:discord.gateway: Heartbeat blocked for more than 100 seconds.
-2020-02-01 23:08:25,826:WARNING:discord.gateway: Heartbeat blocked for more than 105 seconds.
-2020-02-01 23:08:30,827:WARNING:discord.gateway: Heartbeat blocked for more than 110 seconds.
-2020-02-01 23:08:35,828:WARNING:discord.gateway: Heartbeat blocked for more than 115 seconds.
-2020-02-01 23:08:40,829:WARNING:discord.gateway: Heartbeat blocked for more than 120 seconds.
-2020-02-01 23:08:45,829:WARNING:discord.gateway: Heartbeat blocked for more than 125 seconds.
-2020-02-01 23:08:50,830:WARNING:discord.gateway: Heartbeat blocked for more than 130 seconds.
-2020-02-01 23:08:55,831:WARNING:discord.gateway: Heartbeat blocked for more than 135 seconds.
-2020-02-01 23:09:00,832:WARNING:discord.gateway: Heartbeat blocked for more than 140 seconds.
-2020-02-01 23:09:05,833:WARNING:discord.gateway: Heartbeat blocked for more than 145 seconds.
-2020-02-01 23:09:10,834:WARNING:discord.gateway: Heartbeat blocked for more than 150 seconds.
-2020-02-01 23:09:15,835:WARNING:discord.gateway: Heartbeat blocked for more than 155 seconds.
-2020-02-01 23:09:20,836:WARNING:discord.gateway: Heartbeat blocked for more than 160 seconds.
-2020-02-01 23:09:25,836:WARNING:discord.gateway: Heartbeat blocked for more than 165 seconds.
-2020-02-01 23:09:30,837:WARNING:discord.gateway: Heartbeat blocked for more than 170 seconds.
-2020-02-01 23:09:35,838:WARNING:discord.gateway: Heartbeat blocked for more than 175 seconds.
-2020-02-01 23:09:40,839:WARNING:discord.gateway: Heartbeat blocked for more than 180 seconds.
-2020-02-01 23:09:45,840:WARNING:discord.gateway: Heartbeat blocked for more than 185 seconds.
-2020-02-01 23:09:50,841:WARNING:discord.gateway: Heartbeat blocked for more than 190 seconds.
-2020-02-01 23:09:55,842:WARNING:discord.gateway: Heartbeat blocked for more than 195 seconds.
-2020-02-01 23:10:00,843:WARNING:discord.gateway: Heartbeat blocked for more than 200 seconds.
-2020-02-01 23:10:05,844:WARNING:discord.gateway: Heartbeat blocked for more than 205 seconds.
-2020-02-01 23:10:10,845:WARNING:discord.gateway: Heartbeat blocked for more than 210 seconds.
-2020-02-01 23:10:15,846:WARNING:discord.gateway: Heartbeat blocked for more than 215 seconds.
-2020-02-01 23:10:20,847:WARNING:discord.gateway: Heartbeat blocked for more than 220 seconds.
-2020-02-01 23:10:25,848:WARNING:discord.gateway: Heartbeat blocked for more than 225 seconds.
-2020-02-01 23:10:30,849:WARNING:discord.gateway: Heartbeat blocked for more than 230 seconds.
-2020-02-01 23:10:35,850:WARNING:discord.gateway: Heartbeat blocked for more than 235 seconds.
-2020-02-01 23:10:40,851:WARNING:discord.gateway: Heartbeat blocked for more than 240 seconds.
-2020-02-01 23:10:45,852:WARNING:discord.gateway: Heartbeat blocked for more than 245 seconds.
-2020-02-01 23:10:50,853:WARNING:discord.gateway: Heartbeat blocked for more than 250 seconds.
-2020-02-01 23:10:55,854:WARNING:discord.gateway: Heartbeat blocked for more than 255 seconds.
-2020-02-01 23:11:00,854:WARNING:discord.gateway: Heartbeat blocked for more than 260 seconds.
-2020-02-01 23:11:05,855:WARNING:discord.gateway: Heartbeat blocked for more than 265 seconds.
-2020-02-01 23:11:10,856:WARNING:discord.gateway: Heartbeat blocked for more than 270 seconds.
-2020-02-01 23:11:15,857:WARNING:discord.gateway: Heartbeat blocked for more than 275 seconds.
-2020-02-01 23:11:20,858:WARNING:discord.gateway: Heartbeat blocked for more than 280 seconds.
-2020-02-01 23:11:25,859:WARNING:discord.gateway: Heartbeat blocked for more than 285 seconds.
-2020-02-01 23:11:30,860:WARNING:discord.gateway: Heartbeat blocked for more than 290 seconds.
-2020-02-01 23:11:35,861:WARNING:discord.gateway: Heartbeat blocked for more than 295 seconds.
-2020-02-01 23:11:40,862:WARNING:discord.gateway: Heartbeat blocked for more than 300 seconds.
-2020-02-01 23:11:45,863:WARNING:discord.gateway: Heartbeat blocked for more than 305 seconds.
-2020-02-01 23:11:50,864:WARNING:discord.gateway: Heartbeat blocked for more than 310 seconds.
-2020-02-01 23:11:55,865:WARNING:discord.gateway: Heartbeat blocked for more than 315 seconds.
-2020-02-01 23:12:00,866:WARNING:discord.gateway: Heartbeat blocked for more than 320 seconds.
-2020-02-01 23:12:05,867:WARNING:discord.gateway: Heartbeat blocked for more than 325 seconds.
-2020-02-01 23:12:10,868:WARNING:discord.gateway: Heartbeat blocked for more than 330 seconds.
-2020-02-01 23:12:15,868:WARNING:discord.gateway: Heartbeat blocked for more than 335 seconds.
-2020-02-01 23:12:20,869:WARNING:discord.gateway: Heartbeat blocked for more than 340 seconds.
-2020-02-01 23:12:25,870:WARNING:discord.gateway: Heartbeat blocked for more than 345 seconds.
-2020-02-01 23:12:30,872:WARNING:discord.gateway: Heartbeat blocked for more than 350 seconds.
-2020-02-01 23:12:35,873:WARNING:discord.gateway: Heartbeat blocked for more than 355 seconds.
-2020-02-01 23:12:40,874:WARNING:discord.gateway: Heartbeat blocked for more than 360 seconds.
-2020-02-01 23:12:45,874:WARNING:discord.gateway: Heartbeat blocked for more than 365 seconds.
-2020-02-01 23:12:50,875:WARNING:discord.gateway: Heartbeat blocked for more than 370 seconds.
-2020-02-01 23:12:55,876:WARNING:discord.gateway: Heartbeat blocked for more than 375 seconds.
-2020-02-01 23:13:00,877:WARNING:discord.gateway: Heartbeat blocked for more than 380 seconds.
-2020-02-01 23:13:05,878:WARNING:discord.gateway: Heartbeat blocked for more than 385 seconds.
-2020-02-01 23:13:10,879:WARNING:discord.gateway: Heartbeat blocked for more than 390 seconds.
-2020-02-01 23:13:15,881:WARNING:discord.gateway: Heartbeat blocked for more than 395 seconds.
-2020-02-01 23:13:20,882:WARNING:discord.gateway: Heartbeat blocked for more than 400 seconds.
-2020-02-01 23:13:25,882:WARNING:discord.gateway: Heartbeat blocked for more than 405 seconds.
-2020-02-01 23:13:30,883:WARNING:discord.gateway: Heartbeat blocked for more than 410 seconds.
-2020-02-01 23:13:35,884:WARNING:discord.gateway: Heartbeat blocked for more than 415 seconds.
-2020-02-01 23:13:40,885:WARNING:discord.gateway: Heartbeat blocked for more than 420 seconds.
-2020-02-01 23:13:45,886:WARNING:discord.gateway: Heartbeat blocked for more than 425 seconds.
-2020-02-01 23:13:50,887:WARNING:discord.gateway: Heartbeat blocked for more than 430 seconds.
-2020-02-01 23:13:55,888:WARNING:discord.gateway: Heartbeat blocked for more than 435 seconds.
-2020-02-01 23:14:00,889:WARNING:discord.gateway: Heartbeat blocked for more than 440 seconds.
-2020-02-01 23:14:05,890:WARNING:discord.gateway: Heartbeat blocked for more than 445 seconds.
-2020-02-01 23:14:10,891:WARNING:discord.gateway: Heartbeat blocked for more than 450 seconds.
-2020-02-01 23:14:15,891:WARNING:discord.gateway: Heartbeat blocked for more than 455 seconds.
-2020-02-01 23:14:20,892:WARNING:discord.gateway: Heartbeat blocked for more than 460 seconds.
-2020-02-01 23:14:25,894:WARNING:discord.gateway: Heartbeat blocked for more than 465 seconds.
-2020-02-01 23:14:30,895:WARNING:discord.gateway: Heartbeat blocked for more than 470 seconds.
-2020-02-01 23:14:35,896:WARNING:discord.gateway: Heartbeat blocked for more than 475 seconds.
-2020-02-01 23:14:40,897:WARNING:discord.gateway: Heartbeat blocked for more than 480 seconds.
-2020-02-01 23:14:45,898:WARNING:discord.gateway: Heartbeat blocked for more than 485 seconds.
-2020-02-01 23:14:50,899:WARNING:discord.gateway: Heartbeat blocked for more than 490 seconds.
-2020-02-01 23:14:55,900:WARNING:discord.gateway: Heartbeat blocked for more than 495 seconds.
-2020-02-01 23:15:00,900:WARNING:discord.gateway: Heartbeat blocked for more than 500 seconds.
-2020-02-01 23:15:05,901:WARNING:discord.gateway: Heartbeat blocked for more than 505 seconds.
-2020-02-01 23:15:10,902:WARNING:discord.gateway: Heartbeat blocked for more than 510 seconds.
-2020-02-01 23:15:15,903:WARNING:discord.gateway: Heartbeat blocked for more than 515 seconds.
-2020-02-01 23:15:20,904:WARNING:discord.gateway: Heartbeat blocked for more than 520 seconds.
-2020-02-01 23:15:25,905:WARNING:discord.gateway: Heartbeat blocked for more than 525 seconds.
-2020-02-01 23:15:30,906:WARNING:discord.gateway: Heartbeat blocked for more than 530 seconds.
-2020-02-01 23:15:35,907:WARNING:discord.gateway: Heartbeat blocked for more than 535 seconds.
-2020-02-01 23:15:40,907:WARNING:discord.gateway: Heartbeat blocked for more than 540 seconds.
-2020-02-01 23:15:45,908:WARNING:discord.gateway: Heartbeat blocked for more than 545 seconds.
-2020-02-01 23:15:50,909:WARNING:discord.gateway: Heartbeat blocked for more than 550 seconds.
-2020-02-01 23:15:55,237:DEBUG:discord.client: Dispatching event socket_raw_send
-2020-02-01 23:15:55,240:INFO:discord.client: Cleaning up tasks.
-2020-02-01 23:15:55,241:INFO:discord.client: Cleaning up after 3 tasks.
-2020-02-01 23:15:55,245:INFO:discord.client: All tasks finished cancelling.
-2020-02-01 23:15:55,245:INFO:discord.client: Closing the event loop.
-0 seconds.
-2020-02-01 23:13:30,018:WARNING:discord.gateway: Heartbeat blocked for more than 575 seconds.
-2020-02-01 23:13:35,019:WARNING:discord.gateway: Heartbeat blocked for more than 580 seconds.
-2020-02-01 23:13:40,020:WARNING:discord.gateway: Heartbeat blocked for more than 585 seconds.
-2020-02-01 23:13:45,021:WARNING:discord.gateway: Heartbeat blocked for more than 590 seconds.
-2020-02-01 23:13:50,022:WARNING:discord.gateway: Heartbeat blocked for more than 595 seconds.
-2020-02-01 23:13:55,023:WARNING:discord.gateway: Heartbeat blocked for more than 600 seconds.
-2020-02-01 23:14:00,024:WARNING:discord.gateway: Heartbeat blocked for more than 605 seconds.
-2020-02-01 23:14:05,025:WARNING:discord.gateway: Heartbeat blocked for more than 610 seconds.
-2020-02-01 23:14:10,025:WARNING:discord.gateway: Heartbeat blocked for more than 615 seconds.
-2020-02-01 23:14:15,026:WARNING:discord.gateway: Heartbeat blocked for more than 620 seconds.
-2020-02-01 23:14:20,027:WARNING:discord.gateway: Heartbeat blocked for more than 625 seconds.
-2020-02-01 23:14:25,028:WARNING:discord.gateway: Heartbeat blocked for more than 630 seconds.
-2020-02-01 23:14:30,029:WARNING:discord.gateway: Heartbeat blocked for more than 635 seconds.
-2020-02-01 23:14:35,030:WARNING:discord.gateway: Heartbeat blocked for more than 640 seconds.
-2020-02-01 23:14:40,030:WARNING:discord.gateway: Heartbeat blocked for more than 645 seconds.
-2020-02-01 23:14:45,031:WARNING:discord.gateway: Heartbeat blocked for more than 650 seconds.
-2020-02-01 23:14:50,032:WARNING:discord.gateway: Heartbeat blocked for more than 655 seconds.
-2020-02-01 23:14:55,033:WARNING:discord.gateway: Heartbeat blocked for more than 660 seconds.
-2020-02-01 23:15:00,034:WARNING:discord.gateway: Heartbeat blocked for more than 665 seconds.
-2020-02-01 23:15:05,035:WARNING:discord.gateway: Heartbeat blocked for more than 670 seconds.
-2020-02-01 23:15:10,036:WARNING:discord.gateway: Heartbeat blocked for more than 675 seconds.
-2020-02-01 23:15:15,037:WARNING:discord.gateway: Heartbeat blocked for more than 680 seconds.
-2020-02-01 23:15:20,039:WARNING:discord.gateway: Heartbeat blocked for more than 685 seconds.
-2020-02-01 23:15:25,040:WARNING:discord.gateway: Heartbeat blocked for more than 690 seconds.
-2020-02-01 23:15:30,041:WARNING:discord.gateway: Heartbeat blocked for more than 695 seconds.
-2020-02-01 23:15:35,041:WARNING:discord.gateway: Heartbeat blocked for more than 700 seconds.
-2020-02-01 23:15:40,042:WARNING:discord.gateway: Heartbeat blocked for more than 705 seconds.
-2020-02-01 23:15:45,043:WARNING:discord.gateway: Heartbeat blocked for more than 710 seconds.
-2020-02-01 23:15:50,044:WARNING:discord.gateway: Heartbeat blocked for more than 715 seconds.
-2020-02-01 23:15:55,045:WARNING:discord.gateway: Heartbeat blocked for more than 720 seconds.
-2020-02-01 23:15:55,225:DEBUG:discord.client: Dispatching event socket_raw_send
-2020-02-01 23:15:55,228:INFO:discord.client: Cleaning up tasks.
-2020-02-01 23:15:55,228:INFO:discord.client: Cleaning up after 3 tasks.
-2020-02-01 23:15:55,234:INFO:discord.client: All tasks finished cancelling.
-2020-02-01 23:15:55,234:INFO:discord.client: Closing the event loop.
-740 seconds.
-2020-02-01 23:15:03,643:WARNING:discord.gateway: Heartbeat blocked for more than 745 seconds.
-2020-02-01 23:15:08,644:WARNING:discord.gateway: Heartbeat blocked for more than 750 seconds.
-2020-02-01 23:15:13,645:WARNING:discord.gateway: Heartbeat blocked for more than 755 seconds.
-2020-02-01 23:15:18,646:WARNING:discord.gateway: Heartbeat blocked for more than 760 seconds.
-2020-02-01 23:15:23,647:WARNING:discord.gateway: Heartbeat blocked for more than 765 seconds.
-2020-02-01 23:15:28,648:WARNING:discord.gateway: Heartbeat blocked for more than 770 seconds.
-2020-02-01 23:15:33,649:WARNING:discord.gateway: Heartbeat blocked for more than 775 seconds.
-2020-02-01 23:15:38,650:WARNING:discord.gateway: Heartbeat blocked for more than 780 seconds.
-2020-02-01 23:15:43,650:WARNING:discord.gateway: Heartbeat blocked for more than 785 seconds.
-2020-02-01 23:15:48,651:WARNING:discord.gateway: Heartbeat blocked for more than 790 seconds.
-2020-02-01 23:15:53,652:WARNING:discord.gateway: Heartbeat blocked for more than 795 seconds.
-2020-02-01 23:15:55,871:DEBUG:discord.client: Dispatching event socket_raw_send
-2020-02-01 23:15:55,872:INFO:discord.client: Cleaning up tasks.
-2020-02-01 23:15:55,872:INFO:discord.client: Cleaning up after 3 tasks.
-2020-02-01 23:15:55,874:INFO:discord.client: All tasks finished cancelling.
-2020-02-01 23:15:55,875:INFO:discord.client: Closing the event loop.
-more than 815 seconds.
-2020-02-01 23:15:44,825:WARNING:discord.gateway: Heartbeat blocked for more than 820 seconds.
-2020-02-01 23:15:49,826:WARNING:discord.gateway: Heartbeat blocked for more than 825 seconds.
-2020-02-01 23:15:54,827:WARNING:discord.gateway: Heartbeat blocked for more than 830 seconds.
-2020-02-01 23:15:56,330:DEBUG:discord.client: Dispatching event socket_raw_send
-2020-02-01 23:15:56,332:INFO:discord.client: Cleaning up tasks.
-2020-02-01 23:15:56,333:INFO:discord.client: Cleaning up after 3 tasks.
-2020-02-01 23:15:56,335:INFO:discord.client: All tasks finished cancelling.
-2020-02-01 23:15:56,336:INFO:discord.client: Closing the event loop.
-850 seconds.
-2020-02-01 23:15:22,215:WARNING:discord.gateway: Heartbeat blocked for more than 855 seconds.
-2020-02-01 23:15:27,216:WARNING:discord.gateway: Heartbeat blocked for more than 860 seconds.
-2020-02-01 23:15:32,216:WARNING:discord.gateway: Heartbeat blocked for more than 865 seconds.
-2020-02-01 23:15:37,217:WARNING:discord.gateway: Heartbeat blocked for more than 870 seconds.
-2020-02-01 23:15:42,218:WARNING:discord.gateway: Heartbeat blocked for more than 875 seconds.
-2020-02-01 23:15:47,219:WARNING:discord.gateway: Heartbeat blocked for more than 880 seconds.
-2020-02-01 23:15:52,220:WARNING:discord.gateway: Heartbeat blocked for more than 885 seconds.
-2020-02-01 23:15:56,650:DEBUG:discord.client: Dispatching event socket_raw_send
-2020-02-01 23:15:56,651:INFO:discord.client: Cleaning up tasks.
-2020-02-01 23:15:56,652:INFO:discord.client: Cleaning up after 3 tasks.
-2020-02-01 23:15:56,654:INFO:discord.client: All tasks finished cancelling.
-2020-02-01 23:15:56,654:INFO:discord.client: Closing the event loop.
- than 905 seconds.
-2020-02-01 23:14:58,624:WARNING:discord.gateway: Heartbeat blocked for more than 910 seconds.
-2020-02-01 23:15:03,625:WARNING:discord.gateway: Heartbeat blocked for more than 915 seconds.
-2020-02-01 23:15:08,626:WARNING:discord.gateway: Heartbeat blocked for more than 920 seconds.
-2020-02-01 23:15:13,627:WARNING:discord.gateway: Heartbeat blocked for more than 925 seconds.
-2020-02-01 23:15:18,627:WARNING:discord.gateway: Heartbeat blocked for more than 930 seconds.
-2020-02-01 23:15:23,628:WARNING:discord.gateway: Heartbeat blocked for more than 935 seconds.
-2020-02-01 23:15:28,629:WARNING:discord.gateway: Heartbeat blocked for more than 940 seconds.
-2020-02-01 23:15:33,630:WARNING:discord.gateway: Heartbeat blocked for more than 945 seconds.
-2020-02-01 23:15:38,631:WARNING:discord.gateway: Heartbeat blocked for more than 950 seconds.
-2020-02-01 23:15:43,632:WARNING:discord.gateway: Heartbeat blocked for more than 955 seconds.
-2020-02-01 23:15:48,633:WARNING:discord.gateway: Heartbeat blocked for more than 960 seconds.
-2020-02-01 23:15:53,634:WARNING:discord.gateway: Heartbeat blocked for more than 965 seconds.
-2020-02-01 23:15:57,032:DEBUG:discord.client: Dispatching event socket_raw_send
-2020-02-01 23:15:57,033:INFO:discord.client: Cleaning up tasks.
-2020-02-01 23:15:57,033:INFO:discord.client: Cleaning up after 3 tasks.
-2020-02-01 23:15:57,034:INFO:discord.client: All tasks finished cancelling.
-2020-02-01 23:15:57,034:INFO:discord.client: Closing the event loop.
+2020-02-02 00:04:01,852:WARNING:discord.client: PyNaCl is not installed, voice will NOT be supported
+2020-02-02 00:04:05,714:DEBUG:discord.client: on_ready has successfully been registered as an event
+2020-02-02 00:04:05,716:DEBUG:discord.client: on_member_join has successfully been registered as an event
+2020-02-02 00:04:05,717:DEBUG:discord.client: on_message has successfully been registered as an event
+2020-02-02 00:04:05,726:INFO:discord.client: logging in using static token
+2020-02-02 00:04:06,606:DEBUG:discord.http: GET https://discordapp.com/api/v7/users/@me with None has returned 200
+2020-02-02 00:04:06,608:DEBUG:discord.http: GET https://discordapp.com/api/v7/users/@me has received {'id': '669260956769058868', 'username': 'CarnBot', 'avatar': '3519ef9046ddebaa4b1fa546cf5050c2', 'discriminator': '2131', 'bot': True, 'email': None, 'verified': True, 'locale': 'en-US', 'mfa_enabled': True, 'flags': 0}
+2020-02-02 00:04:06,655:DEBUG:discord.http: GET https://discordapp.com/api/v7/gateway with None has returned 200
+2020-02-02 00:04:06,655:DEBUG:discord.http: GET https://discordapp.com/api/v7/gateway has received {'url': 'wss://gateway.discord.gg'}
+2020-02-02 00:04:06,872:INFO:discord.gateway: Created websocket connected to wss://gateway.discord.gg?encoding=json&v=6&compress=zlib-stream
+2020-02-02 00:04:06,875:DEBUG:discord.client: Dispatching event socket_raw_receive
+2020-02-02 00:04:06,878:DEBUG:discord.gateway: For Shard ID None: WebSocket Event: {'t': None, 's': None, 'op': 10, 'd': {'heartbeat_interval': 41250, '_trace': ['["gateway-prd-main-mnq3",{"micros":0.0}]']}}
+2020-02-02 00:04:06,878:DEBUG:discord.client: Dispatching event socket_response
+2020-02-02 00:04:06,881:DEBUG:discord.client: Dispatching event socket_raw_send
+2020-02-02 00:04:06,884:DEBUG:discord.client: Dispatching event socket_raw_send
+2020-02-02 00:04:06,885:INFO:discord.gateway: Shard ID None has sent the IDENTIFY payload.
+2020-02-02 00:04:06,925:DEBUG:discord.client: Dispatching event socket_raw_receive
+2020-02-02 00:04:06,926:DEBUG:discord.gateway: For Shard ID None: WebSocket Event: {'t': None, 's': None, 'op': 11, 'd': None}
+2020-02-02 00:04:06,927:DEBUG:discord.client: Dispatching event socket_response
+2020-02-02 00:04:07,069:DEBUG:discord.client: Dispatching event socket_raw_receive
+2020-02-02 00:04:07,069:DEBUG:discord.gateway: For Shard ID None: WebSocket Event: {'t': 'READY', 's': 1, 'op': 0, 'd': {'v': 6, 'user_settings': {}, 'user': {'verified': True, 'username': 'CarnBot', 'mfa_enabled': True, 'id': '669260956769058868', 'email': None, 'discriminator': '2131', 'bot': True, 'avatar': '3519ef9046ddebaa4b1fa546cf5050c2'}, 'session_id': '7642d3381c8348332010121dede64eea', 'relationships': [], 'private_channels': [], 'presences': [], 'guilds': [{'unavailable': True, 'id': '602663309170311170'}], 'application': {'id': '669260956769058868', 'flags': 0}, '_trace': ['["gateway-prd-main-mnq3",{"micros":135398,"calls":["discord-sessions-prd-1-26",{"micros":133882,"calls":["start_session",{"micros":131590,"calls":["api-prd-main-7wch",{"micros":126344,"calls":["get_user",{"micros":16288},"add_authorized_ip",{"micros":4402},"get_guilds",{"micros":24657},"coros_wait",{"micros":1}]}]},"guilds_connect",{"micros":2,"calls":[]},"presence_connect",{"micros":1611,"calls":[]}]}]}]']}}
+2020-02-02 00:04:07,070:DEBUG:discord.client: Dispatching event socket_response
+2020-02-02 00:04:07,070:INFO:discord.gateway: Shard ID None has connected to Gateway: ["gateway-prd-main-mnq3",{"micros":135398,"calls":["discord-sessions-prd-1-26",{"micros":133882,"calls":["start_session",{"micros":131590,"calls":["api-prd-main-7wch",{"micros":126344,"calls":["get_user",{"micros":16288},"add_authorized_ip",{"micros":4402},"get_guilds",{"micros":24657},"coros_wait",{"micros":1}]}]},"guilds_connect",{"micros":2,"calls":[]},"presence_connect",{"micros":1611,"calls":[]}]}]}] (Session ID: 7642d3381c8348332010121dede64eea).
+2020-02-02 00:04:07,111:DEBUG:discord.client: Dispatching event connect
+2020-02-02 00:04:07,112:DEBUG:discord.client: Dispatching event socket_raw_receive
+2020-02-02 00:04:07,113:DEBUG:discord.gateway: For Shard ID None: WebSocket Event: {'t': 'GUILD_CREATE', 's': 2, 'op': 0, 'd': {'unavailable': False, 'large': False, 'features': [], 'discovery_splash': None, 'joined_at': '2020-01-23T17:40:14.677535+00:00', 'member_count': 5, 'afk_channel_id': None, 'region': 'us-central', 'vanity_url_code': None, 'members': [{'user': {'username': 'protocol66', 'id': '116326927370944519', 'discriminator': '8365', 'avatar': '878b62b071da5179a2ab62866f334210'}, 'roles': [], 'mute': False, 'joined_at': '2019-07-22T00:48:49.850000+00:00', 'hoisted_role': None, 'deaf': False}, {'user': {'username': 'Rythm', 'id': '235088799074484224', 'discriminator': '3722', 'bot': True, 'avatar': '16c197c4c3f0eb808f9bceb6e1075e71'}, 'roles': ['602663989130035230'], 'mute': False, 'joined_at': '2019-07-22T00:51:31.858000+00:00', 'hoisted_role': None, 'deaf': False}, {'user': {'username': 'Jonathan', 'id': '486906350375272449', 'discriminator': '3108', 'avatar': '422db19fd43f2394eedc7591d9d60584'}, 'roles': [], 'premium_since': None, 'nick': None, 'mute': False, 'joined_at': '2020-01-23T17:41:22.691011+00:00', 'hoisted_role': None, 'deaf': False}, {'user': {'username': 'MCServerBot', 'id': '609600776582463538', 'discriminator': '8524', 'bot': True, 'avatar': None}, 'roles': [], 'mute': False, 'joined_at': '2019-08-10T04:24:52.167000+00:00', 'hoisted_role': None, 'deaf': False}, {'user': {'username': 'CarnBot', 'id': '669260956769058868', 'discriminator': '2131', 'bot': True, 'avatar': '3519ef9046ddebaa4b1fa546cf5050c2'}, 'roles': ['669959594541449217'], 'premium_since': None, 'nick': None, 'mute': False, 'joined_at': '2020-01-23T17:40:14.677535+00:00', 'hoisted_role': None, 'deaf': False}], 'presences': [{'user': {'id': '116326927370944519'}, 'status': 'online', 'game': {'type': 0, 'timestamps': {'start': 1580617481985}, 'name': 'Rocket League', 'id': 'c6f1fa289e6fec20', 'created_at': 1580617482165, 'application_id': '356877880938070016'}, 'client_status': {'desktop': 'online'}, 'activities': [{'type': 0, 'timestamps': {'start': 1580617481985}, 'name': 'Rocket League', 'id': 'c6f1fa289e6fec20', 'created_at': 1580617482165, 'application_id': '356877880938070016'}]}, {'user': {'id': '235088799074484224'}, 'status': 'online', 'game': None, 'client_status': {'web': 'online'}, 'activities': []}, {'user': {'id': '486906350375272449'}, 'status': 'online', 'game': None, 'client_status': {'desktop': 'online'}, 'activities': []}, {'user': {'id': '669260956769058868'}, 'status': 'online', 'game': None, 'client_status': {'web': 'online'}, 'activities': []}], 'channels': [{'user_limit': 0, 'type': 4, 'position': 2, 'permission_overwrites': [], 'parent_id': None, 'nsfw': False, 'name': 'Text Channels', 'id': '602663309170311172', 'bitrate': 64000}, {'type': 0, 'topic': None, 'rate_limit_per_user': 0, 'position': 4, 'permission_overwrites': [], 'parent_id': '602663309170311172', 'nsfw': False, 'name': 'general', 'last_message_id': '673396184106401803', 'id': '602663309170311173'}, {'user_limit': 0, 'type': 4, 'position': 3, 'permission_overwrites': [], 'parent_id': None, 'nsfw': False, 'name': 'Voice Channels', 'id': '602663309170311174', 'bitrate': 64000}, {'user_limit': 0, 'type': 2, 'position': 0, 'permission_overwrites': [], 'parent_id': '602663309170311174', 'name': 'General', 'id': '602663309170311175', 'bitrate': 64000}, {'type': 0, 'topic': None, 'rate_limit_per_user': 0, 'position': 5, 'permission_overwrites': [], 'parent_id': '602663309170311172', 'nsfw': False, 'name': 'mcserverstatus', 'last_message_id': '653019269226954773', 'id': '609611791017705503'}, {'type': 4, 'position': 0, 'permission_overwrites': [], 'parent_id': None, 'nsfw': False, 'name': 'test', 'id': '670503547153940500'}, {'type': 0, 'topic': None, 'rate_limit_per_user': 0, 'position': 0, 'permission_overwrites': [], 'parent_id': '670503547153940500', 'nsfw': False, 'name': 'test-txt', 'last_message_id': None, 'id': '670503591441596440'}, {'type': 4, 'position': 1, 'permission_overwrites': [], 'parent_id': None, 'nsfw': False, 'name': 'test2', 'id': '670503621762220044'}, {'type': 0, 'topic': '', 'rate_limit_per_user': 0, 'position': 6, 'permission_overwrites': [], 'parent_id': '602663309170311172', 'nsfw': False, 'name': 'rules', 'last_message_id': '671813864039514145', 'id': '670503655308263434'}, {'type': 0, 'topic': None, 'rate_limit_per_user': 0, 'position': 1, 'permission_overwrites': [], 'parent_id': '670503547153940500', 'nsfw': False, 'name': 'just-another-txt-chat', 'last_message_id': '671816076408913956', 'id': '670503709989404732'}, {'type': 0, 'topic': '', 'rate_limit_per_user': 0, 'position': 3, 'permission_overwrites': [], 'parent_id': '670503621762220044', 'nsfw': False, 'name': 'q1', 'last_message_id': '671816054141616128', 'id': '671814810278559774'}, {'type': 0, 'topic': None, 'rate_limit_per_user': 0, 'position': 2, 'permission_overwrites': [], 'parent_id': '670503621762220044', 'nsfw': False, 'name': 'pw', 'last_message_id': None, 'id': '671814850296545341'}], 'system_channel_id': '602663309170311173', 'roles': [{'position': 0, 'permissions': 104324673, 'name': '@everyone', 'mentionable': False, 'managed': False, 'id': '602663309170311170', 'hoist': False, 'color': 0}, {'position': 1, 'permissions': 8, 'name': 'Rythm', 'mentionable': False, 'managed': True, 'id': '602663989130035230', 'hoist': False, 'color': 0}, {'position': 1, 'permissions': 256000, 'name': 'CarnBot', 'mentionable': False, 'managed': True, 'id': '669959594541449217', 'hoist': False, 'color': 0}], 'icon': None, 'afk_timeout': 300, 'name': 'Test Server', 'application_id': None, 'premium_tier': 0, 'preferred_locale': 'en-US', 'splash': None, 'public_updates_channel_id': None, 'voice_states': [], 'mfa_level': 0, 'premium_subscription_count': 0, 'default_message_notifications': 1, 'owner_id': '116326927370944519', 'description': None, 'banner': None, 'emojis': [], 'verification_level': 0, 'id': '602663309170311170', 'lazy': True, 'system_channel_flags': 0, 'rules_channel_id': None, 'explicit_content_filter': 0}}
+2020-02-02 00:04:07,114:DEBUG:discord.client: Dispatching event socket_response
+2020-02-02 00:04:07,117:DEBUG:discord.client: Dispatching event guild_available
+2020-02-02 00:04:09,123:DEBUG:discord.client: Dispatching event ready
+2020-02-02 00:04:48,134:DEBUG:discord.gateway: Keeping websocket alive with sequence 2.
+2020-02-02 00:04:53,136:WARNING:discord.gateway: Heartbeat blocked for more than 5 seconds.
+2020-02-02 00:04:58,136:WARNING:discord.gateway: Heartbeat blocked for more than 10 seconds.
+2020-02-02 00:05:03,138:WARNING:discord.gateway: Heartbeat blocked for more than 15 seconds.
+2020-02-02 00:05:08,139:WARNING:discord.gateway: Heartbeat blocked for more than 20 seconds.
+2020-02-02 00:05:13,140:WARNING:discord.gateway: Heartbeat blocked for more than 25 seconds.
+2020-02-02 00:05:18,140:WARNING:discord.gateway: Heartbeat blocked for more than 30 seconds.
+2020-02-02 00:05:23,141:WARNING:discord.gateway: Heartbeat blocked for more than 35 seconds.
+2020-02-02 00:05:28,142:WARNING:discord.gateway: Heartbeat blocked for more than 40 seconds.
+04:24,905:WARNING:discord.gateway: Heartbeat blocked for more than 45 seconds.
+2020-02-02 00:04:29,906:WARNING:discord.gateway: Heartbeat blocked for more than 50 seconds.
+2020-02-02 00:04:34,907:WARNING:discord.gateway: Heartbeat blocked for more than 55 seconds.
+2020-02-02 00:04:39,908:WARNING:discord.gateway: Heartbeat blocked for more than 60 seconds.
+2020-02-02 00:04:44,909:WARNING:discord.gateway: Heartbeat blocked for more than 65 seconds.
+2020-02-02 00:04:49,910:WARNING:discord.gateway: Heartbeat blocked for more than 70 seconds.
+2020-02-02 00:04:54,911:WARNING:discord.gateway: Heartbeat blocked for more than 75 seconds.
+2020-02-02 00:04:59,912:WARNING:discord.gateway: Heartbeat blocked for more than 80 seconds.
+2020-02-02 00:05:04,914:WARNING:discord.gateway: Heartbeat blocked for more than 85 seconds.
+2020-02-02 00:05:09,915:WARNING:discord.gateway: Heartbeat blocked for more than 90 seconds.
+2020-02-02 00:05:14,916:WARNING:discord.gateway: Heartbeat blocked for more than 95 seconds.
+2020-02-02 00:05:19,917:WARNING:discord.gateway: Heartbeat blocked for more than 100 seconds.
+2020-02-02 00:05:24,918:WARNING:discord.gateway: Heartbeat blocked for more than 105 seconds.
+2020-02-02 00:05:29,919:WARNING:discord.gateway: Heartbeat blocked for more than 110 seconds.
+-02-02 00:04:20,805:WARNING:discord.gateway: Heartbeat blocked for more than 115 seconds.
+2020-02-02 00:04:25,805:WARNING:discord.gateway: Heartbeat blocked for more than 120 seconds.
+2020-02-02 00:04:30,806:WARNING:discord.gateway: Heartbeat blocked for more than 125 seconds.
+2020-02-02 00:04:35,807:WARNING:discord.gateway: Heartbeat blocked for more than 130 seconds.
+2020-02-02 00:04:40,808:WARNING:discord.gateway: Heartbeat blocked for more than 135 seconds.
+2020-02-02 00:04:45,809:WARNING:discord.gateway: Heartbeat blocked for more than 140 seconds.
+2020-02-02 00:04:50,809:WARNING:discord.gateway: Heartbeat blocked for more than 145 seconds.
+2020-02-02 00:04:55,810:WARNING:discord.gateway: Heartbeat blocked for more than 150 seconds.
+2020-02-02 00:05:00,812:WARNING:discord.gateway: Heartbeat blocked for more than 155 seconds.
+2020-02-02 00:05:05,813:WARNING:discord.gateway: Heartbeat blocked for more than 160 seconds.
+2020-02-02 00:05:10,814:WARNING:discord.gateway: Heartbeat blocked for more than 165 seconds.
+2020-02-02 00:05:15,815:WARNING:discord.gateway: Heartbeat blocked for more than 170 seconds.
+2020-02-02 00:05:20,816:WARNING:discord.gateway: Heartbeat blocked for more than 175 seconds.
+2020-02-02 00:05:25,817:WARNING:discord.gateway: Heartbeat blocked for more than 180 seconds.
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    2020-02-02 00:04:05,621:WARNING:discord.gateway: Heartbeat blocked for more than 380 seconds.
+2020-02-02 00:04:10,622:WARNING:discord.gateway: Heartbeat blocked for more than 385 seconds.
+2020-02-02 00:04:15,623:WARNING:discord.gateway: Heartbeat blocked for more than 390 seconds.
+2020-02-02 00:04:20,624:WARNING:discord.gateway: Heartbeat blocked for more than 395 seconds.
+2020-02-02 00:04:25,625:WARNING:discord.gateway: Heartbeat blocked for more than 400 seconds.
+2020-02-02 00:04:30,626:WARNING:discord.gateway: Heartbeat blocked for more than 405 seconds.
+2020-02-02 00:04:35,627:WARNING:discord.gateway: Heartbeat blocked for more than 410 seconds.
+2020-02-02 00:04:40,628:WARNING:discord.gateway: Heartbeat blocked for more than 415 seconds.
+2020-02-02 00:04:45,628:WARNING:discord.gateway: Heartbeat blocked for more than 420 seconds.
+2020-02-02 00:04:50,629:WARNING:discord.gateway: Heartbeat blocked for more than 425 seconds.
+2020-02-02 00:04:55,629:WARNING:discord.gateway: Heartbeat blocked for more than 430 seconds.
+2020-02-02 00:05:00,630:WARNING:discord.gateway: Heartbeat blocked for more than 435 seconds.
+2020-02-02 00:05:05,631:WARNING:discord.gateway: Heartbeat blocked for more than 440 seconds.
+2020-02-02 00:05:10,632:WARNING:discord.gateway: Heartbeat blocked for more than 445 seconds.
+2020-02-02 00:05:15,633:WARNING:discord.gateway: Heartbeat blocked for more than 450 seconds.
+2020-02-02 00:05:20,634:WARNING:discord.gateway: Heartbeat blocked for more than 455 seconds.
+2020-02-02 00:05:25,635:WARNING:discord.gateway: Heartbeat blocked for more than 460 seconds.
