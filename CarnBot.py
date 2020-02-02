@@ -99,7 +99,7 @@ async def thirty_minute_loop():
 async def one_hour_loop():
 	pass
 async def six_hour_loop():
-	await important_reminders()
+	# await important_reminders()
 async def daily_loop():
 	genRandomTime()
 	print(f"MessageTimes = {messageTimes}")
