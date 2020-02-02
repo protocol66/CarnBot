@@ -129,19 +129,21 @@
 2020-02-01 23:14:55,900:WARNING:discord.gateway: Heartbeat blocked for more than 495 seconds.
 2020-02-01 23:15:00,900:WARNING:discord.gateway: Heartbeat blocked for more than 500 seconds.
 2020-02-01 23:15:05,901:WARNING:discord.gateway: Heartbeat blocked for more than 505 seconds.
--02-01 23:12:25,007:WARNING:discord.gateway: Heartbeat blocked for more than 510 seconds.
-2020-02-01 23:12:30,008:WARNING:discord.gateway: Heartbeat blocked for more than 515 seconds.
-2020-02-01 23:12:35,009:WARNING:discord.gateway: Heartbeat blocked for more than 520 seconds.
-2020-02-01 23:12:40,009:WARNING:discord.gateway: Heartbeat blocked for more than 525 seconds.
-2020-02-01 23:12:45,010:WARNING:discord.gateway: Heartbeat blocked for more than 530 seconds.
-2020-02-01 23:12:50,011:WARNING:discord.gateway: Heartbeat blocked for more than 535 seconds.
-2020-02-01 23:12:55,012:WARNING:discord.gateway: Heartbeat blocked for more than 540 seconds.
-2020-02-01 23:13:00,013:WARNING:discord.gateway: Heartbeat blocked for more than 545 seconds.
-2020-02-01 23:13:05,014:WARNING:discord.gateway: Heartbeat blocked for more than 550 seconds.
-2020-02-01 23:13:10,015:WARNING:discord.gateway: Heartbeat blocked for more than 555 seconds.
-2020-02-01 23:13:15,016:WARNING:discord.gateway: Heartbeat blocked for more than 560 seconds.
-2020-02-01 23:13:20,017:WARNING:discord.gateway: Heartbeat blocked for more than 565 seconds.
-2020-02-01 23:13:25,018:WARNING:discord.gateway: Heartbeat blocked for more than 570 seconds.
+2020-02-01 23:15:10,902:WARNING:discord.gateway: Heartbeat blocked for more than 510 seconds.
+2020-02-01 23:15:15,903:WARNING:discord.gateway: Heartbeat blocked for more than 515 seconds.
+2020-02-01 23:15:20,904:WARNING:discord.gateway: Heartbeat blocked for more than 520 seconds.
+2020-02-01 23:15:25,905:WARNING:discord.gateway: Heartbeat blocked for more than 525 seconds.
+2020-02-01 23:15:30,906:WARNING:discord.gateway: Heartbeat blocked for more than 530 seconds.
+2020-02-01 23:15:35,907:WARNING:discord.gateway: Heartbeat blocked for more than 535 seconds.
+2020-02-01 23:15:40,907:WARNING:discord.gateway: Heartbeat blocked for more than 540 seconds.
+2020-02-01 23:15:45,908:WARNING:discord.gateway: Heartbeat blocked for more than 545 seconds.
+2020-02-01 23:15:50,909:WARNING:discord.gateway: Heartbeat blocked for more than 550 seconds.
+2020-02-01 23:15:55,237:DEBUG:discord.client: Dispatching event socket_raw_send
+2020-02-01 23:15:55,240:INFO:discord.client: Cleaning up tasks.
+2020-02-01 23:15:55,241:INFO:discord.client: Cleaning up after 3 tasks.
+2020-02-01 23:15:55,245:INFO:discord.client: All tasks finished cancelling.
+2020-02-01 23:15:55,245:INFO:discord.client: Closing the event loop.
+0 seconds.
 2020-02-01 23:13:30,018:WARNING:discord.gateway: Heartbeat blocked for more than 575 seconds.
 2020-02-01 23:13:35,019:WARNING:discord.gateway: Heartbeat blocked for more than 580 seconds.
 2020-02-01 23:13:40,020:WARNING:discord.gateway: Heartbeat blocked for more than 585 seconds.
@@ -163,54 +165,74 @@
 2020-02-01 23:15:00,034:WARNING:discord.gateway: Heartbeat blocked for more than 665 seconds.
 2020-02-01 23:15:05,035:WARNING:discord.gateway: Heartbeat blocked for more than 670 seconds.
 2020-02-01 23:15:10,036:WARNING:discord.gateway: Heartbeat blocked for more than 675 seconds.
-20-02-01 23:13:58,631:WARNING:discord.gateway: Heartbeat blocked for more than 680 seconds.
-2020-02-01 23:14:03,632:WARNING:discord.gateway: Heartbeat blocked for more than 685 seconds.
-2020-02-01 23:14:08,633:WARNING:discord.gateway: Heartbeat blocked for more than 690 seconds.
-2020-02-01 23:14:13,634:WARNING:discord.gateway: Heartbeat blocked for more than 695 seconds.
-2020-02-01 23:14:18,634:WARNING:discord.gateway: Heartbeat blocked for more than 700 seconds.
-2020-02-01 23:14:23,635:WARNING:discord.gateway: Heartbeat blocked for more than 705 seconds.
-2020-02-01 23:14:28,636:WARNING:discord.gateway: Heartbeat blocked for more than 710 seconds.
-2020-02-01 23:14:33,637:WARNING:discord.gateway: Heartbeat blocked for more than 715 seconds.
-2020-02-01 23:14:38,638:WARNING:discord.gateway: Heartbeat blocked for more than 720 seconds.
-2020-02-01 23:14:43,639:WARNING:discord.gateway: Heartbeat blocked for more than 725 seconds.
-2020-02-01 23:14:48,640:WARNING:discord.gateway: Heartbeat blocked for more than 730 seconds.
-2020-02-01 23:14:53,641:WARNING:discord.gateway: Heartbeat blocked for more than 735 seconds.
-2020-02-01 23:14:58,642:WARNING:discord.gateway: Heartbeat blocked for more than 740 seconds.
+2020-02-01 23:15:15,037:WARNING:discord.gateway: Heartbeat blocked for more than 680 seconds.
+2020-02-01 23:15:20,039:WARNING:discord.gateway: Heartbeat blocked for more than 685 seconds.
+2020-02-01 23:15:25,040:WARNING:discord.gateway: Heartbeat blocked for more than 690 seconds.
+2020-02-01 23:15:30,041:WARNING:discord.gateway: Heartbeat blocked for more than 695 seconds.
+2020-02-01 23:15:35,041:WARNING:discord.gateway: Heartbeat blocked for more than 700 seconds.
+2020-02-01 23:15:40,042:WARNING:discord.gateway: Heartbeat blocked for more than 705 seconds.
+2020-02-01 23:15:45,043:WARNING:discord.gateway: Heartbeat blocked for more than 710 seconds.
+2020-02-01 23:15:50,044:WARNING:discord.gateway: Heartbeat blocked for more than 715 seconds.
+2020-02-01 23:15:55,045:WARNING:discord.gateway: Heartbeat blocked for more than 720 seconds.
+2020-02-01 23:15:55,225:DEBUG:discord.client: Dispatching event socket_raw_send
+2020-02-01 23:15:55,228:INFO:discord.client: Cleaning up tasks.
+2020-02-01 23:15:55,228:INFO:discord.client: Cleaning up after 3 tasks.
+2020-02-01 23:15:55,234:INFO:discord.client: All tasks finished cancelling.
+2020-02-01 23:15:55,234:INFO:discord.client: Closing the event loop.
+740 seconds.
 2020-02-01 23:15:03,643:WARNING:discord.gateway: Heartbeat blocked for more than 745 seconds.
 2020-02-01 23:15:08,644:WARNING:discord.gateway: Heartbeat blocked for more than 750 seconds.
-econds.
-2020-02-01 23:14:39,814:WARNING:discord.gateway: Heartbeat blocked for more than 755 seconds.
-2020-02-01 23:14:44,814:WARNING:discord.gateway: Heartbeat blocked for more than 760 seconds.
-2020-02-01 23:14:49,815:WARNING:discord.gateway: Heartbeat blocked for more than 765 seconds.
-2020-02-01 23:14:54,816:WARNING:discord.gateway: Heartbeat blocked for more than 770 seconds.
-2020-02-01 23:14:59,817:WARNING:discord.gateway: Heartbeat blocked for more than 775 seconds.
-2020-02-01 23:15:04,817:WARNING:discord.gateway: Heartbeat blocked for more than 780 seconds.
-2020-02-01 23:15:09,819:WARNING:discord.gateway: Heartbeat blocked for more than 785 seconds.
-20-02-01 23:14:17,202:WARNING:discord.gateway: Heartbeat blocked for more than 790 seconds.
-2020-02-01 23:14:22,203:WARNING:discord.gateway: Heartbeat blocked for more than 795 seconds.
-2020-02-01 23:14:27,204:WARNING:discord.gateway: Heartbeat blocked for more than 800 seconds.
-2020-02-01 23:14:32,205:WARNING:discord.gateway: Heartbeat blocked for more than 805 seconds.
-2020-02-01 23:14:37,206:WARNING:discord.gateway: Heartbeat blocked for more than 810 seconds.
-2020-02-01 23:14:42,207:WARNING:discord.gateway: Heartbeat blocked for more than 815 seconds.
-2020-02-01 23:14:47,208:WARNING:discord.gateway: Heartbeat blocked for more than 820 seconds.
-2020-02-01 23:14:52,209:WARNING:discord.gateway: Heartbeat blocked for more than 825 seconds.
-2020-02-01 23:14:57,210:WARNING:discord.gateway: Heartbeat blocked for more than 830 seconds.
-2020-02-01 23:15:02,210:WARNING:discord.gateway: Heartbeat blocked for more than 835 seconds.
-2020-02-01 23:15:07,211:WARNING:discord.gateway: Heartbeat blocked for more than 840 seconds.
-ds.
-2020-02-01 23:13:53,612:WARNING:discord.gateway: Heartbeat blocked for more than 845 seconds.
-2020-02-01 23:13:58,613:WARNING:discord.gateway: Heartbeat blocked for more than 850 seconds.
-2020-02-01 23:14:03,614:WARNING:discord.gateway: Heartbeat blocked for more than 855 seconds.
-2020-02-01 23:14:08,615:WARNING:discord.gateway: Heartbeat blocked for more than 860 seconds.
-2020-02-01 23:14:13,616:WARNING:discord.gateway: Heartbeat blocked for more than 865 seconds.
-2020-02-01 23:14:18,616:WARNING:discord.gateway: Heartbeat blocked for more than 870 seconds.
-2020-02-01 23:14:23,617:WARNING:discord.gateway: Heartbeat blocked for more than 875 seconds.
-2020-02-01 23:14:28,618:WARNING:discord.gateway: Heartbeat blocked for more than 880 seconds.
-2020-02-01 23:14:33,619:WARNING:discord.gateway: Heartbeat blocked for more than 885 seconds.
-2020-02-01 23:14:38,620:WARNING:discord.gateway: Heartbeat blocked for more than 890 seconds.
-2020-02-01 23:14:43,621:WARNING:discord.gateway: Heartbeat blocked for more than 895 seconds.
-2020-02-01 23:14:48,622:WARNING:discord.gateway: Heartbeat blocked for more than 900 seconds.
-2020-02-01 23:14:53,623:WARNING:discord.gateway: Heartbeat blocked for more than 905 seconds.
+2020-02-01 23:15:13,645:WARNING:discord.gateway: Heartbeat blocked for more than 755 seconds.
+2020-02-01 23:15:18,646:WARNING:discord.gateway: Heartbeat blocked for more than 760 seconds.
+2020-02-01 23:15:23,647:WARNING:discord.gateway: Heartbeat blocked for more than 765 seconds.
+2020-02-01 23:15:28,648:WARNING:discord.gateway: Heartbeat blocked for more than 770 seconds.
+2020-02-01 23:15:33,649:WARNING:discord.gateway: Heartbeat blocked for more than 775 seconds.
+2020-02-01 23:15:38,650:WARNING:discord.gateway: Heartbeat blocked for more than 780 seconds.
+2020-02-01 23:15:43,650:WARNING:discord.gateway: Heartbeat blocked for more than 785 seconds.
+2020-02-01 23:15:48,651:WARNING:discord.gateway: Heartbeat blocked for more than 790 seconds.
+2020-02-01 23:15:53,652:WARNING:discord.gateway: Heartbeat blocked for more than 795 seconds.
+2020-02-01 23:15:55,871:DEBUG:discord.client: Dispatching event socket_raw_send
+2020-02-01 23:15:55,872:INFO:discord.client: Cleaning up tasks.
+2020-02-01 23:15:55,872:INFO:discord.client: Cleaning up after 3 tasks.
+2020-02-01 23:15:55,874:INFO:discord.client: All tasks finished cancelling.
+2020-02-01 23:15:55,875:INFO:discord.client: Closing the event loop.
+more than 815 seconds.
+2020-02-01 23:15:44,825:WARNING:discord.gateway: Heartbeat blocked for more than 820 seconds.
+2020-02-01 23:15:49,826:WARNING:discord.gateway: Heartbeat blocked for more than 825 seconds.
+2020-02-01 23:15:54,827:WARNING:discord.gateway: Heartbeat blocked for more than 830 seconds.
+2020-02-01 23:15:56,330:DEBUG:discord.client: Dispatching event socket_raw_send
+2020-02-01 23:15:56,332:INFO:discord.client: Cleaning up tasks.
+2020-02-01 23:15:56,333:INFO:discord.client: Cleaning up after 3 tasks.
+2020-02-01 23:15:56,335:INFO:discord.client: All tasks finished cancelling.
+2020-02-01 23:15:56,336:INFO:discord.client: Closing the event loop.
+850 seconds.
+2020-02-01 23:15:22,215:WARNING:discord.gateway: Heartbeat blocked for more than 855 seconds.
+2020-02-01 23:15:27,216:WARNING:discord.gateway: Heartbeat blocked for more than 860 seconds.
+2020-02-01 23:15:32,216:WARNING:discord.gateway: Heartbeat blocked for more than 865 seconds.
+2020-02-01 23:15:37,217:WARNING:discord.gateway: Heartbeat blocked for more than 870 seconds.
+2020-02-01 23:15:42,218:WARNING:discord.gateway: Heartbeat blocked for more than 875 seconds.
+2020-02-01 23:15:47,219:WARNING:discord.gateway: Heartbeat blocked for more than 880 seconds.
+2020-02-01 23:15:52,220:WARNING:discord.gateway: Heartbeat blocked for more than 885 seconds.
+2020-02-01 23:15:56,650:DEBUG:discord.client: Dispatching event socket_raw_send
+2020-02-01 23:15:56,651:INFO:discord.client: Cleaning up tasks.
+2020-02-01 23:15:56,652:INFO:discord.client: Cleaning up after 3 tasks.
+2020-02-01 23:15:56,654:INFO:discord.client: All tasks finished cancelling.
+2020-02-01 23:15:56,654:INFO:discord.client: Closing the event loop.
+ than 905 seconds.
 2020-02-01 23:14:58,624:WARNING:discord.gateway: Heartbeat blocked for more than 910 seconds.
 2020-02-01 23:15:03,625:WARNING:discord.gateway: Heartbeat blocked for more than 915 seconds.
 2020-02-01 23:15:08,626:WARNING:discord.gateway: Heartbeat blocked for more than 920 seconds.
+2020-02-01 23:15:13,627:WARNING:discord.gateway: Heartbeat blocked for more than 925 seconds.
+2020-02-01 23:15:18,627:WARNING:discord.gateway: Heartbeat blocked for more than 930 seconds.
+2020-02-01 23:15:23,628:WARNING:discord.gateway: Heartbeat blocked for more than 935 seconds.
+2020-02-01 23:15:28,629:WARNING:discord.gateway: Heartbeat blocked for more than 940 seconds.
+2020-02-01 23:15:33,630:WARNING:discord.gateway: Heartbeat blocked for more than 945 seconds.
+2020-02-01 23:15:38,631:WARNING:discord.gateway: Heartbeat blocked for more than 950 seconds.
+2020-02-01 23:15:43,632:WARNING:discord.gateway: Heartbeat blocked for more than 955 seconds.
+2020-02-01 23:15:48,633:WARNING:discord.gateway: Heartbeat blocked for more than 960 seconds.
+2020-02-01 23:15:53,634:WARNING:discord.gateway: Heartbeat blocked for more than 965 seconds.
+2020-02-01 23:15:57,032:DEBUG:discord.client: Dispatching event socket_raw_send
+2020-02-01 23:15:57,033:INFO:discord.client: Cleaning up tasks.
+2020-02-01 23:15:57,033:INFO:discord.client: Cleaning up after 3 tasks.
+2020-02-01 23:15:57,034:INFO:discord.client: All tasks finished cancelling.
+2020-02-01 23:15:57,034:INFO:discord.client: Closing the event loop.
