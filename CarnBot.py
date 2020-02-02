@@ -56,6 +56,74 @@ def getDates():
 client = discord.Client()
 
 
+def getTimeHours():
+	hour = int(time.strftime('%H'))
+	minute = int(time.strftime('%M'))
+	minutes = hour + (minute / 60)
+	return minutes
+
+def genRandomTime():
+	global quotesSaid
+	global messageTimes
+	quotesSaid = 0
+	for i in range(RANDOM_MESSAGES_DAY):
+		randTime = random.uniform(8, 20)
+		messageTimes.append(randTime)
+	messageTimes.sort()
+	
+async def random_quote():
+	global quotesSaid
+	global messageTimes
+	if(getTimeHours() >= messageTimes[quotesSaid]):
+		if quotesSaid <= RANDOM_MESSAGES_DAY:
+			# quotes = getQuotes()
+			try:
+				print('Sending quote.')
+				general = client.get_channel(channels['aux1'])
+				# await general.send(quotes[random.randint(0, len(quotes)-1)])
+				await general.send(f"Testing MessageTimes = {messageTimes}")
+			except:
+				print('EER: Failed sending quote.')
+			quotesSaid += 1
+
+
+def one_minute_loop():
+	pass
+async def five_minute_loop():
+	await random_quote()
+def thirty_minute_loop():
+	pass
+def one_hourly_loop():
+	pass
+def six_hour_loop():
+	pass
+def daily_loop():
+	genRandomTime()
+
+async def schedular():
+	minute = 0
+	while True:
+		
+		if (not(minute % 24 * 60) or not(minute)):
+			daily_loop()
+		if (not(minute % 6 * 60) or not(minute)):
+			six_hour_loop()
+		if (not(minute % 60) or not(minute)):
+			one_hourly_loop()
+		if (not(minute % 30) or not(minute)):
+			thirty_minute_loop()
+		if (not(minute % 5) or not(minute)):
+			await five_minute_loop()
+
+		one_minute_loop()
+
+		await asyncio.sleep(60)
+
+		minute += 1
+		if (minute >= 24 * 60 * 7):
+			minute = 0
+		
+
 def is_me(m):
 	return m.author == client.user
 
@@ -65,7 +133,7 @@ async def on_ready():
 	print('We have logged in as {0.user}'.format(client))
 	global general  # NEED TO FIND ALTERNATIVE
 	general = discord.utils.find(lambda c: c.name == 'general', client.get_all_channels())
-	client.loop.create_task(random_quote())
+	client.loop.create_task(schedular())
 
 
 @client.event
@@ -113,24 +181,6 @@ async def on_message(message):
 			await message.channel.send('👎')
 		else:
 			await message.channel.send('👍')
-
-
-async def random_quote():
-	quotesSaid = 0
-	while True:
-		if quotesSaid < 2:
-			quotes = getQuotes()
-			try:
-				print('Sending quote.')
-				# general = client.get_channel(channels['aux1'])
-				await general.send(quotes[random.randint(0, len(quotes)-1)])
-			except:
-				print('EER: Failed sending quote.')
-			quotesSaid += 1
-			await asyncio.sleep(random.randint(3*60*60, 12*60*60))
-		else:
-			await discord.utils.sleep_until(resetTime)
-			quotesSaid = 0
 
 
 def send_reminders(channel, today, date, testNum):
@@ -192,5 +242,35 @@ async def important_reminders():
 		except:
 			print("ERR: Couldn't check and send test reminders.")
 		await discord.utils.sleep_until(resetTime)
+
+
+
+@client.command()
+async def echo(ctx, *, arg):
+    await ctx.send(arg)
+
+@client.command()
+async def get(ctx, arg):
+	if (arg == 'help'):
+		await ctx.send('Arguments: email, website')
+	elif (arg == 'email'):
+		await ctx.send('CharlesLC@tntech.edu')
+	elif (arg == 'website'):
+		await ctx.send('https://clcee.net/clc_ece/')
+	else:
+		await ctx.send('I don\'t know what you are asking, read the syllabus')
+
+@client.command()
+async def about(ctx):
+	await ctx.send('I am designed give some amusment, annoyance, and on rary occasions help to all jedi (EE/Compe) in training\nI am in no way affiliated with Dr. Charles Carnal')
+
+@client.command()
+async def help(ctx):
+	await ctx.send('Avalible commands:\n' +
+				   'About - gives general info about me, CarnBot\n' + 
+				   'get - quick way to get public info on Dr. Charles Carnal and his courses\n' +
+				   'echo - echo rest of message'
+				   )
+
 
 client.run('NjY5MjYwOTU2NzY5MDU4ODY4.XitObg.CHG4AioEpx9sYHESfMsYaT_2bMM')
