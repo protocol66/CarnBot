@@ -57,20 +57,20 @@ def getDates():
 				dates.append(final)
 		return dates
 
-
 client = commands.Bot(command_prefix='$', help_command=None)
 
 
 def getTimeHours():
 	hour = int(time.strftime('%H'))
 	minute = int(time.strftime('%M'))
-	minutes = hour + (minute / 60)
-	return minutes
+	hours = hour + (minute / 60)
+	return hours
 
 def genRandomTime():
 	global quotesSaid
 	global messageTimes
 	quotesSaid = 0
+	messageTimes = []
 	for i in range(RANDOM_MESSAGES_DAY):
 		randTime = random.uniform(8, 20)
 		messageTimes.append(randTime)
@@ -79,13 +79,12 @@ def genRandomTime():
 async def random_quote():
 	global quotesSaid
 	global messageTimes
-	# if(getTimeHours() >= messageTimes[quotesSaid]):
-	if(True):
+	if(getTimeHours() >= messageTimes[quotesSaid]):
 		if quotesSaid <= RANDOM_MESSAGES_DAY:
-			# quotes = getQuotes()
+			quotes = getQuotes()
 			try:
 				# print('Sending quote.')
-				general = client.get_channel(channels['aux1'])
+				general = client.get_channel(channels['general'])
 				await general.send(quotes[random.randint(0, len(quotes)-1)])
 			except:
 				 print('EER: Failed sending quote.')
@@ -140,6 +139,7 @@ async def on_ready():
 	global general  # NEED TO FIND ALTERNATIVE
 	general = discord.utils.find(lambda c: c.name == 'general', client.get_all_channels())
 	client.loop.create_task(schedular())
+	await asyncio.sleep(2)
 
 
 @client.event
@@ -151,7 +151,7 @@ async def on_member_join(member):
 	print('Member called ' + member.name + ' joined')
 	try:
 		await asyncio.sleep(2)
-		general = client.get_channel(channels['aux1'])
+		general = client.get_channel(channels['general'])
 		await general.send(member.mention + ' ' + newUsrMsg)
 		print('Sent welcome msg to ' + member.name)
 	except:
