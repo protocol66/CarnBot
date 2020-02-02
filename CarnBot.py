@@ -157,36 +157,37 @@ async def on_member_join(member):
 	except:
 		print('ERR: Could not send welcome msg.')
 
-#for sum reason on_message prevents commands from running
+@client.event
+async def on_message(message):
+	if is_me(message):
+		return
 
-# @client.event
-# async def on_message(message):
-# 	if is_me(message):
-# 		return
+	#needed for commands to work
+	await client.process_commands(message)
 
-# 	if message.content.startswith('/hello'):
-# 		await message.channel.send('Hello!')
+	if message.content.startswith('/hello'):
+		await message.channel.send('Hello!')
 
-# 	if message.content.startswith(cmdSym + 'final'):
-# 		dates = getDates()
-# 		if message.channel == client.get_channel(channels['C1-Q']):
-# 			await message.channel.send(message.author.mention + 'The final is on ' + str(dates[3][0]) + ' at ' + str(dates[3][1]) + ' to ' + str(dates[3][2]))
-# 		if message.channel == client.get_channel(channels['C2-Q']):
-# 			await message.channel.send(message.author.mention + 'The final is on ' + str(dates[7][0]) + ' at ' + str(dates[7][1]) + ' to ' + str(dates[7][2]))
+	if message.content.startswith(cmdSym + 'final'):
+		dates = getDates()
+		if message.channel == client.get_channel(channels['C1-Q']):
+			await message.channel.send(message.author.mention + 'The final is on ' + str(dates[3][0]) + ' at ' + str(dates[3][1]) + ' to ' + str(dates[3][2]))
+		if message.channel == client.get_channel(channels['C2-Q']):
+			await message.channel.send(message.author.mention + 'The final is on ' + str(dates[7][0]) + ' at ' + str(dates[7][1]) + ' to ' + str(dates[7][2]))
 
-	# if message.content.startswith(':thumbsup:'):
+	if message.content.startswith(':thumbsup:'):
 
-	# 	await message.channel.send('Send me that 👍 reaction, mate')
+		await message.channel.send('Send me that 👍 reaction, mate')
 
-	# 	def check(reaction, user):
-	# 		return user == message.author and str(reaction.emoji) == '👍'
+		def check(reaction, user):
+			return user == message.author and str(reaction.emoji) == '👍'
 
-	# 	try:
-	# 		reaction, user = await client.wait_for('reaction_add', timeout=60.0, check=check)
-	# 	except asyncio.TimeoutError:
-	# 		await message.channel.send('👎')
-	# 	else:
-	# 		await message.channel.send('👍')
+		try:
+			reaction, user = await client.wait_for('reaction_add', timeout=60.0, check=check)
+		except asyncio.TimeoutError:
+			await message.channel.send('👎')
+		else:
+			await message.channel.send('👍')
 
 
 def send_reminders(channel, today, date, testNum):
