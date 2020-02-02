@@ -22,6 +22,10 @@ now = datetime.today()
 resetTime = now.replace(day=now.day+1, hour=8, minute=0)
 general = None
 
+RANDOM_MESSAGES_DAY = 2
+messageTimes = []
+quotesSaid = 0
+
 
 def getQuotes():
 	with open('quotes.txt', 'r') as f:
@@ -168,19 +172,19 @@ async def on_message(message):
 		if message.channel == client.get_channel(channels['C2-Q']):
 			await message.channel.send(message.author.mention + 'The final is on ' + str(dates[7][0]) + ' at ' + str(dates[7][1]) + ' to ' + str(dates[7][2]))
 
-	if message.content.startswith(':thumbsup:'):
+	# if message.content.startswith(':thumbsup:'):
 
-		await message.channel.send('Send me that 👍 reaction, mate')
+	# 	await message.channel.send('Send me that 👍 reaction, mate')
 
-		def check(reaction, user):
-			return user == message.author and str(reaction.emoji) == '👍'
+	# 	def check(reaction, user):
+	# 		return user == message.author and str(reaction.emoji) == '👍'
 
-		try:
-			reaction, user = await client.wait_for('reaction_add', timeout=60.0, check=check)
-		except asyncio.TimeoutError:
-			await message.channel.send('👎')
-		else:
-			await message.channel.send('👍')
+	# 	try:
+	# 		reaction, user = await client.wait_for('reaction_add', timeout=60.0, check=check)
+	# 	except asyncio.TimeoutError:
+	# 		await message.channel.send('👎')
+	# 	else:
+	# 		await message.channel.send('👍')
 
 
 def send_reminders(channel, today, date, testNum):
