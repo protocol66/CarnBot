@@ -1,9 +1,11 @@
 import os
 import discord
+from discord.ext import commands
 import logging
 import asyncio
 import random
 from datetime import datetime, date, time, timedelta
+
 
 logger = logging.getLogger('discord')
 logger.setLevel(logging.DEBUG)
@@ -22,6 +24,11 @@ now = datetime.today()
 resetTime = now.replace(day=now.day+1, hour=8, minute=0)
 general = None
 
+general = None
+
+RANDOM_MESSAGES_DAY = 2
+messageTimes = []
+quotesSaid = 0
 
 def getQuotes():
 	with open('quotes.txt', 'r') as f:
@@ -55,6 +62,7 @@ def getDates():
 
 client = discord.Client()
 
+client = commands.Bot(command_prefix='$', help_command=None)
 
 def is_me(m):
 	return m.author == client.user
@@ -79,6 +87,7 @@ async def on_member_join(member):
 	try:
 		await asyncio.sleep(2)
 		# general = client.get_channel(channels['aux1'])
+		general = client.get_channel(channels['general'])
 		await general.send(member.mention + ' ' + newUsrMsg)
 		print('Sent welcome msg to ' + member.name)
 	except:
@@ -102,12 +111,65 @@ async def on_message(message):
 			await message.channel.send(message.author.mention + 'The final is on ' + str(dates[7][0]) + ' at ' + str(dates[7][1]) + ' to ' + str(dates[7][2]))
 
 	if message.content.startswith(':thumbsup:'):
+    
+#for sum reason on_message prevents commands from running
 
-		await message.channel.send('Send me that 👍 reaction, mate')
+# @client.event
+# async def on_message(message):
+# 	if is_me(message):
+# 		return
 
-		def check(reaction, user):
-			return user == message.author and str(reaction.emoji) == '👍'
+# 	if message.content.startswith('/hello'):
+# 		await message.channel.send('Hello!')
 
+# 	if message.content.startswith(cmdSym + 'final'):
+# 		dates = getDates()
+# 		if message.channel == client.get_channel(channels['C1-Q']):
+# 			await message.channel.send(message.author.mention + 'The final is on ' + str(dates[3][0]) + ' at ' + str(dates[3][1]) + ' to ' + str(dates[3][2]))
+# 		if message.channel == client.get_channel(channels['C2-Q']):
+# 			await message.channel.send(message.author.mention + 'The final is on ' + str(dates[7][0]) + ' at ' + str(dates[7][1]) + ' to ' + str(dates[7][2]))
+
+	# if message.content.startswith(':thumbsup:'):
+
+	# 	await message.channel.send('Send me that 👍 reaction, mate')
+
+	# 	def check(reaction, user):
+	# 		return user == message.author and str(reaction.emoji) == '👍'
+
+	# 	try:
+	# 		reaction, user = await client.wait_for('reaction_add', timeout=60.0, check=check)
+	# 	except asyncio.TimeoutError:
+	# 		await message.channel.send('👎')
+	# 	else:
+	# 		await message.channel.send('👍')
+
+
+@client.command()
+async def echo(ctx, *, arg):
+    await ctx.send(arg)
+
+@client.command()
+async def get(ctx, arg):
+	if (arg == 'help'):
+		await ctx.send('Arguments: email, website')
+	elif (arg == 'email'):
+		await ctx.send('CharlesLC@tntech.edu')
+	elif (arg == 'website'):
+		await ctx.send('https://clcee.net/clc_ece/')
+	else:
+		await ctx.send('I don\'t know what you are asking, read the syllabus')
+
+@client.command()
+async def about(ctx):
+	await ctx.send('I am designed give some amusment, annoyance, and on rary occasions help to all jedi (EE/Compe) in training\nI am in no way affiliated with Dr. Charles Carnal')
+
+@client.command()
+async def help(ctx):
+	await ctx.send('Avalible commands:\n' +
+				   'About - gives general info about me, CarnBot\n' + 
+				   'get - quick way to get public info on Dr. Charles Carnal and his courses\n' +
+				   'echo - echo rest of message'
+				   )
 		try:
 			reaction, user = await client.wait_for('reaction_add', timeout=60.0, check=check)
 		except asyncio.TimeoutError:
@@ -195,7 +257,7 @@ async def important_reminders():
 				elif dateDelta.days == 3:
 					await C2_Channel.send('REMINDER: The FINAL is 3 days away! Utilize tutoring if you need it!!!')
 				elif dateDelta.days == 1:
-					await C2_Channel.send("RED ALERT: FINAL is TOMORROW at " + str(Circuits1[3][1]) + " to " + str(Circuits1[3][2]) + "!!! If you haven't started studying yet, don't bother starting! Start getting prepared for taking this class again next semester.")
+					await C2_Channel.send("RED ALERT: FINAL is TOMORROW at " + str(Circuits2[3][1]) + " to " + str(Circuits2[3][2]) + "!!! If you haven't started studying yet, don't bother starting! Start getting prepared for taking this class again next semester.")
 		except:
 			print("ERR: Couldn't check and send test reminders.")
 		await discord.utils.sleep_until(resetTime)
