@@ -237,7 +237,7 @@ async def random_quote():
 			except:
 				print('EER: Failed sending quote.')
 			quotesSaid += 1
-                        await asyncio.sleep(int((12/RANDOM_MESSAGES_DAY)*60*60 - sleepTime))
+			await asyncio.sleep(int((12/RANDOM_MESSAGES_DAY)*60*60 - sleepTime))
 		else:
 			now = datetime.today()
 			resetTime = now.replace(day=now.day+1, hour=8, minute=0)
