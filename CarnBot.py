@@ -1,4 +1,5 @@
 import os
+import sys
 import discord
 from discord.ext import commands
 import logging
@@ -175,6 +176,14 @@ async def final(ctx):
 		await ctx.channel.send(ctx.author.mention + 'The final is on ' + str(dates[3][0]) + ' at ' + str(dates[3][1]) + ' to ' + str(dates[3][2]))
 	if ctx.channel == client.get_channel(channels['C2-Q']):
 		await ctx.channel.send(ctx.author.mention + 'The final is on ' + str(dates[7][0]) + ' at ' + str(dates[7][1]) + ' to ' + str(dates[7][2]))
+
+@client.command()
+async def reboot(ctx, arg):
+	os.execv(sys.executable, ['python'] + sys.argv)
+
+@client.command()
+async def shutdown():
+	sys.exit()
 
 
 ########################
