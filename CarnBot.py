@@ -185,8 +185,8 @@ async def help(ctx):
 	await ctx.send('Available commands:\n' +
 					'About - gives general info about me, CarnBot\n' +
 					'get - quick way to get public info on Dr. Charles Carnal and his courses\n' +
-					'echo - echo rest of message' +
-					'final - get time and date of final (must be used in a course chat)' +
+					'echo - echo rest of message\n' +
+					'final - get time and date of final (must be used in a course chat)\n' +
 					'panic - makes bot panic')
 
 
@@ -198,9 +198,11 @@ async def final(ctx):
 	if ctx.channel == client.get_channel(channels['C2-Q']):
 		await ctx.channel.send(ctx.author.mention + 'The final is on ' + str(dates[7][0]) + ' at ' + str(dates[7][1]) + ' to ' + str(dates[7][2]))
 
+
 @client.command()
 async def reboot(ctx, arg):
 	os.execv(sys.executable, ['python'] + sys.argv)
+
 
 @client.command()
 async def shutdown():
