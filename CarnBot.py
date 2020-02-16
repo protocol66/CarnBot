@@ -7,6 +7,7 @@ import asyncio
 import random
 from datetime import datetime, date, time, timedelta
 
+
 ###############
 ###  setup  ###
 ###############
@@ -199,11 +200,13 @@ async def final(ctx):
 		await ctx.channel.send(ctx.author.mention + 'The final is on ' + str(dates[7][0]) + ' at ' + str(dates[7][1]) + ' to ' + str(dates[7][2]))
 
 @client.command()
-async def reboot(ctx, arg):
+async def reboot(ctx):
+	await ctx.send('Rebooting')
 	os.execv(sys.executable, ['python'] + sys.argv)
 
 @client.command()
-async def shutdown():
+async def shutdown(ctx):
+	await ctx.send('Shuting Down')
 	sys.exit()
 
 
