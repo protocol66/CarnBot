@@ -224,25 +224,36 @@ async def panic(ctx):
 ########################
 
 async def random_quote():
-	quotesSaid = 0
+	randTime = []
+	sleepTime = []
 	while True:
-		if quotesSaid < RANDOM_MESSAGES_DAY:
-			sleepTime = int(random.uniform(0, (12 / RANDOM_MESSAGES_DAY) * 60 * 60))
-			print(f"Random quote time = {sleepTime}")
-			await asyncio.sleep(sleepTime)
+		now = datetime.today().hour + datetime.today().minute/60
+		for i in range(RANDOM_MESSAGES_DAY):
+			if (now > 8 and now < 20):
+				randTime.append(random.uniform(8, 20))
+			else:
+				randTime.append(random.uniform(8, 20))
+
+		randTime.sort()
+		randTime.insert(0, now)
+		
+		for i in range(len(randTime) - 1):
+			if(randTime[i] < randTime[i + 1]):
+				sleepTime.append(randTime[i + 1] - randTime[i])
+
+		for i in range(len(sleepTime)):
+		
+			print(f"Random quote time = {sleepTime[i]}")
+			await asyncio.sleep(sleepTime[i])
 			quotes = getQuotes()
 			try:
 				print('Sending quote.')
 				await general.send(quotes[random.randint(0, len(quotes)-1)])
 			except:
 				print('EER: Failed sending quote.')
-			quotesSaid += 1
-			await asyncio.sleep(int((12/RANDOM_MESSAGES_DAY)*60*60 - sleepTime))
-		else:
-			now = datetime.today()
-			resetTime = now.replace(day=now.day+1, hour=8, minute=0)
-			await discord.utils.sleep_until(resetTime)
-			quotesSaid = 0
+
+		resetTime = now.replace(day=datetime.today().day + 1, hour=8, minute=0)
+		await discord.utils.sleep_until(resetTime)
 
 
 async def important_reminders():
