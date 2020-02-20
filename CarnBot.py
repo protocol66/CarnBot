@@ -13,7 +13,7 @@ from datetime import datetime, date, time, timedelta
 ###############
 
 logger = logging.getLogger('discord')
-logger.setLevel(logging.DEBUG)
+logger.setLevel(logging.INFO)
 handler = logging.FileHandler(filename='discord.log', encoding='utf-8', mode='w')
 handler.setFormatter(logging.Formatter('%(asctime)s:%(levelname)s:%(name)s: %(message)s'))
 logger.addHandler(handler)
@@ -144,7 +144,7 @@ async def on_member_join(member):
 
 @client.event
 async def on_message(message):
-	print("Got message")
+	# print("Got message")
 	if is_me(message):
 		return
 	# needed for commands to work
@@ -227,10 +227,11 @@ async def random_quote():
 	randTime = []
 	sleepTime = []
 	while True:
-		now = datetime.today().hour + datetime.today().minute/60
+		now = datetime.today().hour + datetime.today().minute / 60
+		print(f"Now is {now}")
 		for i in range(RANDOM_MESSAGES_DAY):
 			if (now > 8 and now < 20):
-				randTime.append(random.uniform(8, 20))
+				randTime.append(random.uniform(now, 20))
 			else:
 				randTime.append(random.uniform(8, 20))
 
@@ -239,13 +240,14 @@ async def random_quote():
 		randTime.insert(0, now)
 		
 		for i in range(len(randTime) - 1):
-			if(randTime[i] < randTime[i + 1]):
-				sleepTime.append(randTime[i + 1] - randTime[i])
+			if(randTime[0] < randTime[i + 1]):
+				sleepTime.append(randTime[i + 1] - randTime[0])
+
+		print(f"Random quote sleep = {sleepTime}")
 
 		for i in range(len(sleepTime)):
-		
-			print(f"Random quote time = {sleepTime[i]}")
-			await asyncio.sleep(sleepTime[i])
+	
+			await asyncio.sleep(sleepTime[i]*60*60)
 			quotes = getQuotes()
 			try:
 				print('Sending quote.')
@@ -253,7 +255,11 @@ async def random_quote():
 			except:
 				print('EER: Failed sending quote.')
 
-		resetTime = now.replace(day=datetime.today().day + 1, hour=8, minute=0)
+		randTime = []
+		sleepTime = []
+
+		now = datetime.today()
+		resetTime = now.replace(day=now.day+1, hour=8, minute=0)
 		await discord.utils.sleep_until(resetTime)
 
 
