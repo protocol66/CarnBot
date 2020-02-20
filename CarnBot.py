@@ -235,6 +235,7 @@ async def random_quote():
 				randTime.append(random.uniform(8, 20))
 
 		randTime.sort()
+		print(f"Random quote times {randTime}")
 		randTime.insert(0, now)
 		
 		for i in range(len(randTime) - 1):
