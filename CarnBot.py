@@ -126,7 +126,7 @@ async def on_ready():
 @client.event
 async def on_member_join(member):
 	# stops the bot from messaging when itself joins
-	if is_me(member):
+	if member == client.user:
 		return
 
 	print('Member called ' + member.name + ' joined')
