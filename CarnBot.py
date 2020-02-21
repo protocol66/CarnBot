@@ -22,9 +22,9 @@ logger.addHandler(handler)
 client = commands.Bot(command_prefix='$', help_command=None)
 
 channels = {
-		'general': 602663309170311173,
-		'C1-Q': 671814810278559774,
-		'C2-Q': 670503709989404732,
+		'general': 627271589062508566,
+		'C1-Q': 654556140415221776,
+		'C2-Q': 654555766660792340,
 }
 
 ############################
@@ -38,8 +38,7 @@ RANDOM_MESSAGES_DAY = 2
 # Global Variables, Doc Brown look away
 # now = datetime.today()
 # RmdResetTime = now.replace(day=now.day + 1, hour=8, minute=0)
-# QtResetTime = 
-general = None
+# QtResetTime =
 messageTimes = []
 
 
@@ -120,8 +119,6 @@ async def send_reminders(channel, today, date, testNum, gif):
 @client.event
 async def on_ready():
 	print('We have logged in as {0.user}'.format(client))
-	global general  # NEED TO FIND ALTERNATIVE
-	general = discord.utils.find(lambda c: c.name == 'general', client.get_all_channels())
 	client.loop.create_task(random_quote())
 	client.loop.create_task(important_reminders())
 
@@ -195,9 +192,21 @@ async def help(ctx):
 async def final(ctx):
 	dates = getDates()
 	if ctx.channel == client.get_channel(channels['C1-Q']):
-		await ctx.channel.send(ctx.author.mention + 'The final is on ' + str(dates[3][0]) + ' at ' + str(dates[3][1]) + ' to ' + str(dates[3][2]))
+		await ctx.channel.send(
+			ctx.author.mention + 'The final is on ' + str(dates[3][0]) + ' at ' + str(dates[3][1]) + ' to ' + str(
+				dates[3][2]))
 	if ctx.channel == client.get_channel(channels['C2-Q']):
-		await ctx.channel.send(ctx.author.mention + 'The final is on ' + str(dates[7][0]) + ' at ' + str(dates[7][1]) + ' to ' + str(dates[7][2]))
+		await ctx.channel.send(
+			ctx.author.mention + 'The final is on ' + str(dates[7][0]) + ' at ' + str(dates[7][1]) + ' to ' + str(
+				dates[7][2]))
+	if ctx.channel == client.get_channel(channels['general']):
+		await ctx.channel.send(
+			ctx.author.mention + 'The final is on ' + str(dates[3][0]) + ' at ' + str(dates[3][1]) + ' to ' + str(
+				dates[3][2]))
+		await ctx.channel.send(
+			ctx.author.mention + 'The final is on ' + str(dates[7][0]) + ' at ' + str(dates[7][1]) + ' to ' + str(
+				dates[7][2]))
+
 
 
 @client.command()
@@ -246,6 +255,7 @@ async def random_quote():
 				quotes = getQuotes()
 				try:
 					print('Sending quote.')
+					general = client.get_channel(channels['general'])
 					await general.send(quotes[random.randint(0, len(quotes)-1)])
 				except:
 					print('EER: Failed sending quote.')

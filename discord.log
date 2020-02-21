@@ -1,8 +1,9 @@
-2020-02-21 08:51:06,843:WARNING:discord.client: PyNaCl is not installed, voice will NOT be supported
-2020-02-21 08:51:06,846:INFO:discord.client: logging in using static token
-2020-02-21 08:51:07,128:INFO:discord.gateway: Created websocket connected to wss://gateway.discord.gg?encoding=json&v=6&compress=zlib-stream
-2020-02-21 08:51:07,130:INFO:discord.gateway: Shard ID None has sent the IDENTIFY payload.
-2020-02-21 08:51:07,210:INFO:discord.gateway: Shard ID None has connected to Gateway: ["gateway-prd-main-z9cw",{"micros":42873,"calls":["discord-sessions-prd-1-26",{"micros":41948,"calls":["start_session",{"micros":38987,"calls":["api-prd-main-2skl",{"micros":34302,"calls":["get_user",{"micros":2551},"add_authorized_ip",{"micros":2238},"get_guilds",{"micros":3130},"coros_wait",{"micros":2}]}]},"guilds_connect",{"micros":1,"calls":[]},"presence_connect",{"micros":1414,"calls":[]}]}]}] (Session ID: 3ec1da9a1ab3c542476520783bda8aed).
-2020-02-21 08:51:24,270:INFO:discord.client: Cleaning up tasks.
-2020-02-21 08:51:24,270:INFO:discord.client: Cleaning up after 6 tasks.
-2020-02-21 08:51:25,670:INFO:discord.client: Closing the event loop.
+2020-02-21 10:49:11,003:INFO:discord.client: logging in using static token
+2020-02-21 10:49:11,410:INFO:discord.gateway: Created websocket connected to wss://gateway.discord.gg?encoding=json&v=6&compress=zlib-stream
+2020-02-21 10:49:11,412:INFO:discord.gateway: Shard ID None has sent the IDENTIFY payload.
+2020-02-21 10:49:11,499:INFO:discord.gateway: Shard ID None has connected to Gateway: ["gateway-prd-main-hqpf",{"micros":42939,"calls":["discord-sessions-prd-1-37",{"micros":41191,"calls":["start_session",{"micros":39519,"calls":["api-prd-main-ws8p",{"micros":35882,"calls":["get_user",{"micros":3115},"add_authorized_ip",{"micros":2217},"get_guilds",{"micros":2255},"coros_wait",{"micros":3}]}]},"guilds_connect",{"micros":1,"calls":[]},"presence_connect",{"micros":1,"calls":[]}]}]}] (Session ID: e29a75307a0375c70c4b669d8ccc7fcc).
+2020-02-21 10:49:11,519:WARNING:discord.state: GUILD_MEMBER_UPDATE referencing an unknown member ID: 669260956769058868. Discarding.
+2020-02-21 10:49:20,239:INFO:discord.client: Cleaning up tasks.
+2020-02-21 10:49:20,239:INFO:discord.client: Cleaning up after 6 tasks.
+2020-02-21 10:49:20,328:INFO:discord.client: All tasks finished cancelling.
+2020-02-21 10:49:20,328:INFO:discord.client: Closing the event loop.
