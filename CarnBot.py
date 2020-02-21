@@ -233,7 +233,9 @@ async def random_quote():
 
 		if (nowDec >= 8 and nowDec < 20):
 			for i in range(RANDOM_MESSAGES_DAY):
-				quoteTimes.append(now.replace(hour=int(random.uniform(now.hour,19)), minute=int(random.uniform(0,60))))
+				quoteTimes.append(now.replace(hour=int(random.uniform(now.hour,19)), minute=int(random.uniform(now.minute,60))))
+
+			# print(f"quoteTimes is {quoteTimes}")
 
 			for i in range(len(quoteTimes)):
 				now = datetime.today()
