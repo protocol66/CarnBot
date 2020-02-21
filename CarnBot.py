@@ -224,39 +224,28 @@ async def panic(ctx):
 ########################
 
 async def random_quote():
-	randTime = []
-	sleepTime = []
 	while True:
-		now = datetime.today().hour + datetime.today().minute / 60
-		print(f"Now is {now}")
-		for i in range(RANDOM_MESSAGES_DAY):
-			if (now > 8 and now < 20):
-				randTime.append(random.uniform(now, 20))
-			else:
-				randTime.append(random.uniform(8, 20))
+		quoteTimes = []
+		now = datetime.today()
+		nowDec = now.hour + now.minute/60
+		print(f"Now is {nowDec}")
 
-		randTime.sort()
-		print(f"Random quote times {randTime}")
-		randTime.insert(0, now)
-		
-		for i in range(len(randTime) - 1):
-			if(randTime[0] < randTime[i + 1]):
-				sleepTime.append(randTime[i + 1] - randTime[0])
+		if (nowDec >= 8 and nowDec < 20):
+			for i in range(RANDOM_MESSAGES_DAY):
+				quoteTimes.append(now.replace(hour=int(random.uniform(now.hour,19)), minute=int(random.uniform(0,60))))
 
-		print(f"Random quote sleep = {sleepTime}")
+			for i in range(len(quoteTimes)):
+				now = datetime.today()
+				sleepTime = (quoteTimes[i] - now).total_seconds()
+				print(f"sleepTime is {sleepTime}")
+				await asyncio.sleep(sleepTime)
 
-		for i in range(len(sleepTime)):
-	
-			await asyncio.sleep(sleepTime[i]*60*60)
-			quotes = getQuotes()
-			try:
-				print('Sending quote.')
-				await general.send(quotes[random.randint(0, len(quotes)-1)])
-			except:
-				print('EER: Failed sending quote.')
-
-		randTime = []
-		sleepTime = []
+				quotes = getQuotes()
+				try:
+					print('Sending quote.')
+					await general.send(quotes[random.randint(0, len(quotes)-1)])
+				except:
+					print('EER: Failed sending quote.')
 
 		now = datetime.today()
 		resetTime = now.replace(day=now.day+1, hour=8, minute=0)

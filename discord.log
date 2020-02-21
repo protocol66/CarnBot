@@ -1,9 +1,8 @@
-2020-02-20 11:43:27,035:WARNING:discord.client: PyNaCl is not installed, voice will NOT be supported
-2020-02-20 11:43:27,036:INFO:discord.client: logging in using static token
-2020-02-20 11:43:27,377:INFO:discord.gateway: Created websocket connected to wss://gateway.discord.gg?encoding=json&v=6&compress=zlib-stream
-2020-02-20 11:43:27,379:INFO:discord.gateway: Shard ID None has sent the IDENTIFY payload.
-2020-02-20 11:43:27,473:INFO:discord.gateway: Shard ID None has connected to Gateway: ["gateway-prd-main-342p",{"micros":56180,"calls":["discord-sessions-prd-1-30",{"micros":52324,"calls":["start_session",{"micros":51259,"calls":["api-prd-main-43d2",{"micros":47880,"calls":["get_user",{"micros":8131},"add_authorized_ip",{"micros":3424},"get_guilds",{"micros":3368},"coros_wait",{"micros":1}]}]},"guilds_connect",{"micros":3,"calls":[]},"presence_connect",{"micros":1,"calls":[]}]}]}] (Session ID: 13194459378d324769d19063abc5ac5b).
-2020-02-20 11:43:56,234:INFO:discord.client: Cleaning up tasks.
-2020-02-20 11:43:56,234:INFO:discord.client: Cleaning up after 6 tasks.
-2020-02-20 11:43:56,272:INFO:discord.client: All tasks finished cancelling.
-2020-02-20 11:43:56,272:INFO:discord.client: Closing the event loop.
+2020-02-20 19:01:22,375:WARNING:discord.client: PyNaCl is not installed, voice will NOT be supported
+2020-02-20 19:01:22,376:INFO:discord.client: logging in using static token
+2020-02-20 19:01:22,664:INFO:discord.gateway: Created websocket connected to wss://gateway.discord.gg?encoding=json&v=6&compress=zlib-stream
+2020-02-20 19:01:22,666:INFO:discord.gateway: Shard ID None has sent the IDENTIFY payload.
+2020-02-20 19:01:22,773:INFO:discord.gateway: Shard ID None has connected to Gateway: ["gateway-prd-main-6bcm",{"micros":75022,"calls":["discord-sessions-prd-1-23",{"micros":70529,"calls":["start_session",{"micros":69339,"calls":["api-prd-main-qh14",{"micros":65646,"calls":["get_user",{"micros":7468},"add_authorized_ip",{"micros":2849},"get_guilds",{"micros":7595},"coros_wait",{"micros":2}]}]},"guilds_connect",{"micros":2,"calls":[]},"presence_connect",{"micros":4,"calls":[]}]}]}] (Session ID: 3bef8edcf7afafe486a713d14f9934af).
+2020-02-20 19:02:06,129:INFO:discord.client: Cleaning up tasks.
+2020-02-20 19:02:06,130:INFO:discord.client: Cleaning up after 6 tasks.
+2020-02-20 19:02:07,459:INFO:discord.client: Closing the event loop.
