@@ -223,6 +223,7 @@ async def panic(ctx):
 ###  main functions  ###
 ########################
 
+# well I have code this about 4 times, feel free to make fun
 async def random_quote():
 	while True:
 		quoteTimes = []
