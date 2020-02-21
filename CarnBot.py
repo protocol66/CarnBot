@@ -181,7 +181,7 @@ async def about(ctx):
 @client.command()
 async def help(ctx):
 	await ctx.send('Available commands:\n' +
-					'About - gives general info about me, CarnBot\n' +
+					'About - gives general info about me, DarthCarnal\n' +
 					'get - quick way to get public info on Dr. Charles Carnal and his courses\n' +
 					'echo - echo rest of message\n' +
 					'final - get time and date of final (must be used in a course chat)\n' +
@@ -244,6 +244,7 @@ async def random_quote():
 			for i in range(RANDOM_MESSAGES_DAY):
 				quoteTimes.append(now.replace(hour=int(random.uniform(now.hour,19)), minute=int(random.uniform(now.minute,60))))
 
+			quoteTimes.sort()
 			# print(f"quoteTimes is {quoteTimes}")
 
 			for i in range(len(quoteTimes)):
