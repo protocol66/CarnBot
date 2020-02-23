@@ -262,7 +262,8 @@ async def random_quote():
 					print('EER: Failed sending quote.')
 
 		now = datetime.today()
-		resetTime = now.replace(day=now.day+1, hour=8, minute=0)
+		# hour = 14 because the bot uses UTC time
+		resetTime = now.replace(day=now.day+1, hour=14, minute=0)
 		await discord.utils.sleep_until(resetTime)
 
 
@@ -314,7 +315,8 @@ async def important_reminders():
 		except:
 			print("ERR: Couldn't check and send test reminders.")
 		now = datetime.today()
-		resetTime = now.replace(day=now.day+1, hour=8, minute=0)
+		# 14 instead of 8 because the time is in utc
+		resetTime = now.replace(day=now.day+1, hour=14, minute=0)
 		await discord.utils.sleep_until(resetTime)
 
 client.run('NjY5MjYwOTU2NzY5MDU4ODY4.XitObg.CHG4AioEpx9sYHESfMsYaT_2bMM')
