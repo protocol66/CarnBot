@@ -163,8 +163,10 @@ async def echo(ctx, *, arg):
 
 @client.command()
 async def get(ctx, arg):
-	if arg == 'help':
-		await ctx.send('Arguments: email, website')
+	if arg == '':
+		await ctx.send('Arguments: help, email, website')
+	elif arg == 'help':
+		await ctx.send('Arguments: help, email, website')
 	elif arg == 'email':
 		await ctx.send('CharlesLC@tntech.edu')
 	elif arg == 'website':
@@ -181,7 +183,7 @@ async def about(ctx):
 @client.command()
 async def help(ctx):
 	await ctx.send('Available commands:\n' +
-					'About - gives general info about me, DarthCarnal\n' +
+					'about - gives general info about me, DarthCarnal\n' +
 					'get - quick way to get public info on Dr. Charles Carnal and his courses\n' +
 					'echo - echo rest of message\n' +
 					'final - get time and date of final (must be used in a course chat)\n' +
@@ -210,14 +212,16 @@ async def final(ctx):
 
 
 @client.command()
-async def reboot(ctx):
-	await ctx.send('Rebooting')
+async def reboot(ctx, arg):
+	await ctx.send(f"Rebooting in {arg} minutes")
+	await asyncio.sleep(arg*60)
 	os.execv(sys.executable, ['python'] + sys.argv)
 
 
 @client.command()
-async def shutdown(ctx):
-	await ctx.send('Shuting Down')
+async def shutdown(ctx, arg):
+	await ctx.send(f"Shuting Down in {arg} minutes")
+	await asyncio.sleep(arg*60)
 	sys.exit()
 
 
@@ -261,10 +265,22 @@ async def random_quote():
 				except:
 					print('EER: Failed sending quote.')
 
-		now = datetime.today()
-		# hour = 14 because the bot uses UTC time
-		resetTime = now.replace(day=now.day+1, hour=14, minute=0)
-		await discord.utils.sleep_until(resetTime)
+			now = datetime.today()
+			# hour = 14 because the bot uses UTC time
+			resetTime = now.replace(day=now.day+1, hour=14, minute=0)
+			await discord.utils.sleep_until(resetTime)
+
+		elif (nowDec < 8):
+			now = datetime.today()
+			# hour = 14 because the bot uses UTC time
+			resetTime = now.replace(hour=14, minute=0)
+			await discord.utils.sleep_until(resetTime)
+
+		else:
+			now = datetime.today()
+			# hour = 14 because the bot uses UTC time
+			resetTime = now.replace(day=now.day+1, hour=14, minute=0)
+			await discord.utils.sleep_until(resetTime)
 
 
 async def important_reminders():
