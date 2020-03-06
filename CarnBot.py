@@ -4,6 +4,7 @@ import discord
 from discord.ext import commands
 import logging
 import asyncio
+import pickle
 import random
 from datetime import datetime, date, time, timedelta
 
@@ -244,12 +245,18 @@ async def random_quote():
 		nowDec = now.hour + now.minute/60
 		print(f"Now is {nowDec}")
 
-		if (nowDec >= 8 and nowDec < 20):
+		try:
+			lockTime = pickle.load(open('randquote.lock', 'rb'))
+		except IOError:
+			lockTime = now.replace(day=now.day-1)
+
+		if (nowDec >= 8 and nowDec < 20 and now.day >= lockTime.day+1):
 			for i in range(RANDOM_MESSAGES_DAY):
 				quoteTimes.append(now.replace(hour=int(random.uniform(now.hour,19)), minute=int(random.uniform(now.minute,60))))
 
 			quoteTimes.sort()
-			# print(f"quoteTimes is {quoteTimes}")
+			print(f"quoteTimes is {quoteTimes}")
+			pickle.dump(now, open('randquote.lock', 'wb'))
 
 			for i in range(len(quoteTimes)):
 				now = datetime.today()
@@ -284,55 +291,74 @@ async def random_quote():
 
 
 async def important_reminders():
-	iDates = getDates()
-	Circuits1 = iDates[:4]
-	Circuits2 = iDates[4:]
+	
 	while True:
+
 		today = datetime.today()
-		C1_Channel = client.get_channel(channels['C1-Q'])
-		C2_Channel = client.get_channel(channels['C2-Q'])
-		panicGifs = getPanicGIFS()
-		gif = panicGifs['GIFS'][random.randint(1, panicGifs['numGifs'])]
 		try:
-			# Circuits 1
-			if today.date() < Circuits1[0]:
-				await send_reminders(C1_Channel, today, Circuits1[0], 1, gif)
-			elif today.date() < Circuits1[1]:
-				await send_reminders(C1_Channel, today, Circuits1[1], 2, gif)
-			elif today.date() < Circuits1[2]:
-				await send_reminders(C1_Channel, today, Circuits1[2], 3, gif)
-			elif today.date() < Circuits1[3][0]:
-				dateDelta = Circuits1[3][0] - today.date()
-				if dateDelta.days == 14:
-					await C1_Channel.send('REMINDER: The FINAL is 2 weeks away!')
-				elif dateDelta.days == 7:
-					await C1_Channel.send('REMINDER: The FINAL is a week away! If you are still having trouble with some concepts, remember to ask questions or utilize tutoring.')
-				elif dateDelta.days == 3:
-					await C1_Channel.send('REMINDER: The FINAL is 3 days away! Utilize tutoring if you need it!!!')
-				elif dateDelta.days == 1:
-					await C1_Channel.send("RED ALERT: FINAL is TOMORROW at " + str(Circuits1[3][1]) + " to " + str(Circuits1[3][2]) + "!!! If you haven't started studying yet, don't bother starting! Start getting prepared to take this class again next semester.\n" + gif)
-			# Circuits 2
-			if today.date() < Circuits2[0]:
-				await send_reminders(C2_Channel, today, Circuits2[0], 1, gif)
-			elif today.date() < Circuits2[1]:
-				await send_reminders(C2_Channel, today, Circuits2[1], 2, gif)
-			elif today.date() < Circuits2[2]:
-				await send_reminders(C2_Channel, today, Circuits2[2], 3, gif)
-			elif today.date() < Circuits2[3][0]:
-				dateDelta = Circuits2[3][0] - today.date()
-				if dateDelta.days == 14:
-					await C2_Channel.send('REMINDER: The FINAL is 2 weeks away!')
-				elif dateDelta.days == 7:
-					await C2_Channel.send('REMINDER: The FINAL is a week away! If you are still having trouble with some concepts, remember to ask questions or utilize tutoring.')
-				elif dateDelta.days == 3:
-					await C2_Channel.send('REMINDER: The FINAL is 3 days away! Utilize tutoring if you need it!!!')
-				elif dateDelta.days == 1:
-					await C2_Channel.send("RED ALERT: FINAL is TOMORROW at " + str(Circuits2[3][1]) + " to " + str(Circuits2[3][2]) + "!!! If you haven't started studying yet, don't bother starting! Start getting prepared for taking this class again next semester.\n" + gif)
-		except:
-			print("ERR: Couldn't check and send test reminders.")
-		now = datetime.today()
-		# 14 instead of 8 because the time is in utc
-		resetTime = now.replace(day=now.day+1, hour=14, minute=0)
-		await discord.utils.sleep_until(resetTime)
+			lockTime = pickle.load(open('reminders.lock', 'rb'))
+		except IOError:
+			lockTime = today.replace(day=today.day-1)
+
+		if (today.day >= lockTime.day + 1):
+
+			print("Reminder")
+			
+			iDates = getDates()
+			Circuits1 = iDates[:4]
+			Circuits2 = iDates[4:]
+
+			C1_Channel = client.get_channel(channels['C1-Q'])
+			C2_Channel = client.get_channel(channels['C2-Q'])
+			panicGifs = getPanicGIFS()
+			gif = panicGifs['GIFS'][random.randint(1, panicGifs['numGifs'])]
+			try:
+				# Circuits 1
+				if today.date() < Circuits1[0]:
+					await send_reminders(C1_Channel, today, Circuits1[0], 1, gif)
+				elif today.date() < Circuits1[1]:
+					await send_reminders(C1_Channel, today, Circuits1[1], 2, gif)
+				elif today.date() < Circuits1[2]:
+					await send_reminders(C1_Channel, today, Circuits1[2], 3, gif)
+				elif today.date() < Circuits1[3][0]:
+					dateDelta = Circuits1[3][0] - today.date()
+					if dateDelta.days == 14:
+						await C1_Channel.send('REMINDER: The FINAL is 2 weeks away!')
+					elif dateDelta.days == 7:
+						await C1_Channel.send('REMINDER: The FINAL is a week away! If you are still having trouble with some concepts, remember to ask questions or utilize tutoring.')
+					elif dateDelta.days == 3:
+						await C1_Channel.send('REMINDER: The FINAL is 3 days away! Utilize tutoring if you need it!!!')
+					elif dateDelta.days == 1:
+						await C1_Channel.send("RED ALERT: FINAL is TOMORROW at " + str(Circuits1[3][1]) + " to " + str(Circuits1[3][2]) + "!!! If you haven't started studying yet, don't bother starting! Start getting prepared to take this class again next semester.\n" + gif)
+				# Circuits 2
+				if today.date() < Circuits2[0]:
+					await send_reminders(C2_Channel, today, Circuits2[0], 1, gif)
+				elif today.date() < Circuits2[1]:
+					await send_reminders(C2_Channel, today, Circuits2[1], 2, gif)
+				elif today.date() < Circuits2[2]:
+					await send_reminders(C2_Channel, today, Circuits2[2], 3, gif)
+				elif today.date() < Circuits2[3][0]:
+					dateDelta = Circuits2[3][0] - today.date()
+					if dateDelta.days == 14:
+						await C2_Channel.send('REMINDER: The FINAL is 2 weeks away!')
+					elif dateDelta.days == 7:
+						await C2_Channel.send('REMINDER: The FINAL is a week away! If you are still having trouble with some concepts, remember to ask questions or utilize tutoring.')
+					elif dateDelta.days == 3:
+						await C2_Channel.send('REMINDER: The FINAL is 3 days away! Utilize tutoring if you need it!!!')
+					elif dateDelta.days == 1:
+						await C2_Channel.send("RED ALERT: FINAL is TOMORROW at " + str(Circuits2[3][1]) + " to " + str(Circuits2[3][2]) + "!!! If you haven't started studying yet, don't bother starting! Start getting prepared for taking this class again next semester.\n" + gif)
+			except:
+				print("ERR: Couldn't check and send test reminders.")
+
+			now = datetime.today()
+			pickle.dump(now, open('reminders.lock', 'wb'))
+
+			# 14 instead of 8 because the time is in utc
+			resetTime = now.replace(day=now.day+1, hour=14, minute=0)
+			await discord.utils.sleep_until(resetTime)
+		else:
+			now = datetime.today()
+			resetTime = now.replace(day=now.day+1, hour=14, minute=0)
+			await discord.utils.sleep_until(resetTime)
 
 client.run('NjY5MjYwOTU2NzY5MDU4ODY4.XitObg.CHG4AioEpx9sYHESfMsYaT_2bMM')
