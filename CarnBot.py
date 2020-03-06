@@ -301,8 +301,6 @@ async def important_reminders():
 			lockTime = today.replace(day=today.day-1)
 
 		if (today.day >= lockTime.day + 1):
-
-			print("Reminder")
 			
 			iDates = getDates()
 			Circuits1 = iDates[:4]
