@@ -4,6 +4,7 @@ import discord
 from discord.ext import commands
 import logging
 import asyncio
+import pickle
 import random
 from datetime import datetime, date, time, timedelta
 
@@ -22,9 +23,9 @@ logger.addHandler(handler)
 client = commands.Bot(command_prefix='$', help_command=None)
 
 channels = {
-		'general': 602663309170311173,
-		'C1-Q': 671814810278559774,
-		'C2-Q': 670503709989404732,
+		'general': 627271589062508566,
+		'C1-Q': 654556140415221776,
+		'C2-Q': 654555766660792340,
 }
 
 ############################
@@ -38,8 +39,7 @@ RANDOM_MESSAGES_DAY = 2
 # Global Variables, Doc Brown look away
 # now = datetime.today()
 # RmdResetTime = now.replace(day=now.day + 1, hour=8, minute=0)
-# QtResetTime = 
-general = None
+# QtResetTime =
 messageTimes = []
 
 
@@ -120,8 +120,6 @@ async def send_reminders(channel, today, date, testNum, gif):
 @client.event
 async def on_ready():
 	print('We have logged in as {0.user}'.format(client))
-	global general  # NEED TO FIND ALTERNATIVE
-	general = discord.utils.find(lambda c: c.name == 'general', client.get_all_channels())
 	client.loop.create_task(random_quote())
 	client.loop.create_task(important_reminders())
 
@@ -129,7 +127,7 @@ async def on_ready():
 @client.event
 async def on_member_join(member):
 	# stops the bot from messaging when itself joins
-	if is_me(member):
+	if member == client.user:
 		return
 
 	print('Member called ' + member.name + ' joined')
@@ -166,8 +164,10 @@ async def echo(ctx, *, arg):
 
 @client.command()
 async def get(ctx, arg):
-	if arg == 'help':
-		await ctx.send('Arguments: email, website')
+	if arg == '':
+		await ctx.send('Arguments: help, email, website')
+	elif arg == 'help':
+		await ctx.send('Arguments: help, email, website')
 	elif arg == 'email':
 		await ctx.send('CharlesLC@tntech.edu')
 	elif arg == 'website':
@@ -184,7 +184,7 @@ async def about(ctx):
 @client.command()
 async def help(ctx):
 	await ctx.send('Available commands:\n' +
-					'About - gives general info about me, CarnBot\n' +
+					'about - gives general info about me, DarthCarnal\n' +
 					'get - quick way to get public info on Dr. Charles Carnal and his courses\n' +
 					'echo - echo rest of message\n' +
 					'final - get time and date of final (must be used in a course chat)\n' +
@@ -195,20 +195,34 @@ async def help(ctx):
 async def final(ctx):
 	dates = getDates()
 	if ctx.channel == client.get_channel(channels['C1-Q']):
-		await ctx.channel.send(ctx.author.mention + 'The final is on ' + str(dates[3][0]) + ' at ' + str(dates[3][1]) + ' to ' + str(dates[3][2]))
+		await ctx.channel.send(
+			ctx.author.mention + 'The final is on ' + str(dates[3][0]) + ' at ' + str(dates[3][1]) + ' to ' + str(
+				dates[3][2]))
 	if ctx.channel == client.get_channel(channels['C2-Q']):
-		await ctx.channel.send(ctx.author.mention + 'The final is on ' + str(dates[7][0]) + ' at ' + str(dates[7][1]) + ' to ' + str(dates[7][2]))
+		await ctx.channel.send(
+			ctx.author.mention + 'The final is on ' + str(dates[7][0]) + ' at ' + str(dates[7][1]) + ' to ' + str(
+				dates[7][2]))
+	if ctx.channel == client.get_channel(channels['general']):
+		await ctx.channel.send(
+			ctx.author.mention + 'The final is on ' + str(dates[3][0]) + ' at ' + str(dates[3][1]) + ' to ' + str(
+				dates[3][2]))
+		await ctx.channel.send(
+			ctx.author.mention + 'The final is on ' + str(dates[7][0]) + ' at ' + str(dates[7][1]) + ' to ' + str(
+				dates[7][2]))
+
 
 
 @client.command()
-async def reboot(ctx):
-	await ctx.send('Rebooting')
+async def reboot(ctx, arg):
+	await ctx.send(f"Rebooting in {arg} minutes")
+	await asyncio.sleep(arg*60)
 	os.execv(sys.executable, ['python'] + sys.argv)
 
 
 @client.command()
-async def shutdown(ctx):
-	await ctx.send('Shuting Down')
+async def shutdown(ctx, arg):
+	await ctx.send(f"Shuting Down in {arg} minutes")
+	await asyncio.sleep(arg*60)
 	sys.exit()
 
 
@@ -231,11 +245,18 @@ async def random_quote():
 		nowDec = now.hour + now.minute/60
 		print(f"Now is {nowDec}")
 
-		if (nowDec >= 8 and nowDec < 20):
+		try:
+			lockTime = pickle.load(open('randquote.lock', 'rb'))
+		except IOError:
+			lockTime = now.replace(day=now.day-1)
+
+		if (nowDec >= 8 and nowDec < 20 and now.day >= lockTime.day+1):
 			for i in range(RANDOM_MESSAGES_DAY):
 				quoteTimes.append(now.replace(hour=int(random.uniform(now.hour,19)), minute=int(random.uniform(now.minute,60))))
 
-			# print(f"quoteTimes is {quoteTimes}")
+			quoteTimes.sort()
+			print(f"quoteTimes is {quoteTimes}")
+			pickle.dump(now, open('randquote.lock', 'wb'))
 
 			for i in range(len(quoteTimes)):
 				now = datetime.today()
@@ -246,64 +267,96 @@ async def random_quote():
 				quotes = getQuotes()
 				try:
 					print('Sending quote.')
+					general = client.get_channel(channels['general'])
 					await general.send(quotes[random.randint(0, len(quotes)-1)])
 				except:
 					print('EER: Failed sending quote.')
 
-		now = datetime.today()
-		resetTime = now.replace(day=now.day+1, hour=8, minute=0)
-		await discord.utils.sleep_until(resetTime)
+			now = datetime.today()
+			# hour = 14 because the bot uses UTC time
+			resetTime = now.replace(day=now.day+1, hour=14, minute=0)
+			await discord.utils.sleep_until(resetTime)
+
+		elif (nowDec < 8):
+			now = datetime.today()
+			# hour = 14 because the bot uses UTC time
+			resetTime = now.replace(hour=14, minute=0)
+			await discord.utils.sleep_until(resetTime)
+
+		else:
+			now = datetime.today()
+			# hour = 14 because the bot uses UTC time
+			resetTime = now.replace(day=now.day+1, hour=14, minute=0)
+			await discord.utils.sleep_until(resetTime)
 
 
 async def important_reminders():
-	iDates = getDates()
-	Circuits1 = iDates[:4]
-	Circuits2 = iDates[4:]
+	
 	while True:
+
 		today = datetime.today()
-		C1_Channel = client.get_channel(channels['C1-Q'])
-		C2_Channel = client.get_channel(channels['C2-Q'])
-		panicGifs = getPanicGIFS()
-		gif = panicGifs['GIFS'][random.randint(1, panicGifs['numGifs'])]
 		try:
-			# Circuits 1
-			if today.date() < Circuits1[0]:
-				await send_reminders(C1_Channel, today, Circuits1[0], 1, gif)
-			elif today.date() < Circuits1[1]:
-				await send_reminders(C1_Channel, today, Circuits1[1], 2, gif)
-			elif today.date() < Circuits1[2]:
-				await send_reminders(C1_Channel, today, Circuits1[2], 3, gif)
-			elif today.date() < Circuits1[3][0]:
-				dateDelta = Circuits1[3][0] - today.date()
-				if dateDelta.days == 14:
-					await C1_Channel.send('REMINDER: The FINAL is 2 weeks away!')
-				elif dateDelta.days == 7:
-					await C1_Channel.send('REMINDER: The FINAL is a week away! If you are still having trouble with some concepts, remember to ask questions or utilize tutoring.')
-				elif dateDelta.days == 3:
-					await C1_Channel.send('REMINDER: The FINAL is 3 days away! Utilize tutoring if you need it!!!')
-				elif dateDelta.days == 1:
-					await C1_Channel.send("RED ALERT: FINAL is TOMORROW at " + str(Circuits1[3][1]) + " to " + str(Circuits1[3][2]) + "!!! If you haven't started studying yet, don't bother starting! Start getting prepared to take this class again next semester.\n" + gif)
-			# Circuits 2
-			if today.date() < Circuits2[0]:
-				await send_reminders(C2_Channel, today, Circuits2[0], 1, gif)
-			elif today.date() < Circuits2[1]:
-				await send_reminders(C2_Channel, today, Circuits2[1], 2, gif)
-			elif today.date() < Circuits2[2]:
-				await send_reminders(C2_Channel, today, Circuits2[2], 3, gif)
-			elif today.date() < Circuits2[3][0]:
-				dateDelta = Circuits2[3][0] - today.date()
-				if dateDelta.days == 14:
-					await C2_Channel.send('REMINDER: The FINAL is 2 weeks away!')
-				elif dateDelta.days == 7:
-					await C2_Channel.send('REMINDER: The FINAL is a week away! If you are still having trouble with some concepts, remember to ask questions or utilize tutoring.')
-				elif dateDelta.days == 3:
-					await C2_Channel.send('REMINDER: The FINAL is 3 days away! Utilize tutoring if you need it!!!')
-				elif dateDelta.days == 1:
-					await C2_Channel.send("RED ALERT: FINAL is TOMORROW at " + str(Circuits2[3][1]) + " to " + str(Circuits2[3][2]) + "!!! If you haven't started studying yet, don't bother starting! Start getting prepared for taking this class again next semester.\n" + gif)
-		except:
-			print("ERR: Couldn't check and send test reminders.")
-		now = datetime.today()
-		resetTime = now.replace(day=now.day+1, hour=8, minute=0)
-		await discord.utils.sleep_until(resetTime)
+			lockTime = pickle.load(open('reminders.lock', 'rb'))
+		except IOError:
+			lockTime = today.replace(day=today.day-1)
+
+		if (today.day >= lockTime.day + 1):
+			
+			iDates = getDates()
+			Circuits1 = iDates[:4]
+			Circuits2 = iDates[4:]
+
+			C1_Channel = client.get_channel(channels['C1-Q'])
+			C2_Channel = client.get_channel(channels['C2-Q'])
+			panicGifs = getPanicGIFS()
+			gif = panicGifs['GIFS'][random.randint(1, panicGifs['numGifs'])]
+			try:
+				# Circuits 1
+				if today.date() < Circuits1[0]:
+					await send_reminders(C1_Channel, today, Circuits1[0], 1, gif)
+				elif today.date() < Circuits1[1]:
+					await send_reminders(C1_Channel, today, Circuits1[1], 2, gif)
+				elif today.date() < Circuits1[2]:
+					await send_reminders(C1_Channel, today, Circuits1[2], 3, gif)
+				elif today.date() < Circuits1[3][0]:
+					dateDelta = Circuits1[3][0] - today.date()
+					if dateDelta.days == 14:
+						await C1_Channel.send('REMINDER: The FINAL is 2 weeks away!')
+					elif dateDelta.days == 7:
+						await C1_Channel.send('REMINDER: The FINAL is a week away! If you are still having trouble with some concepts, remember to ask questions or utilize tutoring.')
+					elif dateDelta.days == 3:
+						await C1_Channel.send('REMINDER: The FINAL is 3 days away! Utilize tutoring if you need it!!!')
+					elif dateDelta.days == 1:
+						await C1_Channel.send("RED ALERT: FINAL is TOMORROW at " + str(Circuits1[3][1]) + " to " + str(Circuits1[3][2]) + "!!! If you haven't started studying yet, don't bother starting! Start getting prepared to take this class again next semester.\n" + gif)
+				# Circuits 2
+				if today.date() < Circuits2[0]:
+					await send_reminders(C2_Channel, today, Circuits2[0], 1, gif)
+				elif today.date() < Circuits2[1]:
+					await send_reminders(C2_Channel, today, Circuits2[1], 2, gif)
+				elif today.date() < Circuits2[2]:
+					await send_reminders(C2_Channel, today, Circuits2[2], 3, gif)
+				elif today.date() < Circuits2[3][0]:
+					dateDelta = Circuits2[3][0] - today.date()
+					if dateDelta.days == 14:
+						await C2_Channel.send('REMINDER: The FINAL is 2 weeks away!')
+					elif dateDelta.days == 7:
+						await C2_Channel.send('REMINDER: The FINAL is a week away! If you are still having trouble with some concepts, remember to ask questions or utilize tutoring.')
+					elif dateDelta.days == 3:
+						await C2_Channel.send('REMINDER: The FINAL is 3 days away! Utilize tutoring if you need it!!!')
+					elif dateDelta.days == 1:
+						await C2_Channel.send("RED ALERT: FINAL is TOMORROW at " + str(Circuits2[3][1]) + " to " + str(Circuits2[3][2]) + "!!! If you haven't started studying yet, don't bother starting! Start getting prepared for taking this class again next semester.\n" + gif)
+			except:
+				print("ERR: Couldn't check and send test reminders.")
+
+			now = datetime.today()
+			pickle.dump(now, open('reminders.lock', 'wb'))
+
+			# 14 instead of 8 because the time is in utc
+			resetTime = now.replace(day=now.day+1, hour=14, minute=0)
+			await discord.utils.sleep_until(resetTime)
+		else:
+			now = datetime.today()
+			resetTime = now.replace(day=now.day+1, hour=14, minute=0)
+			await discord.utils.sleep_until(resetTime)
 
 client.run('NjY5MjYwOTU2NzY5MDU4ODY4.XitObg.CHG4AioEpx9sYHESfMsYaT_2bMM')
