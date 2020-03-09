@@ -1,5 +1,9 @@
-2020-03-09 15:09:48,700:WARNING:discord.client: PyNaCl is not installed, voice will NOT be supported
-2020-03-09 15:09:48,702:INFO:discord.client: logging in using static token
-2020-03-09 15:09:49,750:INFO:discord.gateway: Created websocket connected to wss://gateway.discord.gg?encoding=json&v=6&compress=zlib-stream
-2020-03-09 15:09:49,757:INFO:discord.gateway: Shard ID None has sent the IDENTIFY payload.
-2020-03-09 15:09:49,893:INFO:discord.gateway: Shard ID None has connected to Gateway: ["gateway-prd-main-jnl6",{"micros":45131,"calls":["discord-sessions-prd-1-31",{"micros":41393,"calls":["start_session",{"micros":39018,"calls":["api-prd-main-5hbp",{"micros":35920,"calls":["get_user",{"micros":3340},"add_authorized_ip",{"micros":1696},"get_guilds",{"micros":3906},"coros_wait",{"micros":1}]}]},"guilds_connect",{"micros":2,"calls":[]},"presence_connect",{"micros":865,"calls":[]}]}]}] (Session ID: 4d9c65fa4b7a9af1f855e01e0ac94cdb).
+2020-02-21 10:49:11,003:INFO:discord.client: logging in using static token
+2020-02-21 10:49:11,410:INFO:discord.gateway: Created websocket connected to wss://gateway.discord.gg?encoding=json&v=6&compress=zlib-stream
+2020-02-21 10:49:11,412:INFO:discord.gateway: Shard ID None has sent the IDENTIFY payload.
+2020-02-21 10:49:11,499:INFO:discord.gateway: Shard ID None has connected to Gateway: ["gateway-prd-main-hqpf",{"micros":42939,"calls":["discord-sessions-prd-1-37",{"micros":41191,"calls":["start_session",{"micros":39519,"calls":["api-prd-main-ws8p",{"micros":35882,"calls":["get_user",{"micros":3115},"add_authorized_ip",{"micros":2217},"get_guilds",{"micros":2255},"coros_wait",{"micros":3}]}]},"guilds_connect",{"micros":1,"calls":[]},"presence_connect",{"micros":1,"calls":[]}]}]}] (Session ID: e29a75307a0375c70c4b669d8ccc7fcc).
+2020-02-21 10:49:11,519:WARNING:discord.state: GUILD_MEMBER_UPDATE referencing an unknown member ID: 669260956769058868. Discarding.
+2020-02-21 10:49:20,239:INFO:discord.client: Cleaning up tasks.
+2020-02-21 10:49:20,239:INFO:discord.client: Cleaning up after 6 tasks.
+2020-02-21 10:49:20,328:INFO:discord.client: All tasks finished cancelling.
+2020-02-21 10:49:20,328:INFO:discord.client: Closing the event loop.

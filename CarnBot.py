@@ -146,15 +146,11 @@ async def on_message(message):
 	if is_me(message):
 		return
 	# needed for commands to work
-
-	if (client.user.mentioned_in(message) and message.mention_everyone == False):
-		await message.channel.send('Who fired that shot?')
+	await client.process_commands(message)
 
 	# for testing
 	if message.content.startswith('/hello'):
 		await message.channel.send('Hello!')
-
-	await client.process_commands(message)
 
 
 ###########################
@@ -216,14 +212,14 @@ async def final(ctx):
 @client.command()
 async def reboot(ctx, arg):
 	await ctx.send(f"Rebooting in {arg} minutes")
-	await asyncio.sleep(int(arg)*60)
+	await asyncio.sleep(arg*60)
 	os.execv(sys.executable, ['python'] + sys.argv)
 
 
 @client.command()
 async def shutdown(ctx, arg):
 	await ctx.send(f"Shuting Down in {arg} minutes")
-	await asyncio.sleep(int(arg)*60)
+	await asyncio.sleep(arg*60)
 	sys.exit()
 
 
