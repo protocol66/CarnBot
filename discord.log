@@ -1,5 +1,8 @@
-2020-04-11 20:12:37,455:WARNING:discord.client: PyNaCl is not installed, voice will NOT be supported
-2020-04-11 20:12:37,456:INFO:discord.client: logging in using static token
-2020-04-11 20:12:37,809:INFO:discord.gateway: Created websocket connected to wss://gateway.discord.gg?encoding=json&v=6&compress=zlib-stream
-2020-04-11 20:12:37,810:INFO:discord.gateway: Shard ID None has sent the IDENTIFY payload.
-2020-04-11 20:12:37,917:INFO:discord.gateway: Shard ID None has connected to Gateway: ["gateway-prd-main-2sn6",{"micros":60742,"calls":["discord-sessions-prd-1-80",{"micros":45422,"calls":["start_session",{"micros":42858,"calls":["api-prd-main-s2xb",{"micros":38775,"calls":["get_user",{"micros":3366},"add_authorized_ip",{"micros":2174},"get_guilds",{"micros":2349},"coros_wait",{"micros":4}]}]},"guilds_connect",{"micros":2,"calls":[]},"presence_connect",{"micros":1,"calls":[]}]}]}] (Session ID: 7533d0ebafcf5cdc984678545874dc43).
+2020-04-12 19:46:01,296:WARNING:discord.client: PyNaCl is not installed, voice will NOT be supported
+2020-04-12 19:46:01,299:INFO:discord.client: logging in using static token
+2020-04-12 19:46:01,703:INFO:discord.gateway: Created websocket connected to wss://gateway.discord.gg?encoding=json&v=6&compress=zlib-stream
+2020-04-12 19:46:01,707:INFO:discord.gateway: Shard ID None has sent the IDENTIFY payload.
+2020-04-12 19:46:01,856:INFO:discord.gateway: Shard ID None has connected to Gateway: ["gateway-prd-main-1tqr",{"micros":82490,"calls":["discord-sessions-prd-1-41",{"micros":81453,"calls":["start_session",{"micros":75456,"calls":["api-prd-main-cjpt",{"micros":70285,"calls":["get_user",{"micros":20255},"add_authorized_ip",{"micros":4233},"get_guilds",{"micros":3840},"coros_wait",{"micros":1}]}]},"guilds_connect",{"micros":2,"calls":[]},"presence_connect",{"micros":4246,"calls":[]}]}]}] (Session ID: 35dd2c7a531063b14ff475b7610a0661).
+2020-04-12 19:46:43,724:INFO:discord.client: Cleaning up tasks.
+2020-04-12 19:46:43,725:INFO:discord.client: Cleaning up after 6 tasks.
+2020-04-12 19:46:44,029:INFO:discord.client: Closing the event loop.

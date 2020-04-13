@@ -164,6 +164,10 @@ async def on_message(message):
 @client.command()
 async def echo(ctx, *arg):
 
+	if (not len(arg) or arg[0] == "help"):
+		await ctx.send('Usage: del/delete <message>\n del/delete - deletes the original message')
+		return
+
 	delete = False
 
 	if (arg[0] == "del" or arg[0] == "delete"):
