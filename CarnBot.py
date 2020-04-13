@@ -162,8 +162,27 @@ async def on_message(message):
 ###########################
 
 @client.command()
-async def echo(ctx, *, arg):
-	await ctx.send(arg)
+async def echo(ctx, *arg):
+
+	if (not len(arg) or arg[0] == "help"):
+		await ctx.send('Usage: del/delete <message>\n del/delete - deletes the original message')
+		return
+
+	delete = False
+
+	if (arg[0] == "del" or arg[0] == "delete"):
+		arg = arg[1:]
+		delete = True
+	
+	if(ctx.message.channel_mentions):
+		send_channel = ctx.message.channel_mentions[0]
+		arg = arg[1:]
+		await send_channel.send(" ".join(arg))
+	else:
+		await ctx.send(" ".join(arg))
+
+	if (delete):
+		await ctx.message.delete()
 
 
 @client.command()
