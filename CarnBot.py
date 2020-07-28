@@ -391,4 +391,4 @@ async def important_reminders():
 			resetTime = now.replace(day=now.day+1, hour=14, minute=0)
 			await discord.utils.sleep_until(resetTime)
 
-client.run('NjY5MjYwOTU2NzY5MDU4ODY4.XitObg.CHG4AioEpx9sYHESfMsYaT_2bMM')
+client.run('NjY5MjYwOTU2NzY5MDU4ODY4.XidP1g.ve-64Bvue0ZvXeqlGJ-kP9-9mZ8')
