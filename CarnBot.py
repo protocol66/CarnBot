@@ -33,7 +33,7 @@ channels = {
 ############################
 
 # Globals Constants
-NEWUSRMSG = '''Welcome to the Easy Engineering server! Please say which course you are currently taking so a admin can update your role. If you have any questions regarding the server feel free to ask. Please read <#627273181778018344>. Remember we are all here to learn and help each so be respectful to your fellow students. \nDISCLAIMER: This bot is in no way affiliated with Dr. Carnal or TNTECH in anyway.'''
+NEWUSRMSG = '''Welcome to the Easy Engineering server! If you have any questions regarding the server feel free to ask. Please read <#627273181778018344>. Remember we are all here to learn and help each so be respectful to your fellow students. \nDISCLAIMER: This bot is in no way affiliated with Dr. Carnal or TNTECH in anyway.'''
 RANDOM_MESSAGES_DAY = 2
 
 # Global Variables, Doc Brown look away
@@ -124,20 +124,20 @@ async def on_ready():
 	client.loop.create_task(important_reminders())
 
 
-@client.event
-async def on_member_join(member):
-	# stops the bot from messaging when itself joins
-	if member == client.user:
-		return
+# @client.event
+# async def on_member_join(member):
+# 	# stops the bot from messaging when itself joins
+# 	if member == client.user:
+# 		return
 
-	print('Member called ' + member.name + ' joined')
-	try:
-		await asyncio.sleep(2)
-		general = client.get_channel(channels['general'])
-		await general.send(member.mention + ' ' + NEWUSRMSG)
-		print('Sent welcome msg to ' + member.name)
-	except:
-		print('ERR: Could not send welcome msg.')
+# 	print('Member called ' + member.name + ' joined')
+# 	try:
+# 		await asyncio.sleep(2)
+# 		general = client.get_channel(channels['general'])
+# 		await general.send(member.mention + ' ' + NEWUSRMSG)
+# 		print('Sent welcome msg to ' + member.name)
+# 	except:
+# 		print('ERR: Could not send welcome msg.')
 
 
 @client.event
