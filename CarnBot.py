@@ -124,20 +124,20 @@ async def on_ready():
 	client.loop.create_task(important_reminders())
 
 
-# @client.event
-# async def on_member_join(member):
-# 	# stops the bot from messaging when itself joins
-# 	if member == client.user:
-# 		return
+@client.event
+async def on_member_join(member):
+	# stops the bot from messaging when itself joins
+	if member == client.user:
+		return
 
-# 	print('Member called ' + member.name + ' joined')
-# 	try:
-# 		await asyncio.sleep(2)
-# 		general = client.get_channel(channels['general'])
-# 		await general.send(member.mention + ' ' + NEWUSRMSG)
-# 		print('Sent welcome msg to ' + member.name)
-# 	except:
-# 		print('ERR: Could not send welcome msg.')
+	print('Member called ' + member.name + ' joined')
+	try:
+		await asyncio.sleep(2)
+		general = client.get_channel(channels['general'])
+		await general.send(member.mention + ' ' + NEWUSRMSG)
+		print('Sent welcome msg to ' + member.name)
+	except:
+		print('ERR: Could not send welcome msg.')
 
 
 @client.event
