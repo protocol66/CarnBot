@@ -274,7 +274,7 @@ async def random_quote():
 		try:
 			lockTime = pickle.load(open('randquote.lock', 'rb'))
 		except IOError:
-			lockTime = now - timedelta(day=1)
+			lockTime = now.today() - timedelta(days=1)
 
 		if (nowDec >= 8 and nowDec < 20 and now.day >= lockTime.day+1):
 			for i in range(RANDOM_MESSAGES_DAY):
@@ -330,7 +330,7 @@ async def important_reminders():
 		try:
 			lockTime = pickle.load(open('reminders.lock', 'rb'))
 		except IOError:
-			lockTime = today - timedelta(day=1)
+			lockTime = today.today() - timedelta(days=1)
 
 		if (today.day >= lockTime.day + 1):
 			
