@@ -306,7 +306,7 @@ async def random_quote():
 
 			now = datetime.today()
 			# hour = 14 because the bot uses UTC time
-			resetTime = now.replace(day=now.day+1, hour=14, minute=0)
+			resetTime = now.replace(hour=14, minute=0) + timedelta(days=1)
 			await discord.utils.sleep_until(resetTime)
 
 		elif (nowDec < 8):
@@ -318,7 +318,7 @@ async def random_quote():
 		else:
 			now = datetime.today()
 			# hour = 14 because the bot uses UTC time
-			resetTime = now.replace(day=now.day+1, hour=14, minute=0)
+			resetTime = now.replace(hour=14, minute=0) + timedelta(days=1)
 			await discord.utils.sleep_until(resetTime)
 
 
@@ -384,11 +384,11 @@ async def important_reminders():
 			pickle.dump(now, open('reminders.lock', 'wb'))
 
 			# 14 instead of 8 because the time is in utc
-			resetTime = now.replace(day=now.day+1, hour=14, minute=0)
+			resetTime = now.replace(hour=14, minute=0) + timedelta(days=1)
 			await discord.utils.sleep_until(resetTime)
 		else:
 			now = datetime.today()
-			resetTime = now.replace(day=now.day+1, hour=14, minute=0)
+			resetTime = now.replace(hour=14, minute=0) + timedelta(days=1)
 			await discord.utils.sleep_until(resetTime)
 
 client.run('NjY5MjYwOTU2NzY5MDU4ODY4.XidP1g.C_RHn06IVeC7NKbwfh3KntzcEGs')
