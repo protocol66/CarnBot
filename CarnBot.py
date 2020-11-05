@@ -19,6 +19,10 @@ handler = logging.FileHandler(filename='discord.log', encoding='utf-8', mode='w'
 handler.setFormatter(logging.Formatter('%(asctime)s:%(levelname)s:%(name)s: %(message)s'))
 logger.addHandler(handler)
 
+#enables on member join function
+intents = discord.Intents.default()
+intents.members = True
+
 # client = discord.Client()
 client = commands.Bot(command_prefix='$', help_command=None)
 
