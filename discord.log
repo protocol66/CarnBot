@@ -1,8 +1,3 @@
-2020-04-12 19:46:01,296:WARNING:discord.client: PyNaCl is not installed, voice will NOT be supported
-2020-04-12 19:46:01,299:INFO:discord.client: logging in using static token
-2020-04-12 19:46:01,703:INFO:discord.gateway: Created websocket connected to wss://gateway.discord.gg?encoding=json&v=6&compress=zlib-stream
-2020-04-12 19:46:01,707:INFO:discord.gateway: Shard ID None has sent the IDENTIFY payload.
-2020-04-12 19:46:01,856:INFO:discord.gateway: Shard ID None has connected to Gateway: ["gateway-prd-main-1tqr",{"micros":82490,"calls":["discord-sessions-prd-1-41",{"micros":81453,"calls":["start_session",{"micros":75456,"calls":["api-prd-main-cjpt",{"micros":70285,"calls":["get_user",{"micros":20255},"add_authorized_ip",{"micros":4233},"get_guilds",{"micros":3840},"coros_wait",{"micros":1}]}]},"guilds_connect",{"micros":2,"calls":[]},"presence_connect",{"micros":4246,"calls":[]}]}]}] (Session ID: 35dd2c7a531063b14ff475b7610a0661).
-2020-04-12 19:46:43,724:INFO:discord.client: Cleaning up tasks.
-2020-04-12 19:46:43,725:INFO:discord.client: Cleaning up after 6 tasks.
-2020-04-12 19:46:44,029:INFO:discord.client: Closing the event loop.
+2020-11-05 16:16:38,036:INFO:discord.client: logging in using static token
+2020-11-05 16:16:38,760:INFO:discord.gateway: Shard ID None has sent the IDENTIFY payload.
+2020-11-05 16:16:38,984:INFO:discord.gateway: Shard ID None has connected to Gateway: ["gateway-prd-main-dj3z",{"micros":131516,"calls":["discord-sessions-prd-2-66",{"micros":129149,"calls":["start_session",{"micros":100758,"calls":["api-prd-main-h28l",{"micros":93422,"calls":["get_user",{"micros":6638},"add_authorized_ip",{"micros":2354},"get_guilds",{"micros":7487},"coros_wait",{"micros":1}]}]},"guilds_connect",{"micros":2,"calls":[]},"presence_connect",{"micros":1,"calls":[]}]}]}] (Session ID: 2943e685447219c905407bc0e7c6fca4).
