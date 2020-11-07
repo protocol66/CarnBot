@@ -24,7 +24,7 @@ intents = discord.Intents.default()
 intents.members = True
 
 # client = discord.Client()
-client = commands.Bot(command_prefix='$', help_command=None)
+client = commands.Bot(command_prefix='$', help_command=None, intents=intents)
 
 channels = {
 		'general': 627271589062508566,
