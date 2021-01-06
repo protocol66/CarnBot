@@ -1,12 +1,17 @@
 import os
 import sys
 import discord
+from discord import channel
+from discord import message
+from discord import role
 from discord.ext import commands
 import logging
 import asyncio
 import pickle
 import random
 from datetime import datetime, date, time, timedelta
+
+from discord.guild import Guild
 
 
 ###############
@@ -126,7 +131,7 @@ async def on_ready():
 	print('We have logged in as {0.user}'.format(client))
 	client.loop.create_task(random_quote())
 	client.loop.create_task(important_reminders())
-
+	client.loop.create_task(dumbAssOfTheDay())
 
 @client.event
 async def on_member_join(member):
@@ -157,6 +162,9 @@ async def on_message(message):
 	# for testing
 	if message.content.startswith('/hello'):
 		await message.channel.send('Hello!')
+
+	# if message.content.startswith('/test'):
+	# 	await message.channel.mention(discord.utils.get(message.author.guild.roles, name="CarnBot"))
 
 	await client.process_commands(message)
 
@@ -262,6 +270,7 @@ async def testNewMemberMsg(ctx):
 	await ctx.channel.send(NEWUSRMSG)
 
 
+
 ########################
 ###  main functions  ###
 ########################
@@ -324,6 +333,16 @@ async def random_quote():
 			# hour = 14 because the bot uses UTC time
 			resetTime = now.replace(hour=14, minute=0) + timedelta(days=1)
 			await discord.utils.sleep_until(resetTime)
+
+
+async def dumbAssOfTheDay():
+	randMem = random.choice(list(client.get_all_members()))
+	print(randMem)
+	role = discord.utils.get(randMem.guild.roles, name="Human")
+	print(type(role))
+	print(role.name)
+	await randMem.add_roles(randMem,role)
+	await time.sleep(1000000)
 
 
 async def important_reminders():
