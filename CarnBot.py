@@ -252,7 +252,7 @@ async def shutdown(ctx):
 @client.command()
 async def pull(ctx):
 	await ctx.send("Pulling From Github")
-	output = subprocess.call([".././pull.sh"])
+	output = os.system(".././pull.sh")
 	await ctx.send(f"Output:\n{output}")
 	#nothing
 
