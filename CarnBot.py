@@ -252,8 +252,7 @@ async def shutdown(ctx):
 @client.command()
 async def pull(ctx):
 	await ctx.send("Pulling From Github")
-	output = os.popen(".././pull.sh").read()
-	await ctx.send(f"Output:\n{output}")
+	await ctx.send(f" {os.popen("./pull.sh").read()}")
 
 @client.command()
 async def panic(ctx):
