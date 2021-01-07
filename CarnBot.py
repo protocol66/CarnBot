@@ -292,6 +292,7 @@ async def random_quote():
 						print("ERR: quoteTime " + str(i) + " less than minInterval... recalculating")
 						quoteTimes[i] = quoteTimes[i-1] + minInterval
 			print(f"quoteTimes is {quoteTimes}")
+			await asyncio.sleep(5)
 			pickle.dump(now, open('randquote.lock', 'wb'))
 
 			for i in range(len(quoteTimes)):
