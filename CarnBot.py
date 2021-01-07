@@ -279,8 +279,8 @@ async def random_quote():
 			lockTime = pickle.load(open('randquote.lock', 'rb'))
 		except IOError:
 			lockTime = now.today() - timedelta(days=1)
-
-		if (nowDec >= 8 and nowDec < 20 and now.day >= lockTime.day+1):
+		print(lockTime)
+		if ((nowDec >= 8) and (nowDec < 20) and (now.day >= lockTime.day+1)):
 			for i in range(RANDOM_MESSAGES_DAY):
 				quoteTimes.append(now.replace(hour=int(random.uniform(now.hour,19)), minute=int(random.uniform(now.minute,60))))
 
