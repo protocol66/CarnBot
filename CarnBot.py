@@ -252,8 +252,6 @@ async def pull(ctx):
 	await ctx.send("Pulling From Github")
 	await ctx.send(os.popen("./pull.sh").read())
 
-# random comment:
-
 @client.command()
 async def panic(ctx):
 	panicGifs = getPanicGIFS()
