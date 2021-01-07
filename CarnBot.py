@@ -1,6 +1,4 @@
 import os
-import subprocess
-import sys
 import sys
 import discord
 from discord.ext import commands
@@ -157,8 +155,8 @@ async def on_message(message):
 		await message.channel.send('Who fired that shot?')
 
 	# for testing
-	# if message.content.startswith('/hello'):
-	# 	await message.channel.send('Hello!')
+	if message.content.startswith('/hello'):
+		await message.channel.send('Hello!')
 
 	await client.process_commands(message)
 
