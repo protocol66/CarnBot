@@ -254,6 +254,7 @@ async def pull(ctx):
 	await ctx.send("Pulling From Github")
 	output = subprocess.call([".././pull.sh"])
 	await ctx.send(f"Output:\n{output}")
+	#nothing
 
 @client.command()
 async def panic(ctx):
