@@ -242,11 +242,9 @@ async def reboot(ctx, arg):
 	await asyncio.sleep(int(arg)*60)
 	os.execv(sys.executable, ['python'] + sys.argv)
 
-
 @client.command()
-async def shutdown(ctx, arg):
-	await ctx.send(f"Shuting Down in {arg} minutes")
-	await asyncio.sleep(int(arg)*60)
+async def shutdown(ctx):
+	await ctx.send(f"Shuting Down")
 	sys.exit()
 
 
