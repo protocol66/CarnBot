@@ -255,8 +255,6 @@ async def pull(ctx):
 	output =  subprocess.run([sys.executable, "-c", ".././pull.sh"], text=True)
 	await ctx.send(f"Output:\n{output}")
 
-#added a test comment!
-
 @client.command()
 async def panic(ctx):
 	panicGifs = getPanicGIFS()
