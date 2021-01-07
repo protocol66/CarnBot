@@ -251,7 +251,6 @@ async def shutdown(ctx):
 async def pull(ctx):
 	await ctx.send("Pulling From Github")
 	await ctx.send(os.popen(".././pull.sh").read())
-#rand comment
 
 @client.command()
 async def panic(ctx):
