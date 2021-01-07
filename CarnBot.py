@@ -259,6 +259,10 @@ async def shutdown(ctx, arg):
 	await asyncio.sleep(int(arg)*60)
 	sys.exit()
 
+@client.command()
+async def pull(ctx):
+	await ctx.send("Pulling From Github")
+	await ctx.send(os.popen("./pull.sh").read())
 
 @client.command()
 async def panic(ctx):
