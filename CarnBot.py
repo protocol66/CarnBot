@@ -276,7 +276,9 @@ async def random_quote():
 		print(f"Now is {nowDec}")
 
 		try:
-			lockTime = pickle.load(open('randquote.lock', 'rb'))
+			file = open('randquote.lock', 'rb')
+			lockTime = pickle.load(file)
+			file.close()
 		except IOError:
 			lockTime = now.today() - timedelta(days=1)
 		print(lockTime)
@@ -292,8 +294,10 @@ async def random_quote():
 						print("ERR: quoteTime " + str(i) + " less than minInterval... recalculating")
 						quoteTimes[i] = quoteTimes[i-1] + minInterval
 			print(f"quoteTimes is {quoteTimes}")
-			await asyncio.sleep(5)
-			pickle.dump(now, open('randquote.lock', 'wb'))
+			
+			file.open('randquote.lock', 'wb')
+			pickle.dump(now, file)
+			file.close()
 
 			for i in range(len(quoteTimes)):
 				now = datetime.today()
