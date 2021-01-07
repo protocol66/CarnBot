@@ -1,4 +1,6 @@
 import os
+import subprocess
+import sys
 import sys
 import discord
 from discord.ext import commands
@@ -250,8 +252,9 @@ async def shutdown(ctx):
 @client.command()
 async def pull(ctx):
 	await ctx.send("Pulling From Github")
-	output = os.popen(".././pull.sh").read()
-	await ctx.send(f"Output: \n {output}")
+	output =  subprocess.run([sys.executable, "-c", ".././pull.sh"], capture_output=True, text=True)
+	await ctx.send(f"Output:\n{output}")
+
 
 
 @client.command()
