@@ -295,7 +295,7 @@ async def random_quote():
 						quoteTimes[i] = quoteTimes[i-1] + minInterval
 			print(f"quoteTimes is {quoteTimes}")
 			
-			file.open('randquote.lock', 'wb')
+			file = open('randquote.lock', 'wb')
 			pickle.dump(now, file)
 			file.close()
 
