@@ -250,7 +250,8 @@ async def shutdown(ctx):
 @client.command()
 async def pull(ctx):
 	await ctx.send("Pulling From Github")
-	await ctx.send(f"Output: \n {os.popen(".././pull.sh").read()})
+	output = os.popen(".././pull.sh").read()
+	await ctx.send(f"Output: \n {output}")
 
 
 @client.command()
