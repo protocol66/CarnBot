@@ -1,7 +1,4 @@
-2021-01-06 12:37:09,435:INFO:discord.client: logging in using static token
-2021-01-06 12:37:09,771:INFO:discord.gateway: Shard ID None has sent the IDENTIFY payload.
-2021-01-06 12:37:09,889:INFO:discord.gateway: Shard ID None has connected to Gateway: ["gateway-prd-main-b5rk",{"micros":78053,"calls":["discord-sessions-prd-2-51",{"micros":76207,"calls":["start_session",{"micros":55167,"calls":["api-prd-main-303m",{"micros":51029,"calls":["get_user",{"micros":3350},"add_authorized_ip",{"micros":3926},"get_guilds",{"micros":8825},"coros_wait",{"micros":1}]}]},"guilds_connect",{"micros":1,"calls":[]},"presence_connect",{"micros":18648,"calls":[]}]}]}] (Session ID: cc8261a220cd5d65a417eeed92145785).
-2021-01-06 12:40:45,096:INFO:discord.client: Cleaning up tasks.
-2021-01-06 12:40:45,096:INFO:discord.client: Cleaning up after 3 tasks.
-2021-01-06 12:40:45,124:INFO:discord.client: All tasks finished cancelling.
-2021-01-06 12:40:45,125:INFO:discord.client: Closing the event loop.
+2021-01-07 12:05:49,855:INFO:discord.client: logging in using static token
+2021-01-07 12:05:50,190:INFO:discord.gateway: Shard ID None has sent the IDENTIFY payload.
+2021-01-07 12:05:50,323:INFO:discord.gateway: Shard ID None has connected to Gateway: ["gateway-prd-main-6402",{"micros":78515,"calls":["discord-sessions-prd-2-94",{"micros":74690,"calls":["start_session",{"micros":49378,"calls":["api-prd-main-vpp6",{"micros":45130,"calls":["get_user",{"micros":5397},"add_authorized_ip",{"micros":3684},"get_guilds",{"micros":7613},"coros_wait",{"micros":1}]}]},"guilds_connect",{"micros":2,"calls":[]},"presence_connect",{"micros":3484,"calls":[]}]}]}] (Session ID: a4563825231598f1b10502baf9e577ab).
+2021-01-07 12:08:05,854:WARNING:discord.gateway: Can't keep up, shard ID None websocket is 10.1s behind.
