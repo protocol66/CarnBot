@@ -126,6 +126,7 @@ async def on_ready():
 	print('We have logged in as {0.user}'.format(client))
 	client.loop.create_task(random_quote())
 	client.loop.create_task(important_reminders())
+	client.loop.create_task(dumbAssOfTheDay())
 
 
 @client.event
@@ -337,6 +338,7 @@ async def random_quote():
 async def dumbAssOfTheDay():
 	while True:
 		randMem = random.choice(list(client.get_all_members()))
+		print(f"DAD is {randMem}")
 		role = discord.utils.get(randMem.guild.roles, name="Dumb Ass of the Day")
 		for mem in role.members:
 			await mem.remove_roles(role)
