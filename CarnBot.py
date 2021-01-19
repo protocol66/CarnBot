@@ -334,6 +334,20 @@ async def random_quote():
 			await discord.utils.sleep_until(resetTime)
 
 
+async def dumbAssOfTheDay():
+	while True:
+		randMem = random.choice(list(client.get_all_members()))
+		role = discord.utils.get(randMem.guild.roles, name="Dumb Ass of the Day")
+		for mem in role.members:
+			await mem.remove_roles(role)
+		await randMem.add_roles(role)
+
+		now = datetime.today()
+		resetTime =  now.replace(hour=8, minute=0) + timedelta(days=1)
+		await discord.utils.sleep_until(resetTime)
+		# sleep(10)
+		await randMem.remove_roles(role)
+
 async def important_reminders():
 	
 	while True:
