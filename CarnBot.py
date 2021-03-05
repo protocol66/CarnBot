@@ -320,9 +320,9 @@ async def random_quote():
 				except:
 					print('EER: Failed sending quote.')
 
-			now = datetime.today()
+			now = datetime.today() + timedelta(days=1)
 			# hour = 14 because the bot uses UTC time
-			resetTime = now.replace(hour=14, minute=0) + timedelta(days=1)
+			resetTime = now.replace(hour=14, minute=0)
 			await discord.utils.sleep_until(resetTime)
 
 		elif (nowDec < 8):
@@ -332,9 +332,9 @@ async def random_quote():
 			await discord.utils.sleep_until(resetTime)
 
 		else:
-			now = datetime.today()
+			now = datetime.today() + timedelta(days=1)
 			# hour = 14 because the bot uses UTC time
-			resetTime = now.replace(hour=14, minute=0) + timedelta(days=1)
+			resetTime = now.replace(hour=14, minute=0)
 			await discord.utils.sleep_until(resetTime)
 
 
@@ -348,7 +348,7 @@ async def dumbAssOfTheDay():
 		await randMem.add_roles(role)
 
 		now = datetime.today() + timedelta(days=1)
-		resetTime =  now.replace(hour=8, minute=0)
+		resetTime =  now.replace(hour=14, minute=0)
 		await discord.utils.sleep_until(resetTime)
 		# sleep(10)
 		await randMem.remove_roles(role)
