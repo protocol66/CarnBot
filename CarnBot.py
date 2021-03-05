@@ -32,6 +32,9 @@ channels = {
 		'C2-Q': 654555766660792340,
 }
 
+with open('token.txt', 'r') as f:
+	token = f.read()
+
 ############################
 ###  constants and vars  ###
 ############################
@@ -419,4 +422,5 @@ async def important_reminders():
 			resetTime = now.replace(hour=14, minute=0) + timedelta(days=1)
 			await discord.utils.sleep_until(resetTime)
 
-client.run('NjY5MjYwOTU2NzY5MDU4ODY4.XidP1g.C_RHn06IVeC7NKbwfh3KntzcEGs')
+
+client.run(token)
