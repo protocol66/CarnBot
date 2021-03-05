@@ -347,8 +347,8 @@ async def dumbAssOfTheDay():
 			await mem.remove_roles(role)
 		await randMem.add_roles(role)
 
-		now = datetime.today()
-		resetTime =  now.replace(hour=8, minute=0) + timedelta(days=1)
+		now = datetime.today() + timedelta(days=1)
+		resetTime =  now.replace(hour=8, minute=0)
 		await discord.utils.sleep_until(resetTime)
 		# sleep(10)
 		await randMem.remove_roles(role)
