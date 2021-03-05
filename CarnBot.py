@@ -209,7 +209,7 @@ async def get(ctx, arg=''):
 
 @client.command()
 async def about(ctx):
-	await ctx.send('I am designed give some amusement, annoyance, and on rare occasions help to all jedi (EE/CompE) in training\n*I am in no way affiliated with Dr. Charles Carnal*')
+	await ctx.send('I am designed to give some amusement, annoyance, and on rare occasions help to all jedi (EE/CompE) in training\n*I am in no way affiliated with Dr. Charles Carnal*')
 
 
 @client.command()
