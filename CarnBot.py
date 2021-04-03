@@ -40,7 +40,7 @@ with open('token.txt', 'r') as f:
 ############################
 
 # Globals Constants
-NEWUSRMSG = '''Welcome to the Easy Engineering server! If you have any questions regarding the server feel free to ask. Please read <#627273181778018344>. Remember we are all here to learn and help each so be respectful to your fellow students. \nDISCLAIMER: This bot is in no way affiliated with Dr. Carnal or TNTECH in anyway.'''
+NEWUSRMSG = '''Welcome to the Easy Engineering server! If you have any questions regarding the server feel free to ask. Please read <#627273181778018344>. Remember we are all here to learn and help each other so be respectful to your fellow students. \nDISCLAIMER: This bot is in no way affiliated with Dr. Carnal or TNTECH in anyway.'''
 RANDOM_MESSAGES_DAY = 2
 
 # Global Variables, Doc Brown look away
