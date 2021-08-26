@@ -127,7 +127,7 @@ async def send_reminders(channel, today, date, testNum, gif):
 @client.event
 async def on_ready():
 	print('We have logged in as {0.user}'.format(client))
-	#client.loop.create_task(random_quote())
+	client.loop.create_task(random_quote())
 	client.loop.create_task(important_reminders())
 	client.loop.create_task(dumbAssOfTheDay())
 
