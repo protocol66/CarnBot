@@ -2,6 +2,7 @@ FROM python:3
 
 WORKDIR /
 
+RUN git config --global pull.rebase false
 RUN git clone https://github.com/protocol66/CarnBot
 WORKDIR /CarnBot
 
