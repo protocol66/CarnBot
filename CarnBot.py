@@ -271,7 +271,6 @@ async def testNewMemberMsg(ctx):
 @client.command()
 async def nukeChats(ctx):
 	for channel in ctx.guild.channels:
-		ctx.channel.send("Found channel: " + channel.name)
 		if ((channel.name == "discussion") or (channel.name == "lab") or (channel.name == "past-work")):
 			pos = channel.position
 			newChan = channel.clone()
