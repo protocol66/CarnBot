@@ -283,7 +283,7 @@ async def clearRoles(ctx):
     for member in ctx.guild.members:
         for role in member.roles:
             if ((role.name in persistent_roles)):
-                await member.remove_roles(member, role)
+                await member.remove_roles(role)
 
 ########################
 ###  main functions  ###
