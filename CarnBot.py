@@ -282,8 +282,8 @@ async def nukeChats(ctx):
 async def clearRoles(ctx):
     for member in ctx.guild.members:
         for role in member.roles:
-            if (not (role.name in persistent_roles)):
-                await member.remove_role(role)
+            if ((role.name in persistent_roles)):
+                await member.remove_roles(member, role)
 
 ########################
 ###  main functions  ###
