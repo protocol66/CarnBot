@@ -33,7 +33,7 @@ channels = {
 }
 
 # Roles to be kept when clearing roles
-persistent_roles = ["Admin", "Bots", "DarthCarnal", "YAGPDB.xyz", "Alumni", "Dumb Ass of the Day", "Professor", "Student", "IEEE Member", "Student", "ROLE LOCKED (Delinquent)", "The Random CS Student"]
+persistent_roles = ["@everyone", "Admin", "Bots", "DarthCarnal", "YAGPDB.xyz", "Alumni", "Dumb Ass of the Day", "Professor", "Student", "IEEE Member", "Student", "ROLE LOCKED (Delinquent)", "The Random CS Student"]
 
 with open('token.txt', 'r') as f:
 	token = f.read()
@@ -283,7 +283,10 @@ async def clearRoles(ctx):
     for member in ctx.guild.members:
         for role in member.roles:
             if (not (role.name in persistent_roles)):
-                await member.remove_roles(role)
+                try:
+                    await member.remove_roles(role)
+                except:
+                    print("Failed to remove role " + role.name + " from " + member.name)
 
 ########################
 ###  main functions  ###
