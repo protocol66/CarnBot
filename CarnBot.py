@@ -32,6 +32,9 @@ channels = {
 		'C2-Q': 654555766660792340,
 }
 
+# Roles to be kept when clearing roles
+persistent_roles = ["Admin", "Bots", "DarthCarnal", "YAGPDB.xyz", "Alumni", "Dumb Ass of the Day", "Professor", "Student", "IEEE Member", "Student", "ROLE LOCKED (Delinquent)", "The Random CS Student"]
+
 with open('token.txt', 'r') as f:
 	token = f.read()
 
@@ -274,6 +277,13 @@ async def nukeChats(ctx):
 		if ((channel.name == "discussion") or (channel.name == "lab") or (channel.name == "past-work")):
 			await channel.clone()
 			await channel.delete()
+
+@client.command()
+async def clearRoles(ctx):
+    for member in ctx.guild.members:
+        for role in member.roles:
+            if (not (role.name in persistent_roles)):
+                await member.remove_role(role)
 
 ########################
 ###  main functions  ###
