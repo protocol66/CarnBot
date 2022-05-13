@@ -268,6 +268,14 @@ async def panic(ctx):
 async def testNewMemberMsg(ctx):
 	await ctx.channel.send(NEWUSRMSG)
 
+@client.command()
+async def nukeChats(ctx):
+	for channel in ctx.guild.channels:
+		if ((channel.name == "discussion") or (channel.name == "lab") or (channel.name == "past-work")):
+			pos = channel.position
+			newChan = channel.clone()
+			newChan.position = pos
+			channel.delete()
 
 ########################
 ###  main functions  ###
@@ -421,6 +429,5 @@ async def important_reminders():
 			now = datetime.today()
 			resetTime = now.replace(hour=14, minute=0) + timedelta(days=1)
 			await discord.utils.sleep_until(resetTime)
-
 
 client.run(token)
