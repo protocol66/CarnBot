@@ -33,7 +33,7 @@ channels = {
 }
 
 # Roles to be kept when clearing roles
-persistent_roles = ["@everyone", "Admin", "Bots", "DarthCarnal", "YAGPDB.xyz", "Alumni", "Dumb Ass of the Day", "Professor", "Student", "IEEE Member", "Student", "ROLE LOCKED (Delinquent)", "The Random CS Student"]
+persistent_roles = ["@everyone", "Admin", "Bots", "DarthCarnal", "YAGPDB.xyz", "Alumni", "Dumb Ass of the Day", "Professor", "Student", "IEEE Member", "Student", "ROLE LOCKED (Delinquent)", "The Random CS Student","Tau Beta Pi"]
 
 with open('token.txt', 'r') as f:
 	token = f.read()
@@ -195,6 +195,12 @@ async def echo(ctx, *arg):
 	if (delete):
 		await ctx.message.delete()
 
+@client.command()
+async def tbp(ctx, *arg):
+	for line in arg:
+		user = ctx.guild.get_member_named(line)
+		role = discord.utils.get(user.guild.roles, name="Tau Beta Pi")
+		await user.add_roles(role)
 
 @client.command()
 async def get(ctx, arg=''):
