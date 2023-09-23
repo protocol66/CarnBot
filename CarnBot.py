@@ -286,11 +286,11 @@ async def nukeChats(ctx):
 @client.command()
 async def createChats(ctx):
 	for role in ctx.guild.roles:
-		if ("ECE" in role.name)
+		if ("ECE" in role.name):
 			category = await guild.create_category(role.name)
 			await guild.create_text_channel("discussion", category=category)
 			await guild.create_text_channel("past-work", category=category)
-			if("/" in role.name)
+			if("/" in role.name):
 				await guild.create_text_channel("lab", category=category)
 
 
