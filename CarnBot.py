@@ -281,7 +281,6 @@ async def testNewMemberMsg(ctx):
 async def nukeChats(ctx):
 	for channel in ctx.guild.channels:
 		if ((channel.name == "discussion") or (channel.name == "lab") or (channel.name == "past-work")):
-			await channel.clone()
 			await channel.delete()
 
 @client.command()
