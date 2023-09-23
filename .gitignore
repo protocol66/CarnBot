@@ -2,3 +2,4 @@
 *.lock
 token.txt
 *.log
+__pycache__/
