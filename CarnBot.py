@@ -284,6 +284,21 @@ async def nukeChats(ctx):
 			await channel.delete()
 
 @client.command()
+async def createChats(ctx):
+	for role in ctx.guild.roles:
+		if ("ECE" in role.name)
+			category = await guild.create_category(role.name)
+			await guild.create_text_channel("discussion", category=category)
+			await guild.create_text_channel("past-work", category=category)
+			if("/" in role.name)
+				await guild.create_text_channel("lab", category=category)
+
+
+	for channel in ctx.guild.channels:
+		if ((channel.name == "discussion") or (channel.name == "lab") or (channel.name == "past-work")):
+			await channel.delete()
+
+@client.command()
 async def clearRoles(ctx):
     for member in ctx.guild.members:
         for role in member.roles:
