@@ -5,12 +5,13 @@ import sys
 import os
 
 from constants import client, persistent_roles, channels, NEWUSRMSG
-from .utils import getDates, getPanicGIFS
+from .utils import create_logger, getDates, getPanicGIFS
 
+logger = create_logger('commands')
 
 @client.command()
 async def echo(ctx, *arg):
-
+    
 	if (not len(arg) or arg[0] == "help"):
 		await ctx.send('Usage: del/delete <message>\n del/delete - deletes the original message')
 		return
@@ -132,5 +133,5 @@ async def clearRoles(ctx):
                 try:
                     await member.remove_roles(role)
                 except:
-                    print("Failed to remove role " + role.name + " from " + member.name)
+                    logger.error("Failed to remove role " + role.name + " from " + member.name)
 

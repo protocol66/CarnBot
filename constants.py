@@ -1,14 +1,23 @@
-from discord.ext import commands
-import logging
+import logging, coloredlogs
 
-logger = logging.getLogger('discord')
-logger.setLevel(logging.INFO)
-_handler = logging.FileHandler(filename='discord.log', encoding='utf-8', mode='w')
-_handler.setFormatter(logging.Formatter('%(asctime)s:%(levelname)s:%(name)s: %(message)s'))
-logger.addHandler(_handler)
+LOG_LEVEL = logging.DEBUG
+ROOT_LOGGER_NAME = 'CarnBot'
+
+
+# make coloredlogs, log to terminal and file
+coloredlogs.install(level=LOG_LEVEL, logger=logging.getLogger(), fmt='%(asctime)s %(levelname)s %(name)s %(message)s')
+root_logger = logging.getLogger()
+root_logger.setLevel(LOG_LEVEL)
+file_handler = logging.FileHandler(filename='discord.log', encoding='utf-8', mode='w')
+file_handler.setLevel(LOG_LEVEL)
+file_handler.setFormatter(logging.Formatter('%(asctime)s %(levelname)s %(name)s %(message)s'))
+root_logger.addHandler(file_handler)
+root_logger_formatter = root_logger.handlers[0].formatter
+root_logger_handlers = root_logger.handlers
+
 
 client = None               # type = commands.Bot, this should be overwriten by the main file
-
+                              
 
 NEWUSRMSG = '''Welcome to the Easy Engineering server! If you have any questions regarding the server feel free to ask. Please read <#627273181778018344>. Remember we are all here to learn and help each other so be respectful to your fellow students. \nDISCLAIMER: This bot is in no way affiliated with Dr. Carnal or TNTECH in anyway.'''
 RANDOM_MESSAGES_DAY = 2

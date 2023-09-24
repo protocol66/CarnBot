@@ -8,7 +8,9 @@ import pickle
 
 
 from constants import client, RANDOM_MESSAGES_DAY
-from .utils import getDates, getPanicGIFS, getQuotes
+from .utils import create_logger, getDates, getPanicGIFS, getQuotes
+
+logger = create_logger('messaging')
 
 
 
@@ -18,16 +20,16 @@ async def send_reminders(channel, today, date, testNum, gif):
 	# print('checking to send reminder with dateDelta = ' + str(dateDelta))
 	dateDelta = dateDelta.days
 	if dateDelta == 14:
-		print('sending 2 week reminder')
+		logger.info('sending 2 week reminder')
 		await channel.send('__**REMINDER**__: **TEST ' + testNum + ' is 2 weeks away!**')
 	elif dateDelta == 7:
-		print('sending 1 week reminder')
+		logger.info('sending 1 week reminder')
 		await channel.send('__**REMINDER**__: **TEST ' + testNum + ' is a week away!** If you are still having trouble with some concepts, remember to ask questions or utilize tutoring.')
 	elif dateDelta == 3:
-		print('sending 3 day reminder')
+		logger.info('sending 3 day reminder')
 		await channel.send('__**REMINDER**__: **TEST ' + testNum + ' is 3 days away!** Utilize tutoring if you need it!!!')
 	elif dateDelta == 1:
-		print('sending 1 day reminder')
+		logger.info('sending 1 day reminder')
 		await channel.send("__**RED ALERT**__: **TEST " + testNum + " is TOMORROW!!!** If you haven't started studying yet, don't bother starting! Rethink what you are doing and start thinking of alternative majors.\n" + gif)
 
 
@@ -85,7 +87,7 @@ async def important_reminders(channels: dict):
 					elif dateDelta.days == 1:
 						await C2_Channel.send("__**RED ALERT**__: **FINAL is TOMORROW** at *" + str(Circuits2[3][1]) + "* to *" + str(Circuits2[3][2]) + "*!!! If you haven't started studying yet, don't bother starting! Start getting prepared for taking this class again next semester.\n" + gif)
 			except:
-				print("ERR: Couldn't check and send test reminders.")
+				logger.error("Couldn't check and send test reminders.")
 
 			now = datetime.today()
 			pickle.dump(now, open('reminders.lock', 'wb'))
@@ -106,7 +108,7 @@ async def random_quote(channels: dict):
 		minInterval = timedelta(hours=3)
 		now = datetime.today()
 		nowDec = now.hour + now.minute/60
-		print(f"Now is {nowDec}")
+		logger.debug(f"Now is {nowDec}")
 
 		try:
 			file = open('randquote.lock', 'rb')
@@ -114,19 +116,19 @@ async def random_quote(channels: dict):
 			file.close()
 		except IOError:
 			lockTime = now.today() - timedelta(days=1)
-		print(lockTime)
+		logger.debug(lockTime)
 		if ((nowDec >= 8) and (nowDec < 20) and (now >= lockTime + timedelta(days=1))):
 			for i in range(RANDOM_MESSAGES_DAY):
 				quoteTimes.append(now.replace(hour=int(random.uniform(now.hour,19)), minute=int(random.uniform(now.minute,60))))
 
 			quoteTimes.sort()
-			print(f"quoteTimes is {quoteTimes}")
+			logger.debug(f"quoteTimes is {quoteTimes}")
 			for i in range(RANDOM_MESSAGES_DAY):
 				if i != 0:
 					if (quoteTimes[i] - quoteTimes[i-1]) < minInterval:
-						print("ERR: quoteTime " + str(i) + " less than minInterval... recalculating")
+						logger.error("QuoteTime " + str(i) + " less than minInterval... recalculating")
 						quoteTimes[i] = quoteTimes[i-1] + minInterval
-			print(f"quoteTimes is {quoteTimes}")
+			logger.debug(f"quoteTimes is {quoteTimes}")
 			
 			file = open('randquote.lock', 'wb')
 			pickle.dump(now, file)
@@ -135,16 +137,16 @@ async def random_quote(channels: dict):
 			for i in range(len(quoteTimes)):
 				now = datetime.today()
 				sleepTime = (quoteTimes[i] - now).total_seconds()
-				print(f"sleepTime is {sleepTime}")
+				logger.debug(f"sleepTime is {sleepTime}")
 				await asyncio.sleep(sleepTime)
 
 				quotes = getQuotes()
 				try:
-					print('Sending quote.')
+					logger.info('Sending quote.')
 					general = client.get_channel(channels['general'])
 					await general.send(quotes[random.randint(0, len(quotes)-1)])
 				except:
-					print('EER: Failed sending quote.')
+					logger.error('Failed sending quote.')
 
 			now = datetime.today() + timedelta(days=1)
 			# hour = 14 because the bot uses UTC time

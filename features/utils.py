@@ -1,6 +1,7 @@
 from datetime import datetime, date, time
+import logging
 
-from constants import client
+from constants import LOG_LEVEL, ROOT_LOGGER_NAME, root_logger_handlers, root_logger_formatter, client
 
 def getPanicGIFS():
 	with open('panic_gifs.txt', 'r') as f:
@@ -44,3 +45,12 @@ def getDates():
 				final.append(t2)
 				dates.append(final)
 		return dates
+
+
+def create_logger(log_name: str=None):
+	name = ROOT_LOGGER_NAME + '.' + log_name if log_name else ROOT_LOGGER_NAME
+    
+	logger = logging.getLogger(name)
+	logger.setLevel(LOG_LEVEL)
+ 
+	return logger
