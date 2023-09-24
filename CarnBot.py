@@ -303,8 +303,11 @@ async def createChats(ctx):
 
 @client.command()
 async def clearRoles(ctx):
+	rolesWithPersistence = []
+	rolesWithPersistence.append(discord.utils.get(ctx.guild.roles, name="Alumni"))
+	rolesWithPersistence.append(discord.utils.get(ctx.guild.roles, name="Professor"))
 	for member in ctx.guild.members:
-		if (role.name in member.roles == "Alumni") or (role.name in member.roles == "Professor"):
+		if (any(r in member.roles for r in rolesWithPersistence)):
 			continue
 		for role in member.roles:
 			if (not (role.name in persistent_roles)):
