@@ -290,7 +290,7 @@ async def nukeChats(ctx):
 async def createChats(ctx):
 	for role in ctx.guild.roles:
 		overwrites = {
-			ctx.guild.default_role: discord.PermissionOverwrite(read_messages=False)
+			ctx.guild.default_role: discord.PermissionOverwrite(read_messages=False),
 			role: discord.PermissionOverwrite(read_messages=True)
 		}
 
