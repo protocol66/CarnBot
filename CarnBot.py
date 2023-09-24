@@ -33,7 +33,7 @@ channels = {
 }
 
 # Roles to be kept when clearing roles
-persistent_roles = ["@everyone", "Admin", "Bots", "DarthCarnal", "YAGPDB.xyz", "Alumni", "Dumb Ass of the Day", "Professor", "Student", "IEEE Member", "Student", "ROLE LOCKED (Delinquent)", "The Random CS Student","Tau Beta Pi"]
+persistent_roles = ["@everyone", "Admin", "Bots", "DarthCarnal", "YAGPDB.xyz", "Alumni", "Dumb Ass of the Day", "Professor", "Student", "Graduate Student", "IEEE Member", "ROLE LOCKED (Delinquent)", "The Random CS Student","Tau Beta Pi"]
 
 with open('token.txt', 'r') as f:
 	token = f.read()
@@ -306,6 +306,7 @@ async def clearRoles(ctx):
 	rolesWithPersistence = []
 	rolesWithPersistence.append(discord.utils.get(ctx.guild.roles, name="Alumni"))
 	rolesWithPersistence.append(discord.utils.get(ctx.guild.roles, name="Professor"))
+	rolesWithPersistence.append(discord.utils.get(ctx.guild.roles, name="Graduate Student"))
 	for member in ctx.guild.members:
 		if (any(r in member.roles for r in rolesWithPersistence)):
 			continue
