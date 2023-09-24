@@ -303,15 +303,15 @@ async def createChats(ctx):
 
 @client.command()
 async def clearRoles(ctx):
-    for member in ctx.guild.members:
+	for member in ctx.guild.members:
 		if (role.name in member.roles == "Alumni") or (role.name in member.roles == "Professor"):
 			continue
-        for role in member.roles:
-            if (not (role.name in persistent_roles)):
-                try:
-                    await member.remove_roles(role)
-                except:
-                    print("Failed to remove role " + role.name + " from " + member.name)
+		for role in member.roles:
+			if (not (role.name in persistent_roles)):
+				try:
+					await member.remove_roles(role)
+				except:
+					print("Failed to remove role " + role.name + " from " + member.name)
 
 ########################
 ###  main functions  ###
