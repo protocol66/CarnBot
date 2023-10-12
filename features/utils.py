@@ -1,5 +1,6 @@
 from datetime import datetime, date, time
 import logging
+import discord
 
 from constants import LOG_LEVEL, ROOT_LOGGER_NAME, root_logger_handlers, root_logger_formatter, client
 
@@ -15,8 +16,11 @@ def getPanicGIFS():
 				GIFS[numGif] = i
 		return {'GIFS': GIFS, 'numGifs': numGif}
 
-def is_me(m):
+def is_me(m: discord.Message):
 	return m.author == client.user
+
+def is_admin(m: discord.Message):
+	return m.author.guild_permissions.administrator
 
 def getQuotes():
 	with open('quotes.txt', 'r') as f:

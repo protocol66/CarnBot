@@ -11,9 +11,10 @@ sys.path.append(os.path.realpath('.'))
 import constants
 
 #enables on member join function
-intents = discord.Intents.default()
-intents.members = True
-client = commands.Bot(command_prefix='$', help_command=None, intents=intents)
+# intents = discord.Intents.default()
+# intents.members = True
+# client = commands.Bot(command_prefix='$', help_command=None, intents=intents)
+client = commands.Bot()
 constants.client = client
 
 from constants import *
@@ -51,15 +52,16 @@ async def on_member_join(member: discord.Member):
 
 @client.event
 async def on_message(message: discord.Message):
-	logger.debug(f"Message from {message.author}: {message.content}")
 	if is_me(message):
 		return
+
+	logger.debug(f"Message from {message.author}: {message.content}")
 
 	if (client.user.mentioned_in(message) and message.mention_everyone == False):
 		logger.debug('Bot mentioned')
 		await message.channel.send('Who fired that shot?')
 
-	await client.process_commands(message)
+	# await client.process_commands(message)
 
 
 
@@ -76,5 +78,5 @@ if __name__ == '__main__':
 
 	api_logger = create_logger('discord')
  
-	client.run(token, log_formatter=root_logger_formatter, log_handler=root_logger_handlers[0], root_logger=True)
+	client.run(token)
 	
