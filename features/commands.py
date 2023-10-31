@@ -27,33 +27,23 @@ async def echo(ctx:discord.context.ApplicationContext,
 	else:
 		await ctx.respond(" ".join(message))
 
-# @client.command()
-# async def tbp(ctx, *arg):
-# 	for line in arg:
-# 		user = ctx.guild.get_member_named(line)
-# 		role = discord.utils.get(user.guild.roles, name="Tau Beta Pi")
-# 		await user.add_roles(role)
+@client.slash_command(name='get', description='Gets the requested infomation.')
+async def get(ctx:discord.context.ApplicationContext, 
+			message:discord.Option(discord.SlashCommandOptionType.string, description='Information to request, either "website" or "email"')):
+	if message == '':
+		await ctx.respond('Arguments: *help*, *email*, *website*')
+	elif message == 'help':
+		await ctx.respond('Arguments: *help*, *email*, *website*')
+	elif message == 'email':
+		await ctx.respond('__*CharlesLC@tntech.edu*__')
+	elif message == 'website':
+		await ctx.respond('https://clcee.net/clc_ece/')
+	else:
+		await ctx.respond('I don\'t know what you are asking, read the syllabus')
 
-
-
-# @client.command()
-# async def get(ctx, arg=''):
-# 	if arg == '':
-# 		await ctx.send('Arguments: *help*, *email*, *website*')
-# 	elif arg == 'help':
-# 		await ctx.send('Arguments: *help*, *email*, *website*')
-# 	elif arg == 'email':
-# 		await ctx.send('__*CharlesLC@tntech.edu*__')
-# 	elif arg == 'website':
-# 		await ctx.send('https://clcee.net/clc_ece/')
-# 	else:
-# 		await ctx.send('I don\'t know what you are asking, read the syllabus')
-
-
-# @client.command()
-# async def about(ctx):
-# 	await ctx.send('I am designed to give some amusement, annoyance, and on rare occasions help to all jedi (EE/CompE) in training\n*I am in no way affiliated with Dr. Charles Carnal*')
-
+@client.slash_command(name='about', description='Describes what the purpose of the bot is')
+async def about(ctx:discord.context.ApplicationContext):
+ 	await ctx.respond('I am designed to give some amusement, annoyance, and on rare occasions help to all jedi (EE/CompE) in training\n*I am in no way affiliated with Dr. Charles Carnal*')
 
 # # @client.command()
 # # async def help(ctx):
