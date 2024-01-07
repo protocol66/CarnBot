@@ -11,9 +11,10 @@ sys.path.append(os.path.realpath('.'))
 import constants
 
 #enables on member join function
-# intents = discord.Intents.default()
-# intents.members = True
-# client = commands.Bot(command_prefix='$', help_command=None, intents=intents)
+intents = discord.Intents.default()
+intents.members = True
+# intents.message_content = True		# allow bot to read all messages, needed privileged intents enabled in discord
+# client = commands.Bot(intents=intents)
 client = commands.Bot()
 constants.client = client
 

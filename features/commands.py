@@ -3,10 +3,14 @@ import asyncio
 import random
 import sys
 import os
+import threading
+import time
+import logging
 
 
 from constants import client, persistent_roles, channels, NEWUSRMSG
-from .utils import create_logger, getDates, getPanicGIFS
+from features.misc import Confirmation
+from .utils import create_logger, getDates, getPanicGIFS, is_admin
 
 logger = create_logger('commands')
 
@@ -15,6 +19,7 @@ async def echo(ctx:discord.context.ApplicationContext,
 			message:discord.Option(discord.SlashCommandOptionType.string, description='Message to Echo'), 
 			channel:discord.Option(discord.SlashCommandOptionType.channel, description='Channel to send to, defauts channel message is sent in')=''):
 	
+	message = str(message)
 	logger.debug('echo called')
 	logger.debug(f'message = {message}, channel = {channel}')
 
@@ -25,21 +30,7 @@ async def echo(ctx:discord.context.ApplicationContext,
 		except:
 			await ctx.respond('Invalid channel', ephemeral=True, delete_after=10)
 	else:
-		await ctx.respond(" ".join(message))
-
-@client.slash_command(name='get', description='Gets the requested infomation.')
-async def get(ctx:discord.context.ApplicationContext, 
-			message:discord.Option(discord.SlashCommandOptionType.string, description='Information to request, either "website" or "email"')):
-	if message == '':
-		await ctx.respond('Arguments: *help*, *email*, *website*')
-	elif message == 'help':
-		await ctx.respond('Arguments: *help*, *email*, *website*')
-	elif message == 'email':
-		await ctx.respond('__*CharlesLC@tntech.edu*__')
-	elif message == 'website':
-		await ctx.respond('https://clcee.net/clc_ece/')
-	else:
-		await ctx.respond('I don\'t know what you are asking, read the syllabus')
+		await ctx.respond(message)
 
 @client.slash_command(name='about', description='Describes what the purpose of the bot is')
 async def about(ctx:discord.context.ApplicationContext):
@@ -73,22 +64,85 @@ async def about(ctx:discord.context.ApplicationContext):
 # 				dates[7][2]) + '*')
 
 
-# @client.command()
-# async def reboot(ctx, arg):
-# 	await ctx.send(f"Rebooting in {arg} minutes")
-# 	await asyncio.sleep(int(arg)*60)
-# 	os.execv(sys.executable, ['python'] + sys.argv)
+@client.slash_command(name='reboot', description='Reboots the bot after a specified amount of time')
+async def reboot(ctx:discord.context.ApplicationContext, 
+				 delay:discord.Option(discord.SlashCommandOptionType.integer, default=0, description='Time in minutes to reboot after')):
+	
+	logger.debug('reboot called')
+	
+	if not is_admin(ctx):
+		await ctx.respond('You do not have permission to use this command', ephemeral=True, delete_after=10)
+		return
+ 
+ 
+	msg = f"Rebooting in {delay} minutes"
+	await ctx.respond(msg)
+	logger.info(msg)
+	await asyncio.sleep(int(delay)*60)
+ 
+	# function thread to initiate the reboot
+	def reboot_helper(client:discord.Client, main_thread, exe, args):
+		main_thread.join()			# wait for main thread to finish
+		os.execv(exe, ['python3'] + args)
+    
+	reboot_thread = threading.Thread(target=reboot_helper, args=(client, threading.main_thread(), sys.executable, sys.argv))
+	logger.info('Rebooting')
+	reboot_thread.start()
+	await client.close()
 
-# @client.command()
-# async def shutdown(ctx):
-# 	await ctx.send(f"Shuting Down")
-# 	sys.exit()
 
-# @client.command()
-# async def pull(ctx):
-# 	await ctx.send("Pulling From Github")
-# 	await ctx.send(os.popen("git pull").read())
-# 	#its working
+@client.slash_command(name='shutdown', description='Turns off the bot, must be restarted manually')
+async def shutdown(ctx:discord.context.ApplicationContext):
+	logger.debug('shutdown called')
+	
+	if not is_admin(ctx):
+		await ctx.respond('You do not have permission to use this command', ephemeral=True, delete_after=10)
+		return
+
+	await ctx.respond('Shutting down')
+	await client.close()
+	sys.exit()
+
+@client.slash_command(name='update_bot', description='Updates the bot from the github repo')
+async def update_bot(ctx:discord.context.ApplicationContext):
+	logger.debug('update_bot')
+	
+	if not is_admin(ctx):
+		await ctx.respond('You do not have permission to use this command', ephemeral=True, delete_after=10)
+		return
+
+	msg = "Pulling from github"
+	msg += f'\n```\n{os.popen("git pull").read()}\n```'
+
+	await ctx.respond(msg)
+
+
+@client.slash_command(name='dev_test', description='Tests the confirmation feature')
+async def dev_test(ctx:discord.context.ApplicationContext):
+    
+	logger.debug('dev_test called')
+    
+	if not is_admin(ctx):	
+		await ctx.respond('You do not have permission to use this command', ephemeral=True, delete_after=10)
+		return
+
+	confirmation = Confirmation('test')
+	result = await confirmation.get(ctx)
+	await ctx.respond(f'Confirmation result: {result}', ephemeral=True, delete_after=10)
+
+	# sent_msg = await ctx.respond(msg, ephemeral=True, delete_after=timeout)
+
+	# # give options to confirm or cancel
+	# await sent_msg.add_reaction(':white_check_mark: :x:')
+ 
+	# try:
+	# 	reaction, user = await client.wait_for('reaction_add', timeout=timeout, check=lambda r, u: u == command_sender and str(r.emoji) in [':white_check_mark:', ':x:'])
+	# 	if str(reaction.emoji) == ':white_check_mark:':
+	# 		await ctx.respond('Confirmed')
+	# 	else:
+	# 		await ctx.respond('Cancelled')
+	# except asyncio.TimeoutError:
+	# 	return
 
 # @client.command()
 # async def panic(ctx):
