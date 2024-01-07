@@ -22,6 +22,13 @@ def is_me(m: discord.Message):
 def is_admin(m: discord.Message):
 	return m.author.guild_permissions.administrator
 
+def get_user_info(ctx: discord.context.ApplicationContext):
+	user = f'{ctx.author.name}, {ctx.author.id}'
+	return user
+
+async def invalid_perm_response(ctx:discord.context.ApplicationContext):
+	await ctx.respond('You do not have permission to use this command', ephemeral=True, delete_after=10)
+
 def getQuotes():
 	with open('quotes.txt', 'r') as f:
 		text = f.read()
