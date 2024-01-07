@@ -10,9 +10,10 @@ import logging
 
 from constants import client, persistent_roles, channels, NEWUSRMSG
 from features.misc import Confirmation
-from .utils import create_logger, getDates, getPanicGIFS, is_admin
+from .utils import create_logger, get_user_info, getDates, getPanicGIFS, is_admin, invalid_perm_response
 
 logger = create_logger('commands')
+
 
 @client.slash_command(name='echo', description='Echoes the message')
 async def echo(ctx:discord.context.ApplicationContext, 
@@ -31,6 +32,7 @@ async def echo(ctx:discord.context.ApplicationContext,
 			await ctx.respond('Invalid channel', ephemeral=True, delete_after=10)
 	else:
 		await ctx.respond(message)
+
 
 @client.slash_command(name='about', description='Describes what the purpose of the bot is')
 async def about(ctx:discord.context.ApplicationContext):
@@ -103,12 +105,13 @@ async def shutdown(ctx:discord.context.ApplicationContext):
 	await client.close()
 	sys.exit()
 
+
 @client.slash_command(name='update_bot', description='Updates the bot from the github repo')
 async def update_bot(ctx:discord.context.ApplicationContext):
 	logger.debug('update_bot')
 	
 	if not is_admin(ctx):
-		await ctx.respond('You do not have permission to use this command', ephemeral=True, delete_after=10)
+		await invalid_perm_response(ctx)
 		return
 
 	msg = "Pulling from github"
@@ -122,71 +125,41 @@ async def dev_test(ctx:discord.context.ApplicationContext):
     
 	logger.debug('dev_test called')
     
-	if not is_admin(ctx):	
-		await ctx.respond('You do not have permission to use this command', ephemeral=True, delete_after=10)
+	confirm = Confirmation('Test Confirmation')
+	result = await confirm.get(ctx)
+	await ctx.respond(f'Confirmation result: {result}', delete_after=10)
+
+
+@client.slash_command(name='panic', description='Send a random panic gif')
+async def panic(ctx: discord.context.ApplicationContext):
+	panicGifs = getPanicGIFS()
+	gif = panicGifs['GIFS'][random.randint(1, panicGifs['numGifs'])]
+	await ctx.respond(gif)
+
+
+@client.slash_command(name='nuke_chats', description='Nuke the chats')
+async def nuke_chats(ctx: discord.context.ApplicationContext):
+	logger.debug(f'nukeChats called by {ctx.author.name}')
+
+	if not is_admin(ctx):
+		await invalid_perm_response(ctx)
 		return
 
-	confirmation = Confirmation('test')
-	result = await confirmation.get(ctx)
-	await ctx.respond(f'Confirmation result: {result}', ephemeral=True, delete_after=10)
+	confirm = Confirmation('Erase all comments in #discussion, #lab, and #past-work channels')
+	result = await confirm.get(ctx)
 
-	# sent_msg = await ctx.respond(msg, ephemeral=True, delete_after=timeout)
+	if result:
+		msg = f'Nuking chats - authorization: {get_user_info(ctx)}'
+		logger.info(msg)
+		await ctx.respond(msg)
+  
+		for channel in ctx.guild.channels:
+			if ((channel.name == "discussion") or (channel.name == "lab") or (channel.name == "past-work")):
+				await channel.delete()
+		for cat in ctx.guild.categories:
+			if "ECE" in cat.name:
+				await cat.delete()
 
-	# # give options to confirm or cancel
-	# await sent_msg.add_reaction(':white_check_mark: :x:')
- 
-	# try:
-	# 	reaction, user = await client.wait_for('reaction_add', timeout=timeout, check=lambda r, u: u == command_sender and str(r.emoji) in [':white_check_mark:', ':x:'])
-	# 	if str(reaction.emoji) == ':white_check_mark:':
-	# 		await ctx.respond('Confirmed')
-	# 	else:
-	# 		await ctx.respond('Cancelled')
-	# except asyncio.TimeoutError:
-	# 	return
-
-# @client.command()
-# async def panic(ctx):
-# 	panicGifs = getPanicGIFS()
-# 	gif = panicGifs['GIFS'][random.randint(1, panicGifs['numGifs'])]
-# 	await ctx.channel.send(gif)
-
-
-# @client.command()
-# async def testNewMemberMsg(ctx):
-# 	await ctx.channel.send(NEWUSRMSG)
-
-# @client.command()
-# async def nukeChats(ctx):
-# 	for channel in ctx.guild.channels:
-# 		if ((channel.name == "discussion") or (channel.name == "lab") or (channel.name == "past-work")):
-# 			await channel.clone()
-# 			await channel.delete()
-
-# @client.command()
-# async def pull(ctx):
-# 	await ctx.send("Pulling From Github")
-# 	await ctx.send(os.popen("git pull").read())
-# 	#its working
-
-# @client.command()
-# async def panic(ctx):
-# 	panicGifs = getPanicGIFS()
-# 	gif = panicGifs['GIFS'][random.randint(1, panicGifs['numGifs'])]
-# 	await ctx.channel.send(gif)
-
-
-# @client.command()
-# async def testNewMemberMsg(ctx):
-# 	await ctx.channel.send(NEWUSRMSG)
-
-# @client.command()
-# async def nukeChats(ctx):
-# 	for channel in ctx.guild.channels:
-# 		if ((channel.name == "discussion") or (channel.name == "lab") or (channel.name == "past-work")):
-# 			await channel.delete()
-# 	for cat in ctx.guild.categories:
-# 		if "ECE" in cat.name:
-# 			await cat.delete()
 
 # @client.command()
 # async def createChats(ctx):
@@ -218,3 +191,13 @@ async def dev_test(ctx:discord.context.ApplicationContext):
 # 					await member.remove_roles(role)
 # 				except:
 # 					print("Failed to remove role " + role.name + " from " + member.name)
+
+
+
+
+
+# ----------------------- OLD COMMANDS BELOW ----------------------- 
+
+@client.command()
+async def testNewMemberMsg(ctx):
+	await ctx.channel.send(NEWUSRMSG)
