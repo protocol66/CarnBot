@@ -34,12 +34,16 @@ class YesNoButtons(discord.ui.View):
 
 	@discord.ui.button(label="Yes", style=discord.ButtonStyle.green)
 	async def yes_callback_wrapper(self, button: discord.ui.Button, interaction: discord.Interaction):
+		self.disable_all_items()
+		await interaction.response.edit_message(view=self)
 		await self.yes_callback_fn(button, interaction)
-
+			
 	@discord.ui.button(label="No", style=discord.ButtonStyle.red)
 	async def no_callback_wrapper(self, button: discord.ui.Button, interaction: discord.Interaction):
+		self.disable_all_items()
+		await interaction.response.edit_message(view=self)
 		await self.no_callback_fn(button, interaction)
-	
+		
 
 class Confirmation(YesNoButtons):
 	def __init__(self, action:str, timeout:int=10, default=False):
@@ -56,13 +60,13 @@ class Confirmation(YesNoButtons):
 		logger.debug('yes_callback_fn called')
 		self.result = True
 		self.result_event.set()
-		await interaction.response.send_message('Confirmed', ephemeral=False)
+		await asyncio.sleep(self.timeout)
+		await self.sent_interaction.delete_original_message()
 
 	async def no(self, button: discord.ui.Button, interaction: discord.Interaction):
 		logger.debug('no_callback_fn called')
 		self.result = False
 		self.result_event.set()
-		await interaction.response.send_message('Cancelled', ephemeral=True, delete_after=self.timeout)
 		await asyncio.sleep(self.timeout)
 		await self.sent_interaction.delete_original_message()
   
