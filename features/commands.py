@@ -98,7 +98,7 @@ async def shutdown(ctx:discord.context.ApplicationContext):
 	logger.debug('shutdown called')
 	
 	if not is_admin(ctx):
-		await ctx.respond('You do not have permission to use this command', ephemeral=True, delete_after=10)
+		await invalid_perm_response(ctx)
 		return
 
 	await ctx.respond('Shutting down')
@@ -152,45 +152,58 @@ async def nuke_chats(ctx: discord.context.ApplicationContext):
 		msg = f'Nuking chats - authorization: {get_user_info(ctx)}'
 		logger.info(msg)
 		await ctx.respond(msg)
-  
+
+		# Nuking part
 		for channel in ctx.guild.channels:
 			if ((channel.name == "discussion") or (channel.name == "lab") or (channel.name == "past-work")):
 				await channel.delete()
 		for cat in ctx.guild.categories:
 			if "ECE" in cat.name:
 				await cat.delete()
+	
+		# Rebuilding from ashes part
+		for role in ctx.guild.roles:
+			overwrites = {
+				ctx.guild.default_role: discord.PermissionOverwrite(read_messages=False),
+				role: discord.PermissionOverwrite(read_messages=True)
+			}
 
+			if ("ECE" in role.name):
+				category = await ctx.guild.create_category(role.name, overwrites=overwrites)
+				await ctx.guild.create_text_channel("discussion", category=category, overwrites=overwrites)
+				await ctx.guild.create_text_channel("past-work", category=category, overwrites=overwrites)
+				if("/" in role.name):
+					await ctx.guild.create_text_channel("lab", category=category, overwrites=overwrites)
 
-# @client.command()
-# async def createChats(ctx):
-# 	for role in ctx.guild.roles:
-# 		overwrites = {
-# 			ctx.guild.default_role: discord.PermissionOverwrite(read_messages=False),
-# 			role: discord.PermissionOverwrite(read_messages=True)
-# 		}
+@client.slash_command(name='clear_roles', description='Clear user roles.')
+async def clear_roles(ctx: discord.context.ApplicationContext):
+	logger.debug(f'clear_chats called by {ctx.author.name}')
 
-# 		if ("ECE" in role.name):
-# 			category = await ctx.guild.create_category(role.name, overwrites=overwrites)
-# 			await ctx.guild.create_text_channel("discussion", category=category, overwrites=overwrites)
-# 			await ctx.guild.create_text_channel("past-work", category=category, overwrites=overwrites)
-# 			if("/" in role.name):
-# 				await ctx.guild.create_text_channel("lab", category=category, overwrites=overwrites)
+	if not is_admin(ctx):
+		await invalid_perm_response(ctx)
+		return
 
-# @client.command()
-# async def clearRoles(ctx):
-# 	rolesWithPersistence = []
-# 	rolesWithPersistence.append(discord.utils.get(ctx.guild.roles, name="Alumni"))
-# 	rolesWithPersistence.append(discord.utils.get(ctx.guild.roles, name="Professor"))
-# 	rolesWithPersistence.append(discord.utils.get(ctx.guild.roles, name="Graduate Student"))
-# 	for member in ctx.guild.members:
-# 		if (any(r in member.roles for r in rolesWithPersistence)):
-# 			continue
-# 		for role in member.roles:
-# 			if (not (role.name in persistent_roles)):
-# 				try:
-# 					await member.remove_roles(role)
-# 				except:
-# 					print("Failed to remove role " + role.name + " from " + member.name)
+	confirm = Confirmation(f'Clear all user roles besides admin and {persistent_roles}')
+	result = await confirm.get(ctx)
+
+	if result:
+		msg = f'Clearing roles - authorization: {get_user_info(ctx)}'
+		logger.info(msg)
+		await ctx.respond(msg)
+
+	rolesWithPersistence = []
+	for role in persistent_roles:
+		rolesWithPersistence.append(discord.utils.get(ctx.guild.roles, name=role))
+
+	for member in ctx.guild.members:
+		if (any(r in member.roles for r in rolesWithPersistence)):
+			continue
+		for role in member.roles:
+			if (not (role.name in persistent_roles)):
+				try:
+					await member.remove_roles(role)
+				except:
+					print("Failed to remove role " + role.name + " from " + member.name)
 
 
 

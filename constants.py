@@ -42,7 +42,9 @@ persistent_roles = [
                     "IEEE Member", 
                     "Student", 
                     "ROLE LOCKED (Delinquent)", 
-                    "The Random CS Student","Tau Beta Pi"
+                    "The Random CS Student",
+                    "Tau Beta Pi",
+                    "Graduate Student"
                     ]
 
 messageTimes = []
